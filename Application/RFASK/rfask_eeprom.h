@@ -1,0 +1,142 @@
+#ifndef RFASK_EEPROM_H_
+#define RFASK_EEPROM_H_
+//////////////////////////////////////////////////////////////////////////////////////
+#ifdef __cplusplus
+extern "C" {
+#endif
+	//////////////////////////////////////////////////////////////////////////////////////
+	#include "complier_lib.h"
+	#include "at24cxx_task.h"
+	#include "rfask_cfg.h"
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	//===第二页
+	#define	RFASK_TYPE_ADDR_X1								0x08								//1Byte
+	#define RFASK_SAMPLE_RES_ADDR_X1						( RFASK_TYPE_ADDR_X1+1	)			//2Byte
+	#define RFASK_AMP_TIMES_ADDR_X1							( RFASK_TYPE_ADDR_X1+3	)			//2Byte
+	
+	//===第三页
+	#define RFASK_FREQ_YSEL1_ADDR_X1						( RFASK_TYPE_ADDR_X1+16	)			//4Byte 512M
+	#define RFASK_FREQ_YSEL2_ADDR_X1						( RFASK_TYPE_ADDR_X1+20	)			//4Byte 433.92M
+	#define RFASK_FREQ_YSEL3_ADDR_X1						( RFASK_TYPE_ADDR_X1+24	)			//4Byte 315M
+	#define RFASK_FREQ_YSEL4_ADDR_X1						( RFASK_TYPE_ADDR_X1+28	)			//4Byte	205M
+
+	//===第四页
+	#define RFASK_POINTONE_START_MAX_CURRENT_ADDR_X1		( RFASK_TYPE_ADDR_X1+32	)			//2Byte
+	#define RFASK_POINTONE_START_MIN_CURRENT_ADDR_X1		( RFASK_TYPE_ADDR_X1+34	)			//2Byte
+	#define RFASK_POINTONE_STOP_MAX_CURRENT_ADDR_X1			( RFASK_TYPE_ADDR_X1+36	)			//2Byte
+	#define RFASK_POINTONE_STOP_MIN_CURRENT_ADDR_X1			( RFASK_TYPE_ADDR_X1+38	)			//2Byte
+	#define RFASK_POINTONE_START_FREQ_ADDR_X1				( RFASK_TYPE_ADDR_X1+40	)			//4Byte
+	#define RFASK_POINTONE_STEP_FREQ_ADDR_X1				( RFASK_TYPE_ADDR_X1+44	)			//2Byte
+	#define RFASK_POINTONE_POINT_NUM_ADDR_X1				( RFASK_TYPE_ADDR_X1+46	)			//2Byte
+
+	//===第五页
+	#define RFASK_POINTONE_FREQ_CURRENT_POWER_ADDR_X1		( RFASK_TYPE_ADDR_X1+48	)			//2Byte
+	#define RFASK_POINTONE_ADC_POINT_NUM_ADDR_X1			( RFASK_TYPE_ADDR_X1+50	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MAX_ADDR_X1				( RFASK_TYPE_ADDR_X1+52	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MIN_ADDR_X1				( RFASK_TYPE_ADDR_X1+54	)			//2Byte
+	
+	#define RFASK_POINTTWO_START_MAX_CURRENT_ADDR_X1		( RFASK_TYPE_ADDR_X1+56	)			//2Byte
+	#define RFASK_POINTTWO_START_MIN_CURRENT_ADDR_X1		( RFASK_TYPE_ADDR_X1+58	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MAX_CURRENT_ADDR_X1			( RFASK_TYPE_ADDR_X1+60	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MIN_CURRENT_ADDR_X1			( RFASK_TYPE_ADDR_X1+62	)			//2Byte
+
+	//===第六页
+	#define RFASK_POINTTWO_START_FREQ_ADDR_X1				( RFASK_TYPE_ADDR_X1+64	)			//4Byte
+	#define RFASK_POINTTWO_STEP_FREQ_ADDR_X1				( RFASK_TYPE_ADDR_X1+68	)			//2Byte
+	#define RFASK_POINTTWO_POINT_NUM_ADDR_X1				( RFASK_TYPE_ADDR_X1+70	)			//2Byte
+
+	#define RFASK_POINTTWO_FREQ_CURRENT_POWER_ADDR_X1		( RFASK_TYPE_ADDR_X1+72	)			//2Byte
+	#define RFASK_POINTTWO_ADC_POINT_NUM_ADDR_X1			( RFASK_TYPE_ADDR_X1+74	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MAX_ADDR_X1				( RFASK_TYPE_ADDR_X1+76	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MIN_ADDR_X1				( RFASK_TYPE_ADDR_X1+78	)			//2Byte
+
+	//===第七页
+	#define	RFASK_TYPE_ADDR_X2								0x58								//1Byte
+	#define RFASK_SAMPLE_RES_ADDR_X2						( RFASK_TYPE_ADDR_X2+1	)			//2Byte
+	#define RFASK_AMP_TIMES_ADDR_X2							( RFASK_TYPE_ADDR_X2+3	)			//2Byte
+	
+	//===第八页
+	#define RFASK_FREQ_YSEL1_ADDR_X2						( RFASK_TYPE_ADDR_X2+16	)			//4Byte
+	#define RFASK_FREQ_YSEL2_ADDR_X2						( RFASK_TYPE_ADDR_X2+20	)			//4Byte
+	#define RFASK_FREQ_YSEL3_ADDR_X2						( RFASK_TYPE_ADDR_X2+24	)			//4Byte
+	#define RFASK_FREQ_YSEL4_ADDR_X2						( RFASK_TYPE_ADDR_X2+28	)			//4Byte	
+																			   
+	//===第九页																
+	#define RFASK_POINTONE_START_MAX_CURRENT_ADDR_X2		( RFASK_TYPE_ADDR_X2+32	)			//2Byte
+	#define RFASK_POINTONE_START_MIN_CURRENT_ADDR_X2		( RFASK_TYPE_ADDR_X2+34	)			//2Byte
+	#define RFASK_POINTONE_STOP_MAX_CURRENT_ADDR_X2			( RFASK_TYPE_ADDR_X2+36	)			//2Byte
+	#define RFASK_POINTONE_STOP_MIN_CURRENT_ADDR_X2			( RFASK_TYPE_ADDR_X2+38	)			//2Byte
+	#define RFASK_POINTONE_START_FREQ_ADDR_X2				( RFASK_TYPE_ADDR_X2+40	)			//4Byte
+	#define RFASK_POINTONE_STEP_FREQ_ADDR_X2				( RFASK_TYPE_ADDR_X2+44	)			//2Byte
+	#define RFASK_POINTONE_POINT_NUM_ADDR_X2				( RFASK_TYPE_ADDR_X2+46	)			//2Byte
+	
+	//===第十页																
+	#define RFASK_POINTONE_FREQ_CURRENT_POWER_ADDR_X2		( RFASK_TYPE_ADDR_X2+48	)			//2Byte
+	#define RFASK_POINTONE_ADC_POINT_NUM_ADDR_X2			( RFASK_TYPE_ADDR_X2+50	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MAX_ADDR_X2				( RFASK_TYPE_ADDR_X2+52	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MIN_ADDR_X2				( RFASK_TYPE_ADDR_X2+54	)			//2Byte
+	
+	#define RFASK_POINTTWO_START_MAX_CURRENT_ADDR_X2		( RFASK_TYPE_ADDR_X2+56	)			//2Byte
+	#define RFASK_POINTTWO_START_MIN_CURRENT_ADDR_X2		( RFASK_TYPE_ADDR_X2+58	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MAX_CURRENT_ADDR_X2			( RFASK_TYPE_ADDR_X2+60	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MIN_CURRENT_ADDR_X2			( RFASK_TYPE_ADDR_X2+62	)			//2Byte
+	
+	//===第十一页																
+	#define RFASK_POINTTWO_START_FREQ_ADDR_X2				( RFASK_TYPE_ADDR_X2+66	)			//4Byte
+	#define RFASK_POINTTWO_STEP_FREQ_ADDR_X2				( RFASK_TYPE_ADDR_X2+68	)			//2Byte
+	#define RFASK_POINTTWO_POINT_NUM_ADDR_X2				( RFASK_TYPE_ADDR_X2+70	)			//2Byte
+	#define RFASK_POINTTWO_FREQ_CURRENT_POWER_ADDR_X2		( RFASK_TYPE_ADDR_X2+72	)			//2Byte
+	#define RFASK_POINTTWO_ADC_POINT_NUM_ADDR_X2			( RFASK_TYPE_ADDR_X2+74	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MAX_ADDR_X2				( RFASK_TYPE_ADDR_X2+76	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MIN_ADDR_X2				( RFASK_TYPE_ADDR_X2+78	)			//2Byte
+
+	//===第十二页
+	#define	RFASK_TYPE_ADDR_X3								0xA8								//1Byte
+	#define RFASK_SAMPLE_RES_ADDR_X3						( RFASK_TYPE_ADDR_X3+1	)			//2Byte
+	#define RFASK_AMP_TIMES_ADDR_X3							( RFASK_TYPE_ADDR_X3+3	)			//2Byte
+																			  
+	//===第十三页																
+	#define RFASK_FREQ_YSEL1_ADDR_X3						( RFASK_TYPE_ADDR_X3+16	)			//4Byte
+	#define RFASK_FREQ_YSEL2_ADDR_X3						( RFASK_TYPE_ADDR_X3+20	)			//4Byte
+	#define RFASK_FREQ_YSEL3_ADDR_X3						( RFASK_TYPE_ADDR_X3+24	)			//4Byte
+	#define RFASK_FREQ_YSEL4_ADDR_X3						( RFASK_TYPE_ADDR_X3+28	)			//4Byte	
+																			   
+	//===第十四页																
+	#define RFASK_POINTONE_START_MAX_CURRENT_ADDR_X3		( RFASK_TYPE_ADDR_X3+32	)			//2Byte
+	#define RFASK_POINTONE_START_MIN_CURRENT_ADDR_X3		( RFASK_TYPE_ADDR_X3+34	)			//2Byte
+	#define RFASK_POINTONE_STOP_MAX_CURRENT_ADDR_X3			( RFASK_TYPE_ADDR_X3+36	)			//2Byte
+	#define RFASK_POINTONE_STOP_MIN_CURRENT_ADDR_X3			( RFASK_TYPE_ADDR_X3+38	)			//2Byte
+	#define RFASK_POINTONE_START_FREQ_ADDR_X3				( RFASK_TYPE_ADDR_X3+40	)			//4Byte
+	#define RFASK_POINTONE_STEP_FREQ_ADDR_X3				( RFASK_TYPE_ADDR_X3+44	)			//2Byte
+	#define RFASK_POINTONE_POINT_NUM_ADDR_X3				( RFASK_TYPE_ADDR_X3+46	)			//2Byte
+	
+	//===第十五页																
+	#define RFASK_POINTONE_FREQ_CURRENT_POWER_ADDR_X3		( RFASK_TYPE_ADDR_X3+48	)			//2Byte
+	#define RFASK_POINTONE_ADC_POINT_NUM_ADDR_X3			( RFASK_TYPE_ADDR_X3+50	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MAX_ADDR_X3				( RFASK_TYPE_ADDR_X3+52	)			//2Byte
+	#define RFASK_POINTONE_ADC_PASS_MIN_ADDR_X3				( RFASK_TYPE_ADDR_X3+54	)			//2Byte
+	
+	#define RFASK_POINTTWO_START_MAX_CURRENT_ADDR_X3		( RFASK_TYPE_ADDR_X3+56	)			//2Byte
+	#define RFASK_POINTTWO_START_MIN_CURRENT_ADDR_X3		( RFASK_TYPE_ADDR_X3+58	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MAX_CURRENT_ADDR_X3			( RFASK_TYPE_ADDR_X3+60	)			//2Byte
+	#define RFASK_POINTTWO_STOP_MIN_CURRENT_ADDR_X3			( RFASK_TYPE_ADDR_X3+62	)			//2Byte
+	
+	//===第十六页															
+	#define RFASK_POINTTWO_START_FREQ_ADDR_X3				( RFASK_TYPE_ADDR_X3+66	)			//4Byte
+	#define RFASK_POINTTWO_STEP_FREQ_ADDR_X3				( RFASK_TYPE_ADDR_X3+68	)			//2Byte
+	#define RFASK_POINTTWO_POINT_NUM_ADDR_X3				( RFASK_TYPE_ADDR_X3+70	)			//2Byte
+	#define RFASK_POINTTWO_FREQ_CURRENT_POWER_ADDR_X3		( RFASK_TYPE_ADDR_X3+72	)			//2Byte
+	#define RFASK_POINTTWO_ADC_POINT_NUM_ADDR_X3			( RFASK_TYPE_ADDR_X3+74	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MAX_ADDR_X3				( RFASK_TYPE_ADDR_X3+76	)			//2Byte
+	#define RFASK_POINTTWO_ADC_PASS_MIN_ADDR_X3				( RFASK_TYPE_ADDR_X3+78	)			//2Byte
+	
+	//===函数定义
+	void RFASK_EEPROMInit(RFASK_HandlerType* rfask, AT24CXX_HandlerType* AT24CXXx);
+	UINT8_T RFASK_EEPROMWrite(AT24CXX_HandlerType* AT24CXXx, UINT16_T addr, UINT32_T cfgVal, UINT8_T cout);
+	//////////////////////////////////////////////////////////////////////////////////////
+#ifdef __cplusplus
+}
+#endif
+//////////////////////////////////////////////////////////////////////////////////////
+#endif /*RFASK_EEPROM_H_ */

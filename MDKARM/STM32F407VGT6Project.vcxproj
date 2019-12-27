@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="STM32F407VGT6Project|Win32">
+      <Configuration>STM32F407VGT6Project</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9DFE494E-898D-D317-32AC-E7121E1AE4BD}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>STM32F407VGT6Project</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='STM32F407VGT6Project|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='STM32F407VGT6Project|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='STM32F407VGT6Project|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\STM32F407VGT6Project\</OutDir>
+    <IntDir>obj\</IntDir>
+    <TargetName>STM32F407VGT6Project</TargetName>
+    <TargetExt>.exe</TargetExt>
+    <IncludePath>$(VC_IncludePath);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='STM32F407VGT6Project|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>USE_FULL_LL_DRIVER;USE_HAL_DRIVER;HSE_VALUE=12000000UL;HSE_STARTUP_TIMEOUT=100;LSE_STARTUP_TIMEOUT=5000;LSE_VALUE=32768;EXTERNAL_CLOCK_VALUE=12288000;HSI_VALUE=16000000;LSI_VALUE=32000;STM32F407xx;__TARGET_FPU_VFP;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING;ARM_MATH_CM4;__FPU_PRESENT=1;_IAR_;__ICCARM__;__CC_ARM;_Pragma(x)=;__interrupt=;__packed=__attribute__((__packed__));__weak=__attribute__((weak));%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Complier;..\Doc;..\STM32F4xx;..\STARTUP\MDKARM;..\Drivers\CMSIS\Include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Src;..\Application\APP;..\Application\IWDG;..\Application\AD5593;..\Application\AT24Cxx;..\Application\CRC;..\Application\Delay;..\Application\GPIO;..\Application\I2C;..\Application\Random;..\Application\SysTick;..\Application\USART;..\Application\WM8510;..\Application\ISP;..\Application\SPI;..\Application\LED;..\Application\ADC;..\Application\Timer;..\Application\Key;..\Application\Power;..\Application\Decode;..\Application\OLED;..\Application\WWDG;..\Application\W25Qxx;..\Application\RFASKHW;..\Application\MyMalloc;..\Application\DAC;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\Application\SI5351A;..\Application\TaskManage;..\Application\JTAG;..\Application\HVPP;..\Application\HVSP;..\Application\RFASK;..\Application\HMC472;..\Application\Encode;..\Application\HardWare;..\Application\MCO;D:\Keil_v5\ARM\RV31;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Application\AD5593\ad5593_cfg.h" />
+    <ClInclude Include="..\Application\AD5593\ad5593_lib.h" />
+    <ClInclude Include="..\Application\AD5593\ad5593_task.h" />
+    <ClInclude Include="..\Application\ADC\adc_cfg.h" />
+    <ClInclude Include="..\Application\ADC\adc_lib.h" />
+    <ClInclude Include="..\Application\ADC\adc_task.h" />
+    <ClInclude Include="..\Application\APP\config.h" />
+    <ClInclude Include="..\Application\APP\main.h" />
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_cfg.h" />
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_lib.h" />
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_task.h" />
+    <ClInclude Include="..\Application\CRC\crc_cfg.h" />
+    <ClInclude Include="..\Application\CRC\crc_lib.h" />
+    <ClInclude Include="..\Application\CRC\crc_task.h" />
+    <ClInclude Include="..\Application\DAC\dac_cfg.h" />
+    <ClInclude Include="..\Application\DAC\dac_lib.h" />
+    <ClInclude Include="..\Application\DAC\dac_task.h" />
+    <ClInclude Include="..\Application\Decode\decode_cfg.h" />
+    <ClInclude Include="..\Application\Decode\decode_lib.h" />
+    <ClInclude Include="..\Application\Decode\decode_task.h" />
+    <ClInclude Include="..\Application\Delay\delay_cfg.h" />
+    <ClInclude Include="..\Application\Delay\delay_lib.h" />
+    <ClInclude Include="..\Application\Delay\delay_task.h" />
+    <ClInclude Include="..\Application\Encode\encode_cfg.h" />
+    <ClInclude Include="..\Application\Encode\encode_lib.h" />
+    <ClInclude Include="..\Application\Encode\encode_task.h" />
+    <ClInclude Include="..\Application\GPIO\gpio_cfg.h" />
+    <ClInclude Include="..\Application\GPIO\gpio_lib.h" />
+    <ClInclude Include="..\Application\GPIO\gpio_task.h" />
+    <ClInclude Include="..\Application\HMC472\hmc472_cfg.h" />
+    <ClInclude Include="..\Application\HMC472\hmc472_lib.h" />
+    <ClInclude Include="..\Application\HMC472\hmc472_task.h" />
+    <ClInclude Include="..\Application\HVPP\hvpp_cfg.h" />
+    <ClInclude Include="..\Application\HVPP\hvpp_lib.h" />
+    <ClInclude Include="..\Application\HVPP\hvpp_task.h" />
+    <ClInclude Include="..\Application\HVSP\hvsp_cfg.h" />
+    <ClInclude Include="..\Application\HVSP\hvsp_lib.h" />
+    <ClInclude Include="..\Application\HVSP\hvsp_task.h" />
+    <ClInclude Include="..\Application\HardWare\hw_cfg.h" />
+    <ClInclude Include="..\Application\I2C\i2c_cfg.h" />
+    <ClInclude Include="..\Application\I2C\i2c_lib.h" />
+    <ClInclude Include="..\Application\I2C\i2c_task.h" />
+    <ClInclude Include="..\Application\ISP\isp_cfg.h" />
+    <ClInclude Include="..\Application\ISP\isp_lib.h" />
+    <ClInclude Include="..\Application\ISP\isp_task.h" />
+    <ClInclude Include="..\Application\IWDG\iwdg_cfg.h" />
+    <ClInclude Include="..\Application\IWDG\iwdg_lib.h" />
+    <ClInclude Include="..\Application\IWDG\iwdg_task.h" />
+    <ClInclude Include="..\Application\JTAG\jtag_cfg.h" />
+    <ClInclude Include="..\Application\JTAG\jtag_lib.h" />
+    <ClInclude Include="..\Application\JTAG\jtag_task.h" />
+    <ClInclude Include="..\Application\Key\key_cfg.h" />
+    <ClInclude Include="..\Application\Key\key_lib.h" />
+    <ClInclude Include="..\Application\Key\key_task.h" />
+    <ClInclude Include="..\Application\LED\led_cfg.h" />
+    <ClInclude Include="..\Application\LED\led_lib.h" />
+    <ClInclude Include="..\Application\LED\led_task.h" />
+    <ClInclude Include="..\Application\MCO\mco_cfg.h" />
+    <ClInclude Include="..\Application\MyMalloc\my_malloc.h" />
+    <ClInclude Include="..\Application\OLED\oled_cfg.h" />
+    <ClInclude Include="..\Application\OLED\oled_lib.h" />
+    <ClInclude Include="..\Application\OLED\oled_task.h" />
+    <ClInclude Include="..\Application\Power\power_cfg.h" />
+    <ClInclude Include="..\Application\Power\power_lib.h" />
+    <ClInclude Include="..\Application\Power\power_task.h" />
+    <ClInclude Include="..\Application\RFASK\rfask_cfg.h" />
+    <ClInclude Include="..\Application\RFASK\rfask_eeprom.h" />
+    <ClInclude Include="..\Application\RFASK\rfask_lib.h" />
+    <ClInclude Include="..\Application\RFASK\rfask_task.h" />
+    <ClInclude Include="..\Application\RFASKHW\rfaskhw_cfg.h" />
+    <ClInclude Include="..\Application\Random\random_cfg.h" />
+    <ClInclude Include="..\Application\Random\random_lib.h" />
+    <ClInclude Include="..\Application\Random\random_task.h" />
+    <ClInclude Include="..\Application\SI5351A\si5351a_cfg.h" />
+    <ClInclude Include="..\Application\SI5351A\si5351a_lib.h" />
+    <ClInclude Include="..\Application\SI5351A\si5351a_task.h" />
+    <ClInclude Include="..\Application\SPI\spi_cfg.h" />
+    <ClInclude Include="..\Application\SPI\spi_lib.h" />
+    <ClInclude Include="..\Application\SPI\spi_task.h" />
+    <ClInclude Include="..\Application\SysTick\systick_cfg.h" />
+    <ClInclude Include="..\Application\SysTick\systick_lib.h" />
+    <ClInclude Include="..\Application\SysTick\systick_task.h" />
+    <ClInclude Include="..\Application\TaskManage\task_manage.h" />
+    <ClInclude Include="..\Application\Timer\timer_cfg.h" />
+    <ClInclude Include="..\Application\Timer\timer_lib.h" />
+    <ClInclude Include="..\Application\Timer\timer_task.h" />
+    <ClInclude Include="..\Application\USART\usart_cfg.h" />
+    <ClInclude Include="..\Application\USART\usart_lib.h" />
+    <ClInclude Include="..\Application\USART\usart_task.h" />
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_cfg.h" />
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_lib.h" />
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_task.h" />
+    <ClInclude Include="..\Application\WM8510\wm8510_cfg.h" />
+    <ClInclude Include="..\Application\WM8510\wm8510_lib.h" />
+    <ClInclude Include="..\Application\WM8510\wm8510_task.h" />
+    <ClInclude Include="..\Application\WWDG\wwdg_cfg.h" />
+    <ClInclude Include="..\Application\WWDG\wwdg_lib.h" />
+    <ClInclude Include="..\Application\WWDG\wwdg_task.h" />
+    <ClInclude Include="..\Complier\complier_cfg.h" />
+    <ClInclude Include="..\Complier\complier_lib.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_crc.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_adc.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_bus.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_cortex.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_crc.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dac.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dma.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dma2d.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_exti.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_gpio.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_iwdg.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_pwr.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rcc.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rng.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rtc.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_spi.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_system.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_tim.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usart.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_utils.h" />
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h" />
+    <ClInclude Include="..\STM32F4xx\stm32_assert.h" />
+    <ClInclude Include="..\STM32F4xx\stm32_cfg.h" />
+    <ClInclude Include="..\STM32F4xx\stm32f407xx.h" />
+    <ClInclude Include="..\STM32F4xx\stm32f4xx.h" />
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_hal_conf.h" />
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_it.h" />
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_ll.h" />
+    <ClInclude Include="..\STM32F4xx\system_stm32f4xx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Application\AD5593\ad5593_cfg.c" />
+    <ClCompile Include="..\Application\AD5593\ad5593_lib.c" />
+    <ClCompile Include="..\Application\AD5593\ad5593_task.c" />
+    <ClCompile Include="..\Application\ADC\adc_cfg.c" />
+    <ClCompile Include="..\Application\ADC\adc_lib.c" />
+    <ClCompile Include="..\Application\ADC\adc_task.c" />
+    <ClCompile Include="..\Application\APP\main.c" />
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_cfg.c" />
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_lib.c" />
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_task.c" />
+    <ClCompile Include="..\Application\CRC\crc_cfg.c" />
+    <ClCompile Include="..\Application\CRC\crc_lib.c" />
+    <ClCompile Include="..\Application\CRC\crc_task.c" />
+    <ClCompile Include="..\Application\DAC\dac_cfg.c" />
+    <ClCompile Include="..\Application\DAC\dac_lib.c" />
+    <ClCompile Include="..\Application\DAC\dac_task.c" />
+    <ClCompile Include="..\Application\Decode\decode_cfg.c" />
+    <ClCompile Include="..\Application\Decode\decode_lib.c" />
+    <ClCompile Include="..\Application\Decode\decode_task.c" />
+    <ClCompile Include="..\Application\Delay\delay_cfg.c" />
+    <ClCompile Include="..\Application\Delay\delay_lib.c" />
+    <ClCompile Include="..\Application\Delay\delay_task.c" />
+    <ClCompile Include="..\Application\Encode\encode_cfg.c" />
+    <ClCompile Include="..\Application\Encode\encode_lib.c" />
+    <ClCompile Include="..\Application\Encode\encode_task.c" />
+    <ClCompile Include="..\Application\GPIO\gpio_cfg.c" />
+    <ClCompile Include="..\Application\GPIO\gpio_lib.c" />
+    <ClCompile Include="..\Application\GPIO\gpio_task.c" />
+    <ClCompile Include="..\Application\HMC472\hmc472_cfg.c" />
+    <ClCompile Include="..\Application\HMC472\hmc472_lib.c" />
+    <ClCompile Include="..\Application\HMC472\hmc472_task.c" />
+    <ClCompile Include="..\Application\HVPP\hvpp_cfg.c" />
+    <ClCompile Include="..\Application\HVPP\hvpp_lib.c" />
+    <ClCompile Include="..\Application\HVPP\hvpp_task.c" />
+    <ClCompile Include="..\Application\HVSP\hvsp_cfg.c" />
+    <ClCompile Include="..\Application\HVSP\hvsp_lib.c" />
+    <ClCompile Include="..\Application\HVSP\hvsp_task.c" />
+    <ClCompile Include="..\Application\HardWare\hw_cfg.c" />
+    <ClCompile Include="..\Application\I2C\i2c_cfg.c" />
+    <ClCompile Include="..\Application\I2C\i2c_lib.c" />
+    <ClCompile Include="..\Application\I2C\i2c_task.c" />
+    <ClCompile Include="..\Application\ISP\isp_cfg.c" />
+    <ClCompile Include="..\Application\ISP\isp_lib.c" />
+    <ClCompile Include="..\Application\ISP\isp_task.c" />
+    <ClCompile Include="..\Application\IWDG\iwdg_cfg.c" />
+    <ClCompile Include="..\Application\IWDG\iwdg_lib.c" />
+    <ClCompile Include="..\Application\IWDG\iwdg_task.c" />
+    <ClCompile Include="..\Application\JTAG\jtag_cfg.c" />
+    <ClCompile Include="..\Application\JTAG\jtag_lib.c" />
+    <ClCompile Include="..\Application\JTAG\jtag_task.c" />
+    <ClCompile Include="..\Application\Key\key_cfg.c" />
+    <ClCompile Include="..\Application\Key\key_lib.c" />
+    <ClCompile Include="..\Application\Key\key_task.c" />
+    <ClCompile Include="..\Application\LED\led_cfg.c" />
+    <ClCompile Include="..\Application\LED\led_lib.c" />
+    <ClCompile Include="..\Application\LED\led_task.c" />
+    <ClCompile Include="..\Application\MCO\mco_cfg.c" />
+    <ClCompile Include="..\Application\MyMalloc\my_malloc.c" />
+    <ClCompile Include="..\Application\OLED\oled_cfg.c" />
+    <ClCompile Include="..\Application\OLED\oled_lib.c" />
+    <ClCompile Include="..\Application\OLED\oled_task.c" />
+    <ClCompile Include="..\Application\Power\power_cfg.c" />
+    <ClCompile Include="..\Application\Power\power_lib.c" />
+    <ClCompile Include="..\Application\Power\power_task.c" />
+    <ClCompile Include="..\Application\RFASK\rfask_cfg.c" />
+    <ClCompile Include="..\Application\RFASK\rfask_eeprom.c" />
+    <ClCompile Include="..\Application\RFASK\rfask_lib.c" />
+    <ClCompile Include="..\Application\RFASK\rfask_task.c" />
+    <ClCompile Include="..\Application\RFASKHW\rfaskhw_cfg.c" />
+    <ClCompile Include="..\Application\Random\random_cfg.c" />
+    <ClCompile Include="..\Application\Random\random_lib.c" />
+    <ClCompile Include="..\Application\Random\random_task.c" />
+    <ClCompile Include="..\Application\SI5351A\si5351a_cfg.c" />
+    <ClCompile Include="..\Application\SI5351A\si5351a_lib.c" />
+    <ClCompile Include="..\Application\SI5351A\si5351a_task.c" />
+    <ClCompile Include="..\Application\SPI\spi_cfg.c" />
+    <ClCompile Include="..\Application\SPI\spi_lib.c" />
+    <ClCompile Include="..\Application\SPI\spi_task.c" />
+    <ClCompile Include="..\Application\SysTick\systick_cfg.c" />
+    <ClCompile Include="..\Application\SysTick\systick_lib.c" />
+    <ClCompile Include="..\Application\SysTick\systick_task.c" />
+    <ClCompile Include="..\Application\TaskManage\task_manage.c" />
+    <ClCompile Include="..\Application\Timer\timer_cfg.c" />
+    <ClCompile Include="..\Application\Timer\timer_lib.c" />
+    <ClCompile Include="..\Application\Timer\timer_task.c" />
+    <ClCompile Include="..\Application\USART\usart_cfg.c" />
+    <ClCompile Include="..\Application\USART\usart_lib.c" />
+    <ClCompile Include="..\Application\USART\usart_task.c" />
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_cfg.c" />
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_lib.c" />
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_task.c" />
+    <ClCompile Include="..\Application\WM8510\wm8510_cfg.c" />
+    <ClCompile Include="..\Application\WM8510\wm8510_lib.c" />
+    <ClCompile Include="..\Application\WM8510\wm8510_task.c" />
+    <ClCompile Include="..\Application\WWDG\wwdg_cfg.c" />
+    <ClCompile Include="..\Application\WWDG\wwdg_lib.c" />
+    <ClCompile Include="..\Application\WWDG\wwdg_task.c" />
+    <ClCompile Include="..\Complier\complier_cfg.c" />
+    <ClCompile Include="..\Complier\complier_lib.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_adc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_crc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dac.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dma.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dma2d.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_exti.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_gpio.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_i2c.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_pwr.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rcc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rng.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rtc.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_spi.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_tim.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usart.c" />
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_utils.c" />
+    <ClCompile Include="..\STARTUP\MDKARM\STM32F4\startup_stm32f407xx.s" />
+    <ClCompile Include="..\STM32F4xx\stm32_cfg.c" />
+    <ClCompile Include="..\STM32F4xx\stm32f4xx_it.c" />
+    <ClCompile Include="..\STM32F4xx\system_stm32f4xx.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Doc\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

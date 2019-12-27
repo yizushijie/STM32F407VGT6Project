@@ -1,0 +1,58 @@
+#include"wwdg_cfg.h"
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能：
+//////输入参数:
+//////输出参数:
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+UINT8_T WWDG_Init(UINT8_T wr, UINT32_T prv)
+{
+	//---使能WWDG的时钟
+	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_WWDG);
+	//---设置递减计数器的值
+	LL_WWDG_SetCounter(WWDG, 0x7F);
+	//---设置预分频器的值
+	LL_WWDG_SetPrescaler(WWDG, prv);
+	//---设置上窗口值
+	LL_WWDG_SetWindow(WWDG, wr);
+	//---配置中断
+	NVIC_SetPriority(WWDG_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+	//---使能中断
+	NVIC_EnableIRQ(WWDG_IRQn);
+	//---使能WWDG
+	LL_WWDG_Enable(WWDG);
+	//---清除提前唤醒中断标志
+	LL_WWDG_ClearFlag_EWKUP(WWDG);
+	//---使能WWDG中断
+	LL_WWDG_EnableIT_EWKUP(WWDG);
+	return OK_0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能：
+//////输入参数:
+//////输出参数:
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+UINT8_T WWDG_DeInit(void)
+{
+	LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_WWDG);
+	return OK_0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函		数：
+//////功		能：
+//////输入参数:
+//////输出参数:
+//////说		明：
+//////////////////////////////////////////////////////////////////////////////
+UINT8_T WWDG_Reset(void)
+{
+	//---刷新递减计数器的值
+	LL_WWDG_SetCounter(WWDG, 0x7F);
+	return OK_0;
+}

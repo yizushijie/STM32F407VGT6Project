@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{D9DE78AF-4594-F1A4-CE88-EB7B3A3DE8A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\AD5593">
+      <UniqueIdentifier>{63845DB1-4F68-1E07-B8C8-185AA4CB0889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\ADC">
+      <UniqueIdentifier>{B086296C-1C12-9730-2523-1A25912DF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\APP">
+      <UniqueIdentifier>{4988296C-B513-9730-BE24-1A252A2FF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\AT24Cxx">
+      <UniqueIdentifier>{D6F82902-425A-0710-CBC7-4DC237283ECF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\CRC">
+      <UniqueIdentifier>{0091296C-6C1C-9730-752D-1A25E137F330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\DAC">
+      <UniqueIdentifier>{1093296C-7C1E-9730-852F-1A25F139F330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Decode">
+      <UniqueIdentifier>{CC5CCCBA-B840-8D10-21A1-87630DA47792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Delay">
+      <UniqueIdentifier>{1710EF1C-8326-EDB2-CC9D-78D438F3BD3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Encode">
+      <UniqueIdentifier>{F661C4BD-E245-8513-4BA6-7F6637A96F95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\GPIO">
+      <UniqueIdentifier>{17DB5DF1-03D4-7C43-2C06-62C8185E5C4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\HMC472">
+      <UniqueIdentifier>{1D265CC2-090A-1D18-726A-176B5E6D079A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\HVPP">
+      <UniqueIdentifier>{E6815EF1-D27A-7D43-FBAC-62C8E7045D4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\HVSP">
+      <UniqueIdentifier>{49825EF1-357B-7D43-5EAD-62C84A055D4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\HardWare">
+      <UniqueIdentifier>{5651A43E-42E0-2D08-EBFE-4103D76C3EAE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\I2C">
+      <UniqueIdentifier>{66A6296C-D231-9730-DB42-1A25474DF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\ISP">
+      <UniqueIdentifier>{B4AA296C-2036-9730-2947-1A259551F330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\IWDG">
+      <UniqueIdentifier>{F3105FF1-DF09-7E43-083C-63C8F4935D4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\JTAG">
+      <UniqueIdentifier>{2E905FF1-1A89-7E43-43BB-63C82F135E4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Key">
+      <UniqueIdentifier>{B1B5296C-1D41-9730-2652-1A25925CF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\LED">
+      <UniqueIdentifier>{9DB5296C-0941-9730-1252-1A257E5CF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\MCO">
+      <UniqueIdentifier>{A7B9296C-1345-9730-1C56-1A258860F330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\MyMalloc">
+      <UniqueIdentifier>{66B5E9BC-5244-7386-FB62-8781E7D0832C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\OLED">
+      <UniqueIdentifier>{8C2C62F1-7825-8143-A157-66C88DAF604F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Power">
+      <UniqueIdentifier>{35E1CD1D-A1F7-CBB3-EA6E-57D556C49C3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\RFASK">
+      <UniqueIdentifier>{7FAEDA1D-EBC4-D8B3-343C-64D5A091A93B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\RFASKHW">
+      <UniqueIdentifier>{DE5340FF-4AB5-1D0D-D322-64BF3F8354CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Random">
+      <UniqueIdentifier>{690E32DB-55F2-F230-BE52-ED83AA55DDB2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\SI5351A">
+      <UniqueIdentifier>{B3F74E52-1F59-2C60-A8C6-72121427631F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\SPI">
+      <UniqueIdentifier>{D4D4296C-4060-9730-4971-1A25B57BF330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\SysTick">
+      <UniqueIdentifier>{7281BBC6-DEE2-98D4-6750-DF86D3B0CF93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\TaskManage">
+      <UniqueIdentifier>{647F4099-5079-69EB-39E6-FFFB257FCF57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Timer">
+      <UniqueIdentifier>{69CE121E-D5E4-10B4-1E5C-9CD58AB1E13B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\USART">
+      <UniqueIdentifier>{D718181E-432F-16B4-8CA6-A1D5F8FBE63B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\W25Qxx">
+      <UniqueIdentifier>{A7C869E3-93AC-2A39-FC0C-258CE80F15BB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\WM8510">
+      <UniqueIdentifier>{DA8253E5-C666-143B-2FC7-0E8E1BCAFEBC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\WWDG">
+      <UniqueIdentifier>{41BE66F1-2DB7-8543-56E9-6AC84241654F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Complier">
+      <UniqueIdentifier>{A062D8B7-8C2F-33C3-B548-216BA1746851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{DBE2870B-47EC-877C-D067-9E7C3C70937C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers">
+      <UniqueIdentifier>{C456D287-3036-5123-394E-DCF9A5ACB784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\CMSIS">
+      <UniqueIdentifier>{12DDDB0F-7E9D-5746-47D8-A0C3B3579C22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\STM32F4xx_HAL_Driver">
+      <UniqueIdentifier>{B53EBC8A-A1F9-AB36-4AB1-2481364BF6C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STARTUP">
+      <UniqueIdentifier>{384599C1-A424-185D-AD3C-A333199B7EBE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STARTUP\MDKARM">
+      <UniqueIdentifier>{2358C722-0F26-BB28-F8B9-2B4FE426978D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STM32F4xx">
+      <UniqueIdentifier>{C87EFADD-34E9-AE54-7D27-60FAE9D08CA9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Application\AD5593\ad5593_cfg.h">
+      <Filter>Application\AD5593</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\AD5593\ad5593_lib.h">
+      <Filter>Application\AD5593</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\AD5593\ad5593_task.h">
+      <Filter>Application\AD5593</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ADC\adc_cfg.h">
+      <Filter>Application\ADC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ADC\adc_lib.h">
+      <Filter>Application\ADC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ADC\adc_task.h">
+      <Filter>Application\ADC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\APP\config.h">
+      <Filter>Application\APP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\APP\main.h">
+      <Filter>Application\APP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_cfg.h">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_lib.h">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\AT24Cxx\at24cxx_task.h">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\CRC\crc_cfg.h">
+      <Filter>Application\CRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\CRC\crc_lib.h">
+      <Filter>Application\CRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\CRC\crc_task.h">
+      <Filter>Application\CRC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\DAC\dac_cfg.h">
+      <Filter>Application\DAC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\DAC\dac_lib.h">
+      <Filter>Application\DAC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\DAC\dac_task.h">
+      <Filter>Application\DAC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Decode\decode_cfg.h">
+      <Filter>Application\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Decode\decode_lib.h">
+      <Filter>Application\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Decode\decode_task.h">
+      <Filter>Application\Decode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Delay\delay_cfg.h">
+      <Filter>Application\Delay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Delay\delay_lib.h">
+      <Filter>Application\Delay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Delay\delay_task.h">
+      <Filter>Application\Delay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Encode\encode_cfg.h">
+      <Filter>Application\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Encode\encode_lib.h">
+      <Filter>Application\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Encode\encode_task.h">
+      <Filter>Application\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\GPIO\gpio_cfg.h">
+      <Filter>Application\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\GPIO\gpio_lib.h">
+      <Filter>Application\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\GPIO\gpio_task.h">
+      <Filter>Application\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HMC472\hmc472_cfg.h">
+      <Filter>Application\HMC472</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HMC472\hmc472_lib.h">
+      <Filter>Application\HMC472</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HMC472\hmc472_task.h">
+      <Filter>Application\HMC472</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVPP\hvpp_cfg.h">
+      <Filter>Application\HVPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVPP\hvpp_lib.h">
+      <Filter>Application\HVPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVPP\hvpp_task.h">
+      <Filter>Application\HVPP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVSP\hvsp_cfg.h">
+      <Filter>Application\HVSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVSP\hvsp_lib.h">
+      <Filter>Application\HVSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HVSP\hvsp_task.h">
+      <Filter>Application\HVSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\HardWare\hw_cfg.h">
+      <Filter>Application\HardWare</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\I2C\i2c_cfg.h">
+      <Filter>Application\I2C</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\I2C\i2c_lib.h">
+      <Filter>Application\I2C</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\I2C\i2c_task.h">
+      <Filter>Application\I2C</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ISP\isp_cfg.h">
+      <Filter>Application\ISP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ISP\isp_lib.h">
+      <Filter>Application\ISP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\ISP\isp_task.h">
+      <Filter>Application\ISP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\IWDG\iwdg_cfg.h">
+      <Filter>Application\IWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\IWDG\iwdg_lib.h">
+      <Filter>Application\IWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\IWDG\iwdg_task.h">
+      <Filter>Application\IWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\JTAG\jtag_cfg.h">
+      <Filter>Application\JTAG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\JTAG\jtag_lib.h">
+      <Filter>Application\JTAG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\JTAG\jtag_task.h">
+      <Filter>Application\JTAG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Key\key_cfg.h">
+      <Filter>Application\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Key\key_lib.h">
+      <Filter>Application\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Key\key_task.h">
+      <Filter>Application\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\LED\led_cfg.h">
+      <Filter>Application\LED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\LED\led_lib.h">
+      <Filter>Application\LED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\LED\led_task.h">
+      <Filter>Application\LED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\MCO\mco_cfg.h">
+      <Filter>Application\MCO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\MyMalloc\my_malloc.h">
+      <Filter>Application\MyMalloc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\OLED\oled_cfg.h">
+      <Filter>Application\OLED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\OLED\oled_lib.h">
+      <Filter>Application\OLED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\OLED\oled_task.h">
+      <Filter>Application\OLED</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Power\power_cfg.h">
+      <Filter>Application\Power</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Power\power_lib.h">
+      <Filter>Application\Power</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Power\power_task.h">
+      <Filter>Application\Power</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\RFASK\rfask_cfg.h">
+      <Filter>Application\RFASK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\RFASK\rfask_eeprom.h">
+      <Filter>Application\RFASK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\RFASK\rfask_lib.h">
+      <Filter>Application\RFASK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\RFASK\rfask_task.h">
+      <Filter>Application\RFASK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\RFASKHW\rfaskhw_cfg.h">
+      <Filter>Application\RFASKHW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Random\random_cfg.h">
+      <Filter>Application\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Random\random_lib.h">
+      <Filter>Application\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Random\random_task.h">
+      <Filter>Application\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SI5351A\si5351a_cfg.h">
+      <Filter>Application\SI5351A</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SI5351A\si5351a_lib.h">
+      <Filter>Application\SI5351A</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SI5351A\si5351a_task.h">
+      <Filter>Application\SI5351A</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SPI\spi_cfg.h">
+      <Filter>Application\SPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SPI\spi_lib.h">
+      <Filter>Application\SPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SPI\spi_task.h">
+      <Filter>Application\SPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SysTick\systick_cfg.h">
+      <Filter>Application\SysTick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SysTick\systick_lib.h">
+      <Filter>Application\SysTick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\SysTick\systick_task.h">
+      <Filter>Application\SysTick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\TaskManage\task_manage.h">
+      <Filter>Application\TaskManage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Timer\timer_cfg.h">
+      <Filter>Application\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Timer\timer_lib.h">
+      <Filter>Application\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\Timer\timer_task.h">
+      <Filter>Application\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\USART\usart_cfg.h">
+      <Filter>Application\USART</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\USART\usart_lib.h">
+      <Filter>Application\USART</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\USART\usart_task.h">
+      <Filter>Application\USART</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_cfg.h">
+      <Filter>Application\W25Qxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_lib.h">
+      <Filter>Application\W25Qxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\W25Qxx\w25qxx_task.h">
+      <Filter>Application\W25Qxx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WM8510\wm8510_cfg.h">
+      <Filter>Application\WM8510</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WM8510\wm8510_lib.h">
+      <Filter>Application\WM8510</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WM8510\wm8510_task.h">
+      <Filter>Application\WM8510</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WWDG\wwdg_cfg.h">
+      <Filter>Application\WWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WWDG\wwdg_lib.h">
+      <Filter>Application\WWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\WWDG\wwdg_task.h">
+      <Filter>Application\WWDG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Complier\complier_cfg.h">
+      <Filter>Complier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Complier\complier_lib.h">
+      <Filter>Complier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_crc.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_adc.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_bus.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_cortex.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_crc.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dac.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dma.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_dma2d.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_exti.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_gpio.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_iwdg.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_pwr.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rcc.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rng.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_rtc.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_spi.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_system.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_tim.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usart.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_utils.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32_assert.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32_cfg.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32f407xx.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32f4xx.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_hal_conf.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_it.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\stm32f4xx_ll.h">
+      <Filter>STM32F4xx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM32F4xx\system_stm32f4xx.h">
+      <Filter>Drivers\CMSIS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Application\AD5593\ad5593_cfg.c">
+      <Filter>Application\AD5593</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\AD5593\ad5593_lib.c">
+      <Filter>Application\AD5593</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\AD5593\ad5593_task.c">
+      <Filter>Application\AD5593</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ADC\adc_cfg.c">
+      <Filter>Application\ADC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ADC\adc_lib.c">
+      <Filter>Application\ADC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ADC\adc_task.c">
+      <Filter>Application\ADC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\APP\main.c">
+      <Filter>Application\APP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_cfg.c">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_lib.c">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\AT24Cxx\at24cxx_task.c">
+      <Filter>Application\AT24Cxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\CRC\crc_cfg.c">
+      <Filter>Application\CRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\CRC\crc_lib.c">
+      <Filter>Application\CRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\CRC\crc_task.c">
+      <Filter>Application\CRC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\DAC\dac_cfg.c">
+      <Filter>Application\DAC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\DAC\dac_lib.c">
+      <Filter>Application\DAC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\DAC\dac_task.c">
+      <Filter>Application\DAC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Decode\decode_cfg.c">
+      <Filter>Application\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Decode\decode_lib.c">
+      <Filter>Application\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Decode\decode_task.c">
+      <Filter>Application\Decode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Delay\delay_cfg.c">
+      <Filter>Application\Delay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Delay\delay_lib.c">
+      <Filter>Application\Delay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Delay\delay_task.c">
+      <Filter>Application\Delay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Encode\encode_cfg.c">
+      <Filter>Application\Encode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Encode\encode_lib.c">
+      <Filter>Application\Encode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Encode\encode_task.c">
+      <Filter>Application\Encode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\GPIO\gpio_cfg.c">
+      <Filter>Application\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\GPIO\gpio_lib.c">
+      <Filter>Application\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\GPIO\gpio_task.c">
+      <Filter>Application\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HMC472\hmc472_cfg.c">
+      <Filter>Application\HMC472</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HMC472\hmc472_lib.c">
+      <Filter>Application\HMC472</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HMC472\hmc472_task.c">
+      <Filter>Application\HMC472</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVPP\hvpp_cfg.c">
+      <Filter>Application\HVPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVPP\hvpp_lib.c">
+      <Filter>Application\HVPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVPP\hvpp_task.c">
+      <Filter>Application\HVPP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVSP\hvsp_cfg.c">
+      <Filter>Application\HVSP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVSP\hvsp_lib.c">
+      <Filter>Application\HVSP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HVSP\hvsp_task.c">
+      <Filter>Application\HVSP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\HardWare\hw_cfg.c">
+      <Filter>Application\HardWare</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\I2C\i2c_cfg.c">
+      <Filter>Application\I2C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\I2C\i2c_lib.c">
+      <Filter>Application\I2C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\I2C\i2c_task.c">
+      <Filter>Application\I2C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ISP\isp_cfg.c">
+      <Filter>Application\ISP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ISP\isp_lib.c">
+      <Filter>Application\ISP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\ISP\isp_task.c">
+      <Filter>Application\ISP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\IWDG\iwdg_cfg.c">
+      <Filter>Application\IWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\IWDG\iwdg_lib.c">
+      <Filter>Application\IWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\IWDG\iwdg_task.c">
+      <Filter>Application\IWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\JTAG\jtag_cfg.c">
+      <Filter>Application\JTAG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\JTAG\jtag_lib.c">
+      <Filter>Application\JTAG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\JTAG\jtag_task.c">
+      <Filter>Application\JTAG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Key\key_cfg.c">
+      <Filter>Application\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Key\key_lib.c">
+      <Filter>Application\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Key\key_task.c">
+      <Filter>Application\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\LED\led_cfg.c">
+      <Filter>Application\LED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\LED\led_lib.c">
+      <Filter>Application\LED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\LED\led_task.c">
+      <Filter>Application\LED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\MCO\mco_cfg.c">
+      <Filter>Application\MCO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\MyMalloc\my_malloc.c">
+      <Filter>Application\MyMalloc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\OLED\oled_cfg.c">
+      <Filter>Application\OLED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\OLED\oled_lib.c">
+      <Filter>Application\OLED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\OLED\oled_task.c">
+      <Filter>Application\OLED</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Power\power_cfg.c">
+      <Filter>Application\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Power\power_lib.c">
+      <Filter>Application\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Power\power_task.c">
+      <Filter>Application\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\RFASK\rfask_cfg.c">
+      <Filter>Application\RFASK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\RFASK\rfask_eeprom.c">
+      <Filter>Application\RFASK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\RFASK\rfask_lib.c">
+      <Filter>Application\RFASK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\RFASK\rfask_task.c">
+      <Filter>Application\RFASK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\RFASKHW\rfaskhw_cfg.c">
+      <Filter>Application\RFASKHW</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Random\random_cfg.c">
+      <Filter>Application\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Random\random_lib.c">
+      <Filter>Application\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Random\random_task.c">
+      <Filter>Application\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SI5351A\si5351a_cfg.c">
+      <Filter>Application\SI5351A</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SI5351A\si5351a_lib.c">
+      <Filter>Application\SI5351A</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SI5351A\si5351a_task.c">
+      <Filter>Application\SI5351A</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SPI\spi_cfg.c">
+      <Filter>Application\SPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SPI\spi_lib.c">
+      <Filter>Application\SPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SPI\spi_task.c">
+      <Filter>Application\SPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SysTick\systick_cfg.c">
+      <Filter>Application\SysTick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SysTick\systick_lib.c">
+      <Filter>Application\SysTick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\SysTick\systick_task.c">
+      <Filter>Application\SysTick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\TaskManage\task_manage.c">
+      <Filter>Application\TaskManage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Timer\timer_cfg.c">
+      <Filter>Application\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Timer\timer_lib.c">
+      <Filter>Application\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\Timer\timer_task.c">
+      <Filter>Application\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\USART\usart_cfg.c">
+      <Filter>Application\USART</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\USART\usart_lib.c">
+      <Filter>Application\USART</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\USART\usart_task.c">
+      <Filter>Application\USART</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_cfg.c">
+      <Filter>Application\W25Qxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_lib.c">
+      <Filter>Application\W25Qxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\W25Qxx\w25qxx_task.c">
+      <Filter>Application\W25Qxx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WM8510\wm8510_cfg.c">
+      <Filter>Application\WM8510</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WM8510\wm8510_lib.c">
+      <Filter>Application\WM8510</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WM8510\wm8510_task.c">
+      <Filter>Application\WM8510</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WWDG\wwdg_cfg.c">
+      <Filter>Application\WWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WWDG\wwdg_lib.c">
+      <Filter>Application\WWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\WWDG\wwdg_task.c">
+      <Filter>Application\WWDG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Complier\complier_cfg.c">
+      <Filter>Complier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Complier\complier_lib.c">
+      <Filter>Complier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_adc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_crc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dac.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dma.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_dma2d.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_exti.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_gpio.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_i2c.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_pwr.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rcc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rng.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_rtc.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_spi.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_tim.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usart.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_utils.c">
+      <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STARTUP\MDKARM\STM32F4\startup_stm32f407xx.s">
+      <Filter>STARTUP\MDKARM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM32F4xx\stm32_cfg.c">
+      <Filter>STM32F4xx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM32F4xx\stm32f4xx_it.c">
+      <Filter>STM32F4xx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM32F4xx\system_stm32f4xx.c">
+      <Filter>Drivers\CMSIS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Doc\ReadMe.txt">
+      <Filter>Doc</Filter>
+    </None>
+  </ItemGroup>
+</Project>
