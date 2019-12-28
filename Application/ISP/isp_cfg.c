@@ -296,11 +296,11 @@ UINT8_T ISP_Init(ISP_HandlerType *ISPx, void(*pFuncDelayus)(UINT32_T delay), voi
 	//---注册滴答函数
 	if (pFuncTimerTick != NULL)
 	{
-		ISPx->msgSPI.msgFuncTimeTick = pFuncTimerTick;
+		ISPx->msgSPI.msgTimeTick = pFuncTimerTick;
 	}
 	else
 	{
-		ISPx->msgSPI.msgFuncTimeTick = SysTickTask_GetTick;
+		ISPx->msgSPI.msgTimeTick = SysTickTask_GetTick;
 	}
 	//---配置OE端口
 #ifdef ISP_USE_lEVEL_SHIFT
@@ -324,7 +324,7 @@ UINT8_T ISP_Init(ISP_HandlerType *ISPx, void(*pFuncDelayus)(UINT32_T delay), voi
 	}
 #endif
 	//---当前时间戳
-	ISPx->msgRecordTime=ISPx->msgSPI.msgFuncTimeTick();
+	ISPx->msgRecordTime=ISPx->msgSPI.msgTimeTick();
 	return OK_0;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -757,7 +757,7 @@ void ISP_WatchTask(ISP_HandlerType* ISPx)
 	if (ISPx->msgState!=0)
 	{
 		//---获取当前时间节拍
-		nowTime= ISPx->msgSPI.msgFuncTimeTick();
+		nowTime= ISPx->msgSPI.msgTimeTick();
 		//---计算时间间隔
 		if (ISPx->msgRecordTime > nowTime)
 		{
@@ -888,7 +888,7 @@ UINT8_T ISP_RefreshWatch(ISP_HandlerType* ISPx)
 	//---配置轮训间隔为最大值，单位是ms
 	ISPx->msgIntervalTime = ISP_STATE_TIME_OUT_MS;
 	//---刷新纪录时间
-	ISPx->msgRecordTime = ISPx->msgSPI.msgFuncTimeTick();
+	ISPx->msgRecordTime = ISPx->msgSPI.msgTimeTick();
 	return OK_0;
 }
 
@@ -904,7 +904,7 @@ UINT8_T ISP_SetIntervalTime(ISP_HandlerType* ISPx,UINT16_T intervalTime)
 	//---配置轮训间隔时间，单位是ms
 	ISPx->msgIntervalTime= intervalTime;
 	//---刷新纪录时间
-	ISPx->msgRecordTime = ISPx->msgSPI.msgFuncTimeTick();
+	ISPx->msgRecordTime = ISPx->msgSPI.msgTimeTick();
 	return OK_0;
 }
 
@@ -934,10 +934,10 @@ UINT8_T ISP_ReadReady(ISP_HandlerType *ISPx)
 	UINT32_T nowTime = 0;
 	UINT32_T oldTime = 0;
 	UINT64_T cnt = 0;
-	if (ISPx->msgSPI.msgFuncTimeTick != NULL)
+	if (ISPx->msgSPI.msgTimeTick != NULL)
 	{
 		//nowTime = ISPx->msgSPI.msgFuncTick();
-		oldTime = ISPx->msgSPI.msgFuncTimeTick();
+		oldTime = ISPx->msgSPI.msgTimeTick();
 	}
 	//---查询忙标志位
 	while (1)
@@ -958,10 +958,10 @@ UINT8_T ISP_ReadReady(ISP_HandlerType *ISPx)
 			}
 			else
 			{
-				if (ISPx->msgSPI.msgFuncTimeTick != NULL)
+				if (ISPx->msgSPI.msgTimeTick != NULL)
 				{
 					//---当前时间
-					nowTime = ISPx->msgSPI.msgFuncTimeTick();
+					nowTime = ISPx->msgSPI.msgTimeTick();
 					//---判断滴答定时是否发生溢出操作
 					if (nowTime < oldTime)
 					{

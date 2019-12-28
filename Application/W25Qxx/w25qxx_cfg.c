@@ -286,11 +286,11 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 	//---注册滴答函数
 	if (pFuncTimerTick != NULL)
 	{
-		W25Qx->msgSPI.msgFuncTimeTick = pFuncTimerTick;
+		W25Qx->msgSPI.msgTimeTick = pFuncTimerTick;
 	}
 	else
 	{
-		W25Qx->msgSPI.msgFuncTimeTick = SysTickTask_GetTick;
+		W25Qx->msgSPI.msgTimeTick = SysTickTask_GetTick;
 	}	
 #ifdef WM25QXX_SPI_USE_HWWP
 	if (W25Qx->msgWP.msgGPIOPort != NULL)
@@ -647,19 +647,19 @@ UINT8_T W25QXX_SPI_WaitBusy(W25QXX_HandlerType *W25Qx,UINT32_T timeOut, UINT8_T 
 	UINT64_T cnt = 0;
 
 	//---获取当前时间节拍
-	if (W25Qx->msgSPI.msgFuncTimeTick != NULL)
+	if (W25Qx->msgSPI.msgTimeTick != NULL)
 	{
-		oldTime = W25Qx->msgSPI.msgFuncTimeTick();
+		oldTime = W25Qx->msgSPI.msgTimeTick();
 	}
 
 	//---等待BUSY位清空
 	while ((_return & 0x01) == 0x01)
 	{
 		_return = W25QXX_SPI_ReadRegSR1(W25Qx,0);
-		if (W25Qx->msgSPI.msgFuncTimeTick != NULL)
+		if (W25Qx->msgSPI.msgTimeTick != NULL)
 		{
 			//---当前时间
-			nowTime = W25Qx->msgSPI.msgFuncTimeTick();
+			nowTime = W25Qx->msgSPI.msgTimeTick();
 
 			//---判断滴答定时是否发生溢出操作
 			if (nowTime < oldTime)

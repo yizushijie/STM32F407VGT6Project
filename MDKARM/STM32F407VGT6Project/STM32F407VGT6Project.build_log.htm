@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.29.0.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Zhang Harry, SYNOXO, LIC=JL28G-V7MJ7-QD4KD-8W79K-RJ7CN-GM6A5
+License Information: ZHANG Harry, SYNOXO, LIC=8VRJ7-ES78W-JJA6S-LQ3E2-RX7R6-4KUQW
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.29.0.0
@@ -21,33 +21,30 @@ Target DLL:      Segger\JL2CM3.dll V2.99.36.0
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-I:\STM32_MCU\STM32F407\STM32f407VGT6\STM32F407VGT6Project\MDKARM\STM32F407VGT6Project.uvprojx
+H:\STM32_MCU\STM32F407\STM32f407VGT6\STM32F407VGT6Project\MDKARM\STM32F407VGT6Project.uvprojx
 Project File Date:  12/28/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.13.1', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'STM32F407VGT6Project'
-../Application/HVPP/hvpp_cfg.c(174): warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-../Application/HVPP/hvpp_cfg.c(247): warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-../Application/HVPP/hvpp_cfg.c(259): warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-../Application/HVPP/hvpp_cfg.c(271): warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-../Application/HVPP/hvpp_cfg.c(282): warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-5 warnings generated.
 compiling hvpp_cfg.c...
+../Application/TaskManage/task_manage.c(117): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                        USART_Printf(pUsart1, "=>><B4><AE><BF><DA>%d:<B7><A2><C9><FA>CRCÐ£<D1><E9><B4><ED><CE><F3><<=\r\n", (pUsart1->msgIndex - 1));
+                                                  ^~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~    ~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+compiling task_manage.c...
+compiling main.c...
+compiling jtag_lib.c...
+../Application/JTAG/jtag_task.c(804): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                                USART_Printf(USARTx, "=>><B4><AE><BF><DA>%d:<B7><A2><C9><FA>CRCÐ£<D1><E9><B4><ED><CE><F3><<=\r\n", (USARTx->msgIndex - 1));
+                                                         ^~~~~~~~~~~~~~~~   ~~~~~~~~~~~~~~~~    ~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+compiling jtag_task.c...
+compiling jtag_cfg.c...
 linking...
 Program Size: Code=77160 RO-data=1672 RW-data=68 ZI-data=16340  
 FromELF: creating hex file...
-"STM32F407VGT6Project\STM32F407VGT6Project.axf" - 0 Error(s), 5 Warning(s).
+"STM32F407VGT6Project\STM32F407VGT6Project.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -70,7 +67,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.3.0
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:13
 </pre>
 </body>
 </html>

@@ -71,7 +71,7 @@ extern "C" {
 		USART_TypeDef							*msgUSART;											//---USART端口
 		USART_TXDHandlerType					msgTxdHandler;										//---发送函数
 		USART_RXDHandlerType					msgRxdHandler;										//---接收函数
-		UINT32_T(*msgFuncTimeTick)(void);															//---用于超时计数
+		UINT32_T(*msgTimeTick)(void);															//---用于超时计数
 	};
 
 	//===是否重映射printf函数

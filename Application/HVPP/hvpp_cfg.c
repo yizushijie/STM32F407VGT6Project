@@ -7,7 +7,7 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-void HVPP_DataBus_Write(HVPP_HandlerType* HVPPx,UINT8_T val )
+UINT8_T HVPP_DataBus_Write(HVPP_HandlerType* HVPPx,UINT8_T val )
 {
 	//---校验数据总线是不是写入状态
 	if (HVPPx->msgDataBusState!=HVPP_DATA_BUS_STATE_WRITE)
@@ -29,6 +29,7 @@ void HVPP_DataBus_Write(HVPP_HandlerType* HVPPx,UINT8_T val )
 	((val & 0x04) == 0) ? HVPP_DATA5_OUT_0 : HVPP_DATA5_OUT_1;
 	((val & 0x02) == 0) ? HVPP_DATA6_OUT_0 : HVPP_DATA6_OUT_1;
 	((val & 0x01) == 0) ? HVPP_DATA7_OUT_0 : HVPP_DATA7_OUT_1;
+	return OK_0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -146,6 +147,7 @@ UINT8_T HVPP_Device_Init(HVPP_HandlerType* HVPPx)
 	GPIO_OUT_1(HVPP_DATA_BUS_PORT, HVPP_DATA_BUS_BIT);
 	//---设置数据总线状态为读取状态
 	HVPPx->msgDataBusState=HVPP_DATA_BUS_STATE_READ;
+	return OK_0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -219,6 +221,8 @@ UINT8_T HVPP_Device_DeInit(HVPP_HandlerType* HVPPx)
 	HVPPx->msgDataBusState=HVPP_DATA_BUS_STATE_READ;
 	//---关闭数据总线
 	HVPP_DATA_BUS_TO_HZ;
+
+	return OK_0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -255,10 +259,7 @@ UINT8_T HVPP_GPIO_Init(HVPP_HandlerType* HVPPx)
 	GPIOTask_Clock(HVPP_DATA_DIR_PORT, 1);
 	//---配置端口的初始化状态
 	HVPP_Device_Init(HVPPx);
-	//---注册读取函数
-	HVPPx->msgFuncReadDataBus = HVPP_DataBus_Read;
-	//---注册写入函数
-	HVPPx->msgFuncWriteDataBus = HVPP_DataBus_Write;
+	return OK_0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -270,5 +271,5 @@ UINT8_T HVPP_GPIO_Init(HVPP_HandlerType* HVPPx)
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T HVPP_Init(HVPP_HandlerType* HVPPx,void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void))
 {
-	
+	return OK_0;
 }

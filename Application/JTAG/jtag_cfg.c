@@ -297,11 +297,11 @@ UINT8_T JTAG_Init(JTAG_HandlerType* JTAGx, void(*pFuncDelayus)(UINT32_T delay), 
 	//---注册滴答函数
 	if (pFuncTimerTick != NULL)
 	{
-		JTAGx->msgFuncTimeTick = pFuncTimerTick;
+		JTAGx->msgTimeTick = pFuncTimerTick;
 	}
 	else
 	{
-		JTAGx->msgFuncTimeTick = SysTickTask_GetTick;;
+		JTAGx->msgTimeTick = SysTickTask_GetTick;;
 	}
 	return OK_0;
 }
@@ -2688,7 +2688,7 @@ void JTAG_WatchTask(JTAG_HandlerType* JTAGx)
 	if (JTAGx->msgState != JTAG_PROG_NONE)
 	{
 		//---获取当前时间节拍
-		nowTime = JTAGx->msgFuncTimeTick();
+		nowTime = JTAGx->msgTimeTick();
 		//---计算时间间隔
 		if (JTAGx->msgRecordTime > nowTime)
 		{
@@ -2783,7 +2783,7 @@ UINT8_T JTAG_RefreshWatch(JTAG_HandlerType* JTAGx)
 	//---配置轮训间隔为最大值，单位是ms
 	JTAGx->msgIntervalTime = JTAG_STATE_TIME_OUT_MS;
 	//---刷新纪录时间
-	JTAGx->msgRecordTime = JTAGx->msgFuncTimeTick();
+	JTAGx->msgRecordTime = JTAGx->msgTimeTick();
 	return OK_0;
 }
 
@@ -2834,7 +2834,7 @@ UINT8_T JTAG_SetIntervalTime(JTAG_HandlerType* JTAGx, UINT16_T intervalTime)
 	//---配置轮训间隔时间，单位是ms
 	JTAGx->msgIntervalTime = intervalTime;
 	//---刷新纪录时间
-	JTAGx->msgRecordTime = JTAGx->msgFuncTimeTick();
+	JTAGx->msgRecordTime = JTAGx->msgTimeTick();
 	return OK_0;
 }
 
@@ -2864,10 +2864,10 @@ UINT8_T JTAG_WaitPollChipComplete(JTAG_HandlerType* JTAGx, UINT16_T cmd)
 	UINT32_T nowTime = 0;
 	UINT32_T oldTime = 0;
 	UINT64_T cnt = 0;
-	if (JTAGx->msgFuncTimeTick != NULL)
+	if (JTAGx->msgTimeTick != NULL)
 	{
 		//nowTime = JTAGx->msgSPI.msgFuncTick();
-		oldTime = JTAGx->msgFuncTimeTick();
+		oldTime = JTAGx->msgTimeTick();
 	}
 	while (1)
 	{
@@ -2880,10 +2880,10 @@ UINT8_T JTAG_WaitPollChipComplete(JTAG_HandlerType* JTAGx, UINT16_T cmd)
 		}
 		else
 		{
-			if (JTAGx->msgFuncTimeTick != NULL)
+			if (JTAGx->msgTimeTick != NULL)
 			{
 				//---当前时间
-				nowTime = JTAGx->msgFuncTimeTick();
+				nowTime = JTAGx->msgTimeTick();
 				//---判断滴答定时是否发生溢出操作
 				if (nowTime < oldTime)
 				{

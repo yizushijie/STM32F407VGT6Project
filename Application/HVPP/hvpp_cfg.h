@@ -13,12 +13,12 @@ extern "C" {
 	//===HVPP_RDY_BSY	---设置为输入，在整个高压过程都是输入
 	//===HVPP_OE		---设置为输出，默认是高电平，该引脚低电平有效
 	//===HVPP_WR		---设置为输出，默认是高电平，该引脚低电平有效
-	//===HVPP_BS1		---设置为输出
+	//===HVPP_BS1		---设置为输出，
 	//===HVPP_XA0		---设置为输出，默认是高电平，和XA1的高电平组合为空闲模式
 	//===HVPP_XA1		---设置为输出，默认是高电平，和XA0的高电平组合为空闲模式
 	//===HVPP_PAGEL		---设置为输出，
-	//===HVPP_BS2		---设置为输出
-	//===HVPP_DATA		---设置为输出，默认需要对外发送数据
+	//===HVPP_BS2		---设置为输出，
+	//===HVPP_DATA		---设置为输入，默认需要读取外部数据
 	//===================================================================================
 	//===O---编程忙和1---等待新命令，device--->>>host---O
 	#define HVPP_RDY_BSY_PORT						GPIOC
@@ -243,7 +243,10 @@ extern "C" {
 	#define HVPP_XA_LOAD_CMD						( HVPP_XA1_OUT_1,HVPP_XA0_OUT_0 )				//---加载命令
 	#define HVPP_XA_LOAD_IDLE						( HVPP_XA1_OUT_1,HVPP_XA0_OUT_1 )				//---空闲模式
 	//<<<===XA0,XA1组合编码功能---结束
-
+	
+	//===高压编程模式的进入
+	#define HVPP_ENTER_PROG_ENABLE_MODE(a,b,c,d)
+	
 	//>>>===高压并行组合命令---开始
 	#define HVPP_CMD_CHIP_ERASE						0B10000000										//---芯片擦除
 	#define HVPP_CMD_WRITE_CHIP_FUSE				0B01000000										//---写熔丝位
@@ -268,11 +271,7 @@ extern "C" {
 	struct _HVPP_HandlerType
 	{
 		UINT8_T msgDataBusState;																	//---DATABus总线的状态，0---读取状态，1---写入状态
-		UINT32_T(*msgFuncTimeTick)(void);															//---用于超时计数
-		void(*msgFuncWriteDataBus)(HVPP_HandlerType* ,UINT8_T );										//---写数据
-		UINT8_T(*msgFuncReadDataBus)(HVPP_HandlerType*);												//---读取数据
-		UINT8_T(*msgInit)(HVPP_HandlerType*);														//---初始化配置
-		UINT8_T(*msgDeInit)(HVPP_HandlerType*);														//---销毁配置
+		UINT32_T(*msgTimeTick)(void);																//---用于超时计数
 		void(*msgDelayus)(UINT32_T delay);															//---us延时参数
 		void(*msgDelayms)(UINT32_T delay);															//---ms延时参数
 	};

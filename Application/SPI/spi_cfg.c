@@ -309,9 +309,9 @@ UINT8_T SPI_MHW_PollMode_WriteAndReadByte(SPI_HandlerType *SPIx, UINT8_T wVal, U
 	//---收发完成标志位
 	UINT8_T _return = 2;
 	//---获取当前时间节拍
-	if (SPIx->msgFuncTimeTick != NULL)
+	if (SPIx->msgTimeTick != NULL)
 	{
-		oldTime = SPIx->msgFuncTimeTick();
+		oldTime = SPIx->msgTimeTick();
 	}
 	//---切换工作状态为工作模式
 	SPIx->msgState = 1;
@@ -340,10 +340,10 @@ UINT8_T SPI_MHW_PollMode_WriteAndReadByte(SPI_HandlerType *SPIx, UINT8_T wVal, U
 			_return =0;
 		}
 		//---超时判断
-		if (SPIx->msgFuncTimeTick != NULL)
+		if (SPIx->msgTimeTick != NULL)
 		{
 			//---当前时间
-			nowTime = SPIx->msgFuncTimeTick();
+			nowTime = SPIx->msgTimeTick();
 			//---判断滴答定时是否发生溢出操作
 			if (nowTime < oldTime)
 			{
@@ -398,9 +398,9 @@ UINT8_T SPI_MHW_PollMode_WriteAndReadData(SPI_HandlerType *SPIx, UINT8_T *pWVal,
 	//---收发完成标志位
 	UINT8_T txAllowed = 1;
 	//---获取当前时间节拍
-	if (SPIx->msgFuncTimeTick != NULL)
+	if (SPIx->msgTimeTick != NULL)
 	{
-		oldTime = SPIx->msgFuncTimeTick();
+		oldTime = SPIx->msgTimeTick();
 	}
 	nowTime = 0;
 	//---切换工作状态为工作模式
@@ -433,10 +433,10 @@ UINT8_T SPI_MHW_PollMode_WriteAndReadData(SPI_HandlerType *SPIx, UINT8_T *pWVal,
 			i++;
 		}
 		//---超时判断
-		if (SPIx->msgFuncTimeTick != NULL)
+		if (SPIx->msgTimeTick != NULL)
 		{
 			//---当前时间
-			nowTime = SPIx->msgFuncTimeTick();
+			nowTime = SPIx->msgTimeTick();
 			//---判断滴答定时是否发生溢出操作
 			if (nowTime < oldTime)
 			{

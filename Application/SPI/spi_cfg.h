@@ -39,7 +39,7 @@ extern "C" {
 		UINT32_T			msgGPIOAlternate;														//---GPIO的复用模式
 		UINT32_T			msgStandard;															//---使用的SPI协议
 		void(*msgDelayus)(UINT32_T delay);															//---延时参数
-		UINT32_T(*msgFuncTimeTick)(void);															//---用于超时计数
+		UINT32_T(*msgTimeTick)(void);															//---用于超时计数
 	};
 
 	//===函数定义

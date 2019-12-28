@@ -71,7 +71,7 @@ UINT8_T USART_StructInit(USART_HandlerType*  USARTx)
 	USARTx->msgTxdHandler.pMsgVal = NULL;
 
 	//---计数器
-	USARTx->msgFuncTimeTick = NULL;
+	USARTx->msgTimeTick = NULL;
 	return OK_0;
 }
 
@@ -92,7 +92,7 @@ UINT8_T USART_Init(USART_HandlerType*  USARTx, UINT16_T rxSize, UINT8_T* pRxVal,
 	USARTx->msgTxdHandler.msgSize = txSize;
 	USARTx->msgTxdHandler.pMsgVal = pTxVal;
 	//---注册计数函数
-	USARTx->msgFuncTimeTick = pTimerTick;
+	USARTx->msgTimeTick = pTimerTick;
 	//---端口初始化
 	if ((USARTx != NULL) && (USARTx == USART_TASK_ONE))
 	{
@@ -222,9 +222,9 @@ UINT8_T USART_TimeTick_Init(USART_HandlerType*USARTx, UINT8_T isRx)
 {
 	UINT32_T temp = 0;
 	//---获取当前时间
-	if (USARTx->msgFuncTimeTick != NULL)
+	if (USARTx->msgTimeTick != NULL)
 	{
-		temp = USARTx->msgFuncTimeTick();
+		temp = USARTx->msgTimeTick();
 	}
 	//---时间节点
 	if (isRx)
@@ -285,9 +285,9 @@ UINT8_T USART_TimeTick_OVF(USART_HandlerType*USARTx, UINT32_T timeOut, UINT8_T i
 	UINT32_T temp = 0;
 
 	//---获取当前时间
-	if (USARTx->msgFuncTimeTick != NULL)
+	if (USARTx->msgTimeTick != NULL)
 	{
-		temp = USARTx->msgFuncTimeTick() + 2;
+		temp = USARTx->msgTimeTick() + 2;
 	}
 	//---时间节点
 	if (isRx)
@@ -1900,7 +1900,7 @@ UINT8_T USART1_ConfigInit(USART_HandlerType* USARTx)
 	//---串口异步模式配置
 	LL_USART_ConfigAsyncMode(USARTx->msgUSART);
 	//---校验是否需要超时函数
-	if (USARTx->msgFuncTimeTick != NULL)
+	if (USARTx->msgTimeTick != NULL)
 	{
 		USARTx->msgRxdHandler.msgMaxTime = 100;
 		USARTx->msgTxdHandler.msgMaxTime = 100;
