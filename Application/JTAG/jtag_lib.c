@@ -9,7 +9,7 @@
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T JTAGLib_Init(JTAG_HandlerType* JTAGx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void))
 {
-	return JTAG_Init(JTAGx,pFuncDelayus,pFuncDelayms,pFuncTimerTick);
+	return JTAG_Init(JTAGx, pFuncDelayus, pFuncDelayms, pFuncTimerTick);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ UINT8_T JTAGLib_ExitProg(JTAG_HandlerType* JTAGx)
 UINT8_T JTAGLib_EnterProg(JTAG_HandlerType* JTAGx)
 {
 	return JTAG_EnterProg(JTAGx);
-}	
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
@@ -63,14 +63,14 @@ UINT8_T JTAGLib_EnterProgAndConfigInfo(JTAG_HandlerType* JTAGx, UINT8_T isPollRe
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T JTAGLib_EraseChip(JTAG_HandlerType* JTAGx)
 {
-	UINT8_T _return=OK_0;
+	UINT8_T _return = OK_0;
 	//---检查编程状态
-	if (JTAGx->msgState==JTAG_PROG_NONE)
+	if (JTAGx->msgState == JTAG_PROG_NONE)
 	{
 		//---进入编程模式
-		_return =JTAG_EnterProg(JTAGx);
+		_return = JTAG_EnterProg(JTAGx);
 	}
-	if (_return==OK_0)
+	if (_return == OK_0)
 	{
 		//---刷新时间
 		JTAG_RefreshWatch(JTAGx);
@@ -284,7 +284,7 @@ UINT8_T JTAGLib_ReadChipRom(JTAG_HandlerType* JTAGx, UINT8_T* pVal, UINT8_T addr
 		JTAG_SetIntervalTime(JTAGx, 100);
 	}
 	return _return;
-}	
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
@@ -614,5 +614,5 @@ UINT8_T JTAGLib_CheckChipEepromEmpty(JTAG_HandlerType* JTAGx, UINT8_T byteSize, 
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T JTAGLib_SetConfigInfo(JTAG_HandlerType* JTAGx, UINT8_T* pVal)
 {
-	return JTAG_SetConfigInfo(JTAGx,pVal);
+	return JTAG_SetConfigInfo(JTAGx, pVal);
 }

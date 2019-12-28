@@ -7,9 +7,9 @@ extern "C" {
 	//////////////////////////////////////////////////////////////////////////////////////
 	#include"jtag_cfg.h"
 	//////////////////////////////////////////////////////////////////////////////////////
-
+	
 	//===º¯Êý¶¨Òå
-	UINT8_T JTAGLib_Init(JTAG_HandlerType* JTAGx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void));	
+	UINT8_T JTAGLib_Init(JTAG_HandlerType* JTAGx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void));
 	UINT8_T JTAGLib_EnterProg(JTAG_HandlerType* JTAGx);
 	UINT8_T JTAGLib_ExitProg(JTAG_HandlerType* JTAGx);
 	UINT8_T JTAGLib_EnterProgAndConfigInfo(JTAG_HandlerType* JTAGx, UINT8_T isPollReady, UINT8_T* pVal);

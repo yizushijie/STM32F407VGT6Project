@@ -704,7 +704,7 @@ UINT8_T ISP_EnterProg(ISP_HandlerType *ISPx,UINT8_T isPollReady)
 	}
 	//---ÉèÖÃRST¶Ë¿ÚÎ´HZ×´Ì¬£¬±ÜÃâ¸ßÑ¹µ¹¹à
 #ifdef ISP_USE_HV_RESET
-	ISPx->msgPortRst = (ISP_RST_TO_HZ);
+	ISPx->msgPortRst(ISP_RST_TO_HZ);
 #endif 
 #ifdef ISP_USE_lEVEL_SHIFT
 	GPIO_OUT_1(ISPx->msgOE.msgGPIOPort, ISPx->msgOE.msgGPIOBit);

@@ -419,7 +419,10 @@ extern "C" {
 	//===定义WM8510的输出频率变化多少次之后执行复位操作
 	//#define USE_WM8510_RESET
 	#define WM8510_FREQ_CHANGE_MAX			3000
+	//===定义使用了高压HVSET模式
 	#define WM8510_USE_HV_RESET
+	//===定义是否使用电平转换芯片，带OE控制端的
+	#define WM8510_USE_lEVEL_SHIFT 	
 	
 	//===结构体定义
 	typedef struct _WM8510_HandlerType			WM8510_HandlerType;
@@ -428,33 +431,35 @@ extern "C" {
 	//===定义结构
 	struct _WM8510_HandlerType
 	{
-		UINT8_T msgMclkDIV;																			//---mclk的分频数
-		UINT8_T msgBclkDIV;																			//---bclk的分频数
-		UINT8_T msgPreDIV;																			//---预分频数
-		UINT8_T	msgPllN;																			//---pll的N值
-		UINT8_T msgR0[2];																			//---寄存器R0的配置值
-		UINT8_T msgR1[2];																			//---寄存器R1的配置值
-		UINT8_T msgNowR6[2];																		//---寄存器R6的配置值
-		UINT8_T msgLastR6[2];																		//---寄存器R6的配置值
-		UINT8_T msgNowR36[2];																		//---寄存器R36的配置值
-		UINT8_T msgLastR36[2];																		//---寄存器R36的配置值
-		UINT8_T msgNowR37[2];																		//---寄存器R37的配置值
-		UINT8_T msgLastR37[2];																		//---寄存器R37的配置值
-		UINT8_T msgNowR38[2];																		//---寄存器R38的配置值
-		UINT8_T msgLastR38[2];																		//---寄存器R38的配置值
-		UINT8_T msgNowR39[2];																		//---寄存器R39的配置值
-		UINT8_T msgLastR39[2];																		//---寄存器R39的配置值
+		UINT8_T				msgMclkDIV;																//---mclk的分频数
+		UINT8_T				msgBclkDIV;																//---bclk的分频数
+		UINT8_T				msgPreDIV;																//---预分频数
+		UINT8_T				msgPllN;																//---pll的N值
+		UINT8_T				msgR0[2];																//---寄存器R0的配置值
+		UINT8_T				msgR1[2];																//---寄存器R1的配置值
+		UINT8_T				msgNowR6[2];															//---寄存器R6的配置值
+		UINT8_T				msgLastR6[2];															//---寄存器R6的配置值
+		UINT8_T				msgNowR36[2];															//---寄存器R36的配置值
+		UINT8_T				msgLastR36[2];															//---寄存器R36的配置值
+		UINT8_T				msgNowR37[2];															//---寄存器R37的配置值
+		UINT8_T				msgLastR37[2];															//---寄存器R37的配置值
+		UINT8_T				msgNowR38[2];															//---寄存器R38的配置值
+		UINT8_T				msgLastR38[2];															//---寄存器R38的配置值
+		UINT8_T				msgNowR39[2];															//---寄存器R39的配置值
+		UINT8_T				msgLastR39[2];															//---寄存器R39的配置值
 	#ifdef USE_WM8510_RESET
-		UINT16_T msgFreqChangeCount;																//---记录当前频率变化的次数
+		UINT16_T			msgFreqChangeCount;														//---记录当前频率变化的次数
 	#endif
-		UINT32_T mssgFreqAdd;																		//---输出频率的补偿值，每100KHz补偿15Hz
-		UINT32_T msgPllK;																			//---pll的K值
-		UINT32_T magPllFreq;																		//---pll频率
-		UINT32_T msgRefOSC;																			//---参考时钟
-		UINT32_T msgFreqHz;																			//---输出的频率Hz
-		UINT32_T msgFreqKHz;																		//---输出的频率KHz
-		float	msgPllRate;																			//---pll的比值
-
+		UINT32_T			mssgFreqAdd;															//---输出频率的补偿值，每100KHz补偿15Hz
+		UINT32_T			msgPllK;																//---pll的K值
+		UINT32_T			magPllFreq;																//---pll频率
+		UINT32_T			msgRefOSC;																//---参考时钟
+		UINT32_T			msgFreqHz;																//---输出的频率Hz
+		UINT32_T			msgFreqKHz;																//---输出的频率KHz
+		float				msgPllRate;																//---pll的比值
+	#ifdef WM8510_USE_lEVEL_SHIFT
+		GPIO_HandlerType	msgOE;																	//---OE使用的端口，用于控制电平装换的开关
+	#endif
 		I2C_HandlerType msgI2C;																		//---使用的I2C设备
 	};
 

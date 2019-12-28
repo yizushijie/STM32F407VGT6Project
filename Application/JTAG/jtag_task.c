@@ -481,7 +481,6 @@ UINT8_T JTAGTask_USARTCmd_ReadChipFuseAndLock(JTAG_HandlerType* JTAGx, USART_Han
 	return _return;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
 //////功		能：编程熔丝位
@@ -659,7 +658,6 @@ UINT8_T JTAGTask_USARTCmd_ReadChipEeprom(JTAG_HandlerType* JTAGx, USART_HandlerT
 	USARTx->msgTxdHandler.msgIndexW += length;
 	//---执行结果
 	return _return;
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -821,11 +819,11 @@ UINT8_T JTAGTask_USARTCmd_ParentTask(JTAG_HandlerType* JTAGx, USART_HandlerType*
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T JTAGTask_USARTCmd_ParentTask_New(JTAG_HandlerType* JTAGx, USART_HandlerType* USARTx, UINT8_T isChildCmd)
 {
-	UINT8_T _return=OK_0;
+	UINT8_T _return = OK_0;
 	//---任务命令处理函数，数据报头，长度，地址ID,命令的处理
 	USARTTask_FillMode_Init(USARTx, isChildCmd);
 	//---处理任务
-	_return=JTAGTask_USARTCmd_ChildTask(JTAGx, USARTx, isChildCmd);
+	_return = JTAGTask_USARTCmd_ChildTask(JTAGx, USARTx, isChildCmd);
 	//---是否需要增加换行符
 	if (USARTx->msgTxdHandler.msgAddNewLine == 1)
 	{

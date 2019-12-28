@@ -147,10 +147,13 @@ void Sys_Init(void)
 	HardWare_Init();
 	//---初始化MCO的输出时钟
 	MCO1_Init();
+	//---定时器初始化
+	TimerTask_Init();
 	//---ISP的初始化
 	ISPTask_Init(pIspDevice0,DelayTask_us,DelayTask_ms, SysTickTask_GetTick);
 	//---WM8510初始化
 	WM8510Task_I2C_Init(pWm8510Device0, DelayTask_us, 0);
+	WM8510Task_I2C_SetFreqHzWithAllFreqRegAndCalibrateFreqKHzOutPut(pWm8510Device0,2000000);
 	//---SI5351A初始化
 	//SI5351ATask_I2C_Init(pSI5351ADevice0, DelayTask_us, 0);
 	//---指示灯的初始化

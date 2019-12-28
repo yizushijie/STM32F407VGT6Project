@@ -39,7 +39,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>USE_FULL_LL_DRIVER;USE_HAL_DRIVER;HSE_VALUE=12000000UL;HSE_STARTUP_TIMEOUT=100;LSE_STARTUP_TIMEOUT=5000;LSE_VALUE=32768;EXTERNAL_CLOCK_VALUE=12288000;HSI_VALUE=16000000;LSI_VALUE=32000;STM32F407xx;__TARGET_FPU_VFP;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING;ARM_MATH_CM4;__FPU_PRESENT=1;_IAR_;__ICCARM__;__CC_ARM;_Pragma(x)=;__interrupt=;__packed=__attribute__((__packed__));__weak=__attribute__((weak));%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Complier;..\Doc;..\STM32F4xx;..\STARTUP\MDKARM;..\Drivers\CMSIS\Include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Src;..\Application\APP;..\Application\IWDG;..\Application\AD5593;..\Application\AT24Cxx;..\Application\CRC;..\Application\Delay;..\Application\GPIO;..\Application\I2C;..\Application\Random;..\Application\SysTick;..\Application\USART;..\Application\WM8510;..\Application\ISP;..\Application\SPI;..\Application\LED;..\Application\ADC;..\Application\Timer;..\Application\Key;..\Application\Power;..\Application\Decode;..\Application\OLED;..\Application\WWDG;..\Application\W25Qxx;..\Application\RFASKHW;..\Application\MyMalloc;..\Application\DAC;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\Application\SI5351A;..\Application\TaskManage;..\Application\JTAG;..\Application\HVPP;..\Application\HVSP;..\Application\RFASK;..\Application\HMC472;..\Application\Encode;..\Application\HardWare;..\Application\MCO;D:\Keil_v5\ARM\RV31;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Complier;..\Doc;..\STM32F4xx;..\STARTUP\MDKARM;..\Drivers\CMSIS\Include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Src;..\Application\APP;..\Application\IWDG;..\Application\AD5593;..\Application\AT24Cxx;..\Application\CRC;..\Application\Delay;..\Application\GPIO;..\Application\I2C;..\Application\Random;..\Application\SysTick;..\Application\USART;..\Application\WM8510;..\Application\ISP;..\Application\SPI;..\Application\LED;..\Application\ADC;..\Application\Timer;..\Application\Key;..\Application\Power;..\Application\Decode;..\Application\OLED;..\Application\WWDG;..\Application\W25Qxx;..\Application\RFASKHW;..\Application\MyMalloc;..\Application\DAC;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\Application\SI5351A;..\Application\TaskManage;..\Application\JTAG;..\Application\HVPP;..\Application\HVSP;..\Application\RFASK;..\Application\HMC472;..\Application\Encode;..\Application\HardWare;..\Application\MCO;..\Application\USBHid;..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\Middlewares\ST\STM32_USB_Device_Library\Class\CustomHID\Inc;D:\Keil_v5\ARM\RV31;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -136,6 +136,9 @@
     <ClInclude Include="..\Application\USART\usart_cfg.h" />
     <ClInclude Include="..\Application\USART\usart_lib.h" />
     <ClInclude Include="..\Application\USART\usart_task.h" />
+    <ClInclude Include="..\Application\USBHid\usbhid_cfg.h" />
+    <ClInclude Include="..\Application\USBHid\usbhid_lib.h" />
+    <ClInclude Include="..\Application\USBHid\usbhid_task.h" />
     <ClInclude Include="..\Application\W25Qxx\w25qxx_cfg.h" />
     <ClInclude Include="..\Application\W25Qxx\w25qxx_lib.h" />
     <ClInclude Include="..\Application\W25Qxx\w25qxx_task.h" />
@@ -171,6 +174,11 @@
     <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usart.h" />
     <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_utils.h" />
     <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h" />
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Class\CustomHID\Inc\usbd_customhid.h" />
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h" />
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h" />
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h" />
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h" />
     <ClInclude Include="..\STM32F4xx\stm32_assert.h" />
     <ClInclude Include="..\STM32F4xx\stm32_cfg.h" />
     <ClInclude Include="..\STM32F4xx\stm32f407xx.h" />
@@ -269,6 +277,9 @@
     <ClCompile Include="..\Application\USART\usart_cfg.c" />
     <ClCompile Include="..\Application\USART\usart_lib.c" />
     <ClCompile Include="..\Application\USART\usart_task.c" />
+    <ClCompile Include="..\Application\USBHid\usbhid_cfg.c" />
+    <ClCompile Include="..\Application\USBHid\usbhid_lib.c" />
+    <ClCompile Include="..\Application\USBHid\usbhid_task.c" />
     <ClCompile Include="..\Application\W25Qxx\w25qxx_cfg.c" />
     <ClCompile Include="..\Application\W25Qxx\w25qxx_lib.c" />
     <ClCompile Include="..\Application\W25Qxx\w25qxx_task.c" />
@@ -301,6 +312,10 @@
     <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_tim.c" />
     <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usart.c" />
     <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_utils.c" />
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Class\CustomHID\Src\usbd_customhid.c" />
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c" />
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c" />
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c" />
     <ClCompile Include="..\STARTUP\MDKARM\STM32F4\startup_stm32f407xx.s" />
     <ClCompile Include="..\STM32F4xx\stm32_cfg.c" />
     <ClCompile Include="..\STM32F4xx\stm32f4xx_it.c" />

@@ -103,6 +103,9 @@
     <Filter Include="Application\USART">
       <UniqueIdentifier>{D718181E-432F-16B4-8CA6-A1D5F8FBE63B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\USBHid">
+      <UniqueIdentifier>{A7981BE1-937C-DC36-FCDC-D689E8DFC6B8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Application\W25Qxx">
       <UniqueIdentifier>{A7C869E3-93AC-2A39-FC0C-258CE80F15BB}</UniqueIdentifier>
     </Filter>
@@ -126,6 +129,12 @@
     </Filter>
     <Filter Include="Drivers\STM32F4xx_HAL_Driver">
       <UniqueIdentifier>{B53EBC8A-A1F9-AB36-4AB1-2481364BF6C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares">
+      <UniqueIdentifier>{564FC0E8-C204-39DE-4BF9-32B5B7AD2FE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Middlewares\USB_Device_Library">
+      <UniqueIdentifier>{D2CC4895-BEF2-12FC-A738-98C793FD37C8}</UniqueIdentifier>
     </Filter>
     <Filter Include="STARTUP">
       <UniqueIdentifier>{384599C1-A424-185D-AD3C-A333199B7EBE}</UniqueIdentifier>
@@ -405,6 +414,15 @@
     <ClInclude Include="..\Application\USART\usart_task.h">
       <Filter>Application\USART</Filter>
     </ClInclude>
+    <ClInclude Include="..\Application\USBHid\usbhid_cfg.h">
+      <Filter>Application\USBHid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\USBHid\usbhid_lib.h">
+      <Filter>Application\USBHid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Application\USBHid\usbhid_task.h">
+      <Filter>Application\USBHid</Filter>
+    </ClInclude>
     <ClInclude Include="..\Application\W25Qxx\w25qxx_cfg.h">
       <Filter>Application\W25Qxx</Filter>
     </ClInclude>
@@ -509,6 +527,21 @@
     </ClInclude>
     <ClInclude Include="..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h">
       <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Class\CustomHID\Inc\usbd_customhid.h">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_core.h">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ctlreq.h">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_def.h">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Inc\usbd_ioreq.h">
+      <Filter>Middlewares\USB_Device_Library</Filter>
     </ClInclude>
     <ClInclude Include="..\STM32F4xx\stm32_assert.h">
       <Filter>STM32F4xx</Filter>
@@ -800,6 +833,15 @@
     <ClCompile Include="..\Application\USART\usart_task.c">
       <Filter>Application\USART</Filter>
     </ClCompile>
+    <ClCompile Include="..\Application\USBHid\usbhid_cfg.c">
+      <Filter>Application\USBHid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\USBHid\usbhid_lib.c">
+      <Filter>Application\USBHid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Application\USBHid\usbhid_task.c">
+      <Filter>Application\USBHid</Filter>
+    </ClCompile>
     <ClCompile Include="..\Application\W25Qxx\w25qxx_cfg.c">
       <Filter>Application\W25Qxx</Filter>
     </ClCompile>
@@ -895,6 +937,18 @@
     </ClCompile>
     <ClCompile Include="..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_utils.c">
       <Filter>Drivers\STM32F4xx_HAL_Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Class\CustomHID\Src\usbd_customhid.c">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_core.c">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ctlreq.c">
+      <Filter>Middlewares\USB_Device_Library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Middlewares\ST\STM32_USB_Device_Library\Core\Src\usbd_ioreq.c">
+      <Filter>Middlewares\USB_Device_Library</Filter>
     </ClCompile>
     <ClCompile Include="..\STARTUP\MDKARM\STM32F4\startup_stm32f407xx.s">
       <Filter>STARTUP\MDKARM</Filter>
