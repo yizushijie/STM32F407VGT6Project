@@ -104,9 +104,9 @@ extern "C" {
 	//===定义结构
 	struct _SI5351A_HandlerType
 	{
-		UINT8_T msgClockCTRL[SI5351A_CLKOUT_CHANNEL_SIZE];		//---CLK输出通道的配置寄存器
-		UINT8_T msgIsResetPll;									//---是否配置完成之后复位PLL，1---复位,0---不复位
-		I2C_HandlerType msgI2C;									//---使用的I2C设备
+		UINT8_T msgClockCTRL[SI5351A_CLKOUT_CHANNEL_SIZE];																															//---CLK输出通道的配置寄存器
+		UINT8_T msgIsResetPll;																																						//---是否配置完成之后复位PLL，1---复位,0---不复位
+		I2C_HandlerType msgI2C;																																						//---使用的I2C设备
 	};
 
 	//===定义的任务函数

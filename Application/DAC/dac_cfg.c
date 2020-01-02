@@ -10,7 +10,7 @@
 UINT8_T DAC_GPIO_Init(UINT8_T ch)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(GPIOA, 1);
+	GPIOTask_Clock(GPIOA, PERIPHERAL_CLOCK_ENABLE);
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 	//---GPIO的初始化----

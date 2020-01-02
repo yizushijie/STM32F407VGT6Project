@@ -48,9 +48,9 @@ void SPI_MHW_SetTransferBitOrder(SPI_HandlerType *SPIx, UINT32_T BitOrder)
 UINT8_T SPI_MHW_GPIO_Init(SPI_HandlerType *SPIx)
 {
 	//---端口时钟的配置
-	GPIOTask_Clock(SPIx->msgSCK.msgGPIOPort, 1);
-	GPIOTask_Clock(SPIx->msgMOSI.msgGPIOPort, 1);
-	GPIOTask_Clock(SPIx->msgMISO.msgGPIOPort, 1);
+	GPIOTask_Clock(SPIx->msgSCK.msgPort,  PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(SPIx->msgMOSI.msgPort, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(SPIx->msgMISO.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	//---端口的配置
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };	
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
@@ -60,35 +60,33 @@ UINT8_T SPI_MHW_GPIO_Init(SPI_HandlerType *SPIx)
 	#ifndef USE_MCU_STM32F1
 		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;
 	#endif
-	if (SPIx->msgCS.msgGPIOPort!=NULL)	
+	if (SPIx->msgCS.msgPort!=NULL)	
 	{
-		GPIOTask_Clock(SPIx->msgCS.msgGPIOPort, 1);
+		GPIOTask_Clock(SPIx->msgCS.msgPort, PERIPHERAL_CLOCK_ENABLE);
 		//---SS---设置为输出
-		GPIO_InitStruct.Pin = SPIx->msgCS.msgGPIOBit;
-		LL_GPIO_Init(SPIx->msgCS.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(SPIx->msgCS.msgGPIOPort, SPIx->msgCS.msgGPIOBit);
+		GPIO_InitStruct.Pin = SPIx->msgCS.msgBit;
+		LL_GPIO_Init(SPIx->msgCS.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(SPIx->msgCS.msgPort, SPIx->msgCS.msgBit);
 	}
-	
 	#ifndef USE_MCU_STM32F1
 		GPIO_InitStruct.Alternate = SPIx->msgGPIOAlternate;
 	#endif
-
 	//---SCK---设置为输出
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-	GPIO_InitStruct.Pin = SPIx->msgSCK.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgSCK.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgSCK.msgBit;
+	LL_GPIO_Init(SPIx->msgSCK.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 
 	//---MOSI---设置为输出
 	//GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgMOSI.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgBit;
+	LL_GPIO_Init(SPIx->msgMOSI.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 
 	//---MISO---设置为输入
-	GPIO_InitStruct.Pin = SPIx->msgMISO.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgMISO.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgMISO.msgBit;
+	LL_GPIO_Init(SPIx->msgMISO.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit);
 	return OK_0;
 }
 
@@ -102,9 +100,9 @@ UINT8_T SPI_MHW_GPIO_Init(SPI_HandlerType *SPIx)
 UINT8_T SPI_MSW_GPIO_Init(SPI_HandlerType *SPIx)
 {
 	//---端口时钟的配置
-	GPIOTask_Clock(SPIx->msgSCK.msgGPIOPort, 1);
-	GPIOTask_Clock(SPIx->msgMOSI.msgGPIOPort, 1);
-	GPIOTask_Clock(SPIx->msgMISO.msgGPIOPort, 1);
+	GPIOTask_Clock(SPIx->msgSCK.msgPort,  PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(SPIx->msgMOSI.msgPort, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(SPIx->msgMISO.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	//---端口的配置
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
@@ -114,27 +112,27 @@ UINT8_T SPI_MSW_GPIO_Init(SPI_HandlerType *SPIx)
 	#ifndef USE_MCU_STM32F1
 		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;
 	#endif
-	if (SPIx->msgCS.msgGPIOPort!=NULL)
+	if (SPIx->msgCS.msgPort!=NULL)
 	{
-		GPIOTask_Clock(SPIx->msgCS.msgGPIOPort, 1);
+		GPIOTask_Clock(SPIx->msgCS.msgPort, PERIPHERAL_CLOCK_ENABLE);
 		//---SS---设置为输出
-		GPIO_InitStruct.Pin = SPIx->msgCS.msgGPIOBit;
-		LL_GPIO_Init(SPIx->msgCS.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(SPIx->msgCS.msgGPIOPort, SPIx->msgCS.msgGPIOBit);
+		GPIO_InitStruct.Pin = SPIx->msgCS.msgBit;
+		LL_GPIO_Init(SPIx->msgCS.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(SPIx->msgCS.msgPort, SPIx->msgCS.msgBit);
 	}
 	//---SCK---设置为输出
-	GPIO_InitStruct.Pin = SPIx->msgSCK.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgSCK.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgSCK.msgBit;
+	LL_GPIO_Init(SPIx->msgSCK.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 	//---MOSI---设置为输出
-	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgMOSI.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgBit;
+	LL_GPIO_Init(SPIx->msgMOSI.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	//---MISO---设置为输入
-	GPIO_InitStruct.Pin = SPIx->msgMISO.msgGPIOBit;
+	GPIO_InitStruct.Pin = SPIx->msgMISO.msgBit;
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
-	LL_GPIO_Init(SPIx->msgMISO.msgGPIOPort, &GPIO_InitStruct);	
-	GPIO_OUT_1(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit);
+	LL_GPIO_Init(SPIx->msgMISO.msgPort, &GPIO_InitStruct);	
+	GPIO_OUT_1(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit);
 	return OK_0;
 }
 
@@ -156,25 +154,25 @@ UINT8_T SPI_GPIO_DeInit(SPI_HandlerType *SPIx,UINT8_T isInitSS)
 #ifndef USE_MCU_STM32F1
 	GPIO_InitStruct.Alternate = LL_GPIO_AF_0;
 #endif
-	if ((isInitSS!=0)&&(SPIx->msgCS.msgGPIOPort!=NULL))
+	if ((isInitSS!=0)&&(SPIx->msgCS.msgPort!=NULL))
 	{
 		//---SS---设置为输入
-		GPIO_InitStruct.Pin = SPIx->msgCS.msgGPIOBit;
-		LL_GPIO_Init(SPIx->msgCS.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(SPIx->msgCS.msgGPIOPort, SPIx->msgCS.msgGPIOBit);
+		GPIO_InitStruct.Pin = SPIx->msgCS.msgBit;
+		LL_GPIO_Init(SPIx->msgCS.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(SPIx->msgCS.msgPort, SPIx->msgCS.msgBit);
 	}
 	//---SCK---设置为输入
-	GPIO_InitStruct.Pin = SPIx->msgSCK.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgSCK.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgSCK.msgBit;
+	LL_GPIO_Init(SPIx->msgSCK.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 	//---MOSI---设置为输入
-	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgMOSI.msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgMOSI.msgBit;
+	LL_GPIO_Init(SPIx->msgMOSI.msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	//---MISO---设置为输入
-	GPIO_InitStruct.Pin = SPIx->msgMISO.msgGPIOBit;
-	LL_GPIO_Init(SPIx->msgMISO.msgGPIOPort, &GPIO_InitStruct);	
-	GPIO_OUT_1(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit);
+	GPIO_InitStruct.Pin = SPIx->msgMISO.msgBit;
+	LL_GPIO_Init(SPIx->msgMISO.msgPort, &GPIO_InitStruct);	
+	GPIO_OUT_1(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit);
 	return OK_0;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -490,7 +488,7 @@ UINT8_T SPI_MSW_WriteBitMSB(SPI_HandlerType *SPIx, UINT8_T wVal)
 	{
 		GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
 	}*/
-	((wVal & 0x80) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit) : GPIO_OUT_0(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	((wVal & 0x80) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit) : GPIO_OUT_0(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	return OK_0;
 }
 
@@ -510,7 +508,7 @@ UINT8_T SPI_MSW_ReadBitMSB(SPI_HandlerType *SPIx,UINT8_T *pRVal)
 		{
 			*pRVal |= 1;
 		}*/
-		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit) != 0) ? 1 : 0);
+		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit) != 0) ? 1 : 0);
 	}
 	return OK_0;
 }
@@ -533,7 +531,7 @@ UINT8_T SPI_MSW_BitMSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T *pRVal)
 	{
 		GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
 	}*/
-	((wVal & 0x80) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit) : GPIO_OUT_0(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	((wVal & 0x80) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit) : GPIO_OUT_0(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	//---读取1bit的数据
 	if (pRVal != NULL)
 	{
@@ -541,7 +539,7 @@ UINT8_T SPI_MSW_BitMSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T *pRVal)
 		{
 			*pRVal |= 1;
 		}*/
-		*pRVal |=((GPIO_GET_STATE(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit) != 0)?1:0);
+		*pRVal |=((GPIO_GET_STATE(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit) != 0)?1:0);
 	}
 	return OK_0;
 }
@@ -558,22 +556,22 @@ UINT8_T SPI_MSW_WriteAndReadBitMSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T 
 	//---00---11
 	if (((SPIx->msgCPOL == 0) && (SPIx->msgCPOH == 0)) || ((SPIx->msgCPOL == 1) && (SPIx->msgCPOH == 1)))
 	{
-		GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 		DELAY_NOP_COUNT(4);
 		SPI_MSW_BitMSB(SPIx, wVal, pRVal);
-		GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 	}
 	//---10---01
 	//if (((SPIx->msgCPOL == 1) && (SPIx->msgCPOH == 0))|| ((SPIx->msgCPOL == 0) && (SPIx->msgCPOH == 1)))
 	else
 	{
-		GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 		DELAY_NOP_COUNT(4);
 		SPI_MSW_BitMSB(SPIx, wVal, pRVal);
-		GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 	}
 	return OK_0;
@@ -597,7 +595,7 @@ UINT8_T SPI_MSW_WriteBitLSB(SPI_HandlerType *SPIx, UINT8_T wVal)
 	{
 		GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
 	}*/
-	((wVal & 0x01) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit) : GPIO_OUT_0(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	((wVal & 0x01) != 0x00) ? GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit) : GPIO_OUT_0(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	return OK_0;
 }
 
@@ -617,7 +615,7 @@ UINT8_T SPI_MSW_ReadBitLSB(SPI_HandlerType *SPIx,UINT8_T *pRVal)
 		{
 			*pRVal |= 0x80;
 		}*/
-		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit) != 0) ? 0x80 : 0);
+		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit) != 0) ? 0x80 : 0);
 	}
 	return OK_0;
 }
@@ -640,7 +638,7 @@ UINT8_T SPI_MSW_BitLSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T *pRVal)
 	{
 		GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
 	}*/
-	((wVal&0x01)!=0x00)? GPIO_OUT_1(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit): GPIO_OUT_0(SPIx->msgMOSI.msgGPIOPort, SPIx->msgMOSI.msgGPIOBit);
+	((wVal&0x01)!=0x00)? GPIO_OUT_1(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit): GPIO_OUT_0(SPIx->msgMOSI.msgPort, SPIx->msgMOSI.msgBit);
 	//---读取1bit的数据
 	if (pRVal != NULL)
 	{
@@ -648,7 +646,7 @@ UINT8_T SPI_MSW_BitLSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T *pRVal)
 		{
 			*pRVal |= 0x80;
 		}*/
-		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgGPIOPort, SPIx->msgMISO.msgGPIOBit) != 0) ? 0x80 : 0);
+		*pRVal |= ((GPIO_GET_STATE(SPIx->msgMISO.msgPort, SPIx->msgMISO.msgBit) != 0) ? 0x80 : 0);
 	}
 	return OK_0;
 }
@@ -665,22 +663,22 @@ UINT8_T SPI_MSW_WriteAndReadBitLSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T 
 	//---00---11
 	if (((SPIx->msgCPOL == 0) && (SPIx->msgCPOH == 0)) || ((SPIx->msgCPOL == 1) && (SPIx->msgCPOH == 1)))
 	{
-		GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 		DELAY_NOP_COUNT(4);
 		SPI_MSW_BitLSB(SPIx, wVal, pRVal);
-		GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 	}
 	//---10---01
 	//if (((SPIx->msgCPOL == 1) && (SPIx->msgCPOH == 0))|| ((SPIx->msgCPOL == 0) && (SPIx->msgCPOH == 1)))
 	else
 	{
-		GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 		DELAY_NOP_COUNT(4);
 		SPI_MSW_BitLSB(SPIx, wVal, pRVal);
-		GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+		GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 		SPIx->msgDelayus(SPIx->msgPluseWidth);
 	}
 	return OK_0;
@@ -738,7 +736,7 @@ UINT8_T SPI_MSW_WriteAndReadByteMSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T
 		wVal <<= 1;
 	}
 	//---时钟线的极性
-	(SPIx->msgCPOL == 0) ? GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit) : GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+	(SPIx->msgCPOL == 0) ? GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit) : GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 	return OK_0;
 }
 
@@ -766,7 +764,7 @@ UINT8_T SPI_MSW_WriteAndReadByteLSB(SPI_HandlerType *SPIx, UINT8_T wVal, UINT8_T
 		wVal >>= 1;
 	}
 	//---时钟线的极性
-	(SPIx->msgCPOL == 0)? GPIO_OUT_0(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit): GPIO_OUT_1(SPIx->msgSCK.msgGPIOPort, SPIx->msgSCK.msgGPIOBit);
+	(SPIx->msgCPOL == 0)? GPIO_OUT_0(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit): GPIO_OUT_1(SPIx->msgSCK.msgPort, SPIx->msgSCK.msgBit);
 	return OK_0;
 }
 

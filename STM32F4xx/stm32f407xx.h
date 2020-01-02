@@ -933,7 +933,7 @@ extern "C" {
 #define FLASH_OTP_END         0x1FFF7A0FU /*!< End address of : (up to 528 Bytes) embedded FLASH OTP Area                 */
 #define CCMDATARAM_END        0x1000FFFFU /*!< CCM data RAM end address                                                   */
 
-		/* Legacy defines */
+/* Legacy defines */
 #define SRAM_BASE             SRAM1_BASE
 #define SRAM_BB_BASE          SRAM1_BB_BASE
 
@@ -1103,7 +1103,7 @@ extern "C" {
 #define ADC2                ((ADC_TypeDef *) ADC2_BASE)
 #define ADC3                ((ADC_TypeDef *) ADC3_BASE)
 #define ADC123_COMMON       ((ADC_Common_TypeDef *) ADC123_COMMON_BASE)
-	/* Legacy define */
+/* Legacy define */
 #define ADC                  ADC123_COMMON
 #define SDIO                ((SDIO_TypeDef *) SDIO_BASE)
 #define SPI1                ((SPI_TypeDef *) SPI1_BASE)

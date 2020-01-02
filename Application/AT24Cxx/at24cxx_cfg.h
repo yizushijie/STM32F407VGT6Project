@@ -16,16 +16,16 @@ extern "C" {
 	#include "my_malloc.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===支持的系列型号
-	#define AT24C01							0	//---16PX8B		---16页，每页8字节
-	#define AT24C02							1	//---32PX8B		---32页，每页8字节
-	#define AT24C04							2	//---32PX16B	---32页，每页16字节
-	#define AT24C08							3	//---64PX16B	---64页，每页16字节
-	#define AT24C16							4	//---128PX16B	---128页，每页16字节
-	#define AT24C32							5	//---128PX32B	---128页，每页32字节
-	#define AT24C64							6	//---256PX32B	---256页，每页32字节
-	#define AT24C128						7	//---256PX64B	---256页，每页64字节
-	#define AT24C256						8	//---512PX64B	---512页，每页64字节
-	#define AT24C512						9	//---512PX128B	---512页，每页128字节
+	#define AT24C01							0																																		//---16PX8B		---16页，每页8字节
+	#define AT24C02							1																																		//---32PX8B		---32页，每页8字节
+	#define AT24C04							2																																		//---32PX16B	---32页，每页16字节
+	#define AT24C08							3																																		//---64PX16B	---64页，每页16字节
+	#define AT24C16							4																																		//---128PX16B	---128页，每页16字节
+	#define AT24C32							5																																		//---128PX32B	---128页，每页32字节
+	#define AT24C64							6																																		//---256PX32B	---256页，每页32字节
+	#define AT24C128						7																																		//---256PX64B	---256页，每页64字节
+	#define AT24C256						8																																		//---512PX64B	---512页，每页64字节
+	#define AT24C512						9																																		//---512PX128B	---512页，每页128字节
 	
 	//===定义是否使用全局变量，针对ram小的芯片，无法使用自定义内存管理函数
 	//#define USE_GOBAL_RAM
@@ -45,17 +45,17 @@ extern "C" {
 	//===AT24Cxx的数据结构体
 	struct _AT24CXX_HandlerType
 	{
-		UINT8_T  msgAT24CXXType;											//---使用的设备
-		UINT8_T  msgAT24CXXPageByte;										//---每页字节数
-		UINT16_T msgAT24CXXPageNum;											//---页数
+		UINT8_T  msgAT24CXXType;																																					//---使用的设备
+		UINT8_T  msgAT24CXXPageByte;																																				//---每页字节数
+		UINT16_T msgAT24CXXPageNum;																																					//---页数
 		#ifdef USE_GOBAL_RAM
-			UINT8_T msgPageByteBuffer[AT24CXX_PAGE_BYTE_MAX_SIZE];				//---定义缓存区
+			UINT8_T msgPageByteBuffer[AT24CXX_PAGE_BYTE_MAX_SIZE];																													//---定义缓存区
 		#endif
 #ifdef AT24CXX_I2C_USE_HWWP
-		GPIO_HandlerType msgWP;												//---写保护控制端口，0---写保护不是能；1---写保护使能
+		GPIO_HandlerType msgWP;																																						//---写保护控制端口，0---写保护不是能；1---写保护使能
 #endif
-		I2C_HandlerType msgI2C;												//---使用的I2C
-		void(*msgDelayms)(UINT32_T delay);								//---毫秒延时函数,编程结束后需要等待5ms
+		I2C_HandlerType msgI2C;																																						//---使用的I2C
+		void(*msgDelayms)(UINT32_T delay);																																			//---毫秒延时函数,编程结束后需要等待5ms
 	};
 
 	//===定义的任务函数

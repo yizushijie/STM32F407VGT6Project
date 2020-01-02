@@ -58,4 +58,11 @@ stm32f407vgt6project/hvpp_cfg.o: ..\Application\HVPP\hvpp_cfg.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h \
   ..\Application\IWDG\iwdg_task.h ..\Application\IWDG\iwdg_lib.h \
   ..\Application\IWDG\iwdg_cfg.h ..\Application\GPIO\gpio_task.h \
-  ..\Application\GPIO\gpio_lib.h ..\Application\GPIO\gpio_cfg.h
+  ..\Application\GPIO\gpio_lib.h ..\Application\GPIO\gpio_cfg.h \
+  ..\Application\Power\power_task.h ..\Application\Power\power_lib.h \
+  ..\Application\Power\power_cfg.h ..\Application\DAC\dac_task.h \
+  ..\Application\DAC\dac_lib.h ..\Application\DAC\dac_cfg.h \
+  ..\Application\Delay\delay_task.h ..\Application\Delay\delay_lib.h \
+  ..\Application\Delay\delay_cfg.h ..\Application\SysTick\systick_task.h \
+  ..\Application\SysTick\systick_lib.h \
+  ..\Application\SysTick\systick_cfg.h ..\Application\HardWare\hw_cfg.h

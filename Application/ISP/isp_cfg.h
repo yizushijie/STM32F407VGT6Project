@@ -14,25 +14,25 @@ extern "C" {
 	
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===编程可选择的时钟
-	#define ISP_SCK_AUTO						0	//---自动
-	#define ISP_SCK_KHZ_0_5						1	//---1ms
-	#define ISP_SCK_KHZ_1						2	//---500us---0.99KHZ
-	#define ISP_SCK_KHZ_2						3	//---250us---1.98KHZ
-	#define ISP_SCK_KHZ_4						4	//---125us---3.96KHZ
-	#define ISP_SCK_KHZ_8						5	//---64us---7.66KHZ
-	#define ISP_SCK_KHZ_16						6	//---32us---15.06KHZ
-	#define ISP_SCK_KHZ_32						7	//---16us---29.05KHZ
-	#define ISP_SCK_KHZ_64						8	//---8us---54.46KHZ
-	#define ISP_SCK_KHZ_128						9	//---4us---89.928KHZ
-	#define ISP_SCK_KHZ_256						10	//---2us---145.35KHZ
-	#define ISP_SCK_PRE_256						11	//---42M/256---163.934KHZ
-	#define ISP_SCK_PRE_128						12	//---42M/128---328.95KHZ
-	#define ISP_SCK_PRE_64						13	//---42M/64---657.89KHZ
-	#define ISP_SCK_PRE_32						14	//---42M/32---1.315M
-	#define ISP_SCK_PRE_16						15	//---42M/16---2.63M
-	#define ISP_SCK_PRE_8						16	//---42M/8
-	#define ISP_SCK_PRE_4						17	//---42M/4
-	#define ISP_SCK_PRE_2						18	//---42M/2
+	#define ISP_SCK_AUTO						0																																	//---自动
+	#define ISP_SCK_KHZ_0_5						1																																	//---1ms
+	#define ISP_SCK_KHZ_1						2																																	//---500us---0.99KHZ
+	#define ISP_SCK_KHZ_2						3																																	//---250us---1.98KHZ
+	#define ISP_SCK_KHZ_4						4																																	//---125us---3.96KHZ
+	#define ISP_SCK_KHZ_8						5																																	//---64us---7.66KHZ
+	#define ISP_SCK_KHZ_16						6																																	//---32us---15.06KHZ
+	#define ISP_SCK_KHZ_32						7																																	//---16us---29.05KHZ
+	#define ISP_SCK_KHZ_64						8																																	//---8us---54.46KHZ
+	#define ISP_SCK_KHZ_128						9																																	//---4us---89.928KHZ
+	#define ISP_SCK_KHZ_256						10																																	//---2us---145.35KHZ
+	#define ISP_SCK_PRE_256						11																																	//---42M/256---163.934KHZ
+	#define ISP_SCK_PRE_128						12																																	//---42M/128---328.95KHZ
+	#define ISP_SCK_PRE_64						13																																	//---42M/64---657.89KHZ
+	#define ISP_SCK_PRE_32						14																																	//---42M/32---1.315M
+	#define ISP_SCK_PRE_16						15																																	//---42M/16---2.63M
+	#define ISP_SCK_PRE_8						16																																	//---42M/8
+	#define ISP_SCK_PRE_4						17																																	//---42M/4
+	#define ISP_SCK_PRE_2						18																																	//---42M/2
 	
 	//===默认编程时钟
 	#define ISP_SCK_DEFAULT_CLOCK				ISP_SCK_PRE_16
@@ -56,40 +56,40 @@ extern "C" {
 	//===结构定义
 	struct _ISP_HandlerType
 	{
-		UINT8_T		msgState;																		//---编程状态，0---空闲状态，1---编程状态
-		UINT8_T		msgInit;																		//---判断是否初始化过了 0---未初始化，1---初始化
-		UINT8_T		msgSetClok;																		//---设置的编程时钟
-		UINT8_T		msgAutoClock;																	//---是否使用自动时钟，0---自动时钟，1---设定的时钟
-		UINT8_T		msgWaitms;																		//---编程之后的延时函数，单位是ms
-		UINT8_T		msgHideAddr;																	//---接触64K的限制
-		UINT8_T		msgIsPollReady;																	//---是否轮询准备好信号，0---不需要；1---需要
-		UINT8_T		msgEepromIsPageMode;															//---eeprom是否支持页编程模式，0---不支持，1---支持
-		UINT16_T	msgFlashPerPageWordSize;														//---Flash的每页字数
-		UINT16_T	msgEerpomPerPageByteSize;														//---Eeprom的每页字节数
-		UINT16_T	msgPageWordIndex;																//---缓存区的序号
-		UINT8_T		msgWriteByte[ISP_COMM_MAX_SIZE];												//---发送数据
-		UINT8_T		msgReadByte[ISP_COMM_MAX_SIZE];													//---读取数据
-		UINT16_T	msgIntervalTime;																//---轮询时间间隔,单位是ms
-		UINT32_T	msgRecordTime;																	//---记录的时间参数
+		UINT8_T		msgState;																																						//---编程状态，0---空闲状态，1---编程状态
+		UINT8_T		msgInit;																																						//---判断是否初始化过了 0---未初始化，1---初始化
+		UINT8_T		msgSetClok;																																						//---设置的编程时钟
+		UINT8_T		msgAutoClock;																																					//---是否使用自动时钟，0---自动时钟，1---设定的时钟
+		UINT8_T		msgWaitms;																																						//---编程之后的延时函数，单位是ms
+		UINT8_T		msgHideAddr;																																					//---接触64K的限制
+		UINT8_T		msgPollReady;																																					//---是否轮询准备好信号，0---不需要；1---需要
+		UINT8_T		msgEepromPageMode;																																			//---eeprom是否支持页编程模式，0---不支持，1---支持
+		UINT16_T	msgFlashPerPageWordSize;																																		//---Flash的每页字数
+		UINT16_T	msgEerpomPerPageByteSize;																																		//---Eeprom的每页字节数
+		UINT16_T	msgPageWordIndex;																																				//---Flash缓存区的序号
+		UINT8_T		msgWriteByte[ISP_COMM_MAX_SIZE];																																//---发送数据
+		UINT8_T		msgReadByte[ISP_COMM_MAX_SIZE];																																	//---读取数据
+		UINT16_T	msgIntervalTime;																																				//---轮询时间间隔,单位是ms
+		UINT32_T	msgRecordTime;																																					//---记录的时间参数
 #ifdef ISP_USE_lEVEL_SHIFT
-		GPIO_HandlerType msgOE;																		//---电平转换使能控制端，0---使能；1---不使能
+		GPIO_HandlerType msgOE;																																						//---电平转换使能控制端，0---使能；1---不使能
 #endif
-		void(*msgDelayms)(UINT32_T delay);															//---延时参数
-		SPI_HandlerType msgSPI;																		//---使用的SPI模式
+		void(*msgDelayms)(UINT32_T delay);																																			//---延时参数
+		SPI_HandlerType msgSPI;																																						//---使用的SPI模式
 #ifdef ISP_USE_HV_RESET
-		void (*msgPortRst)(UINT8_T rstState);														//---高压模式操作RST端口的函数
+		void (*msgPortRst)(UINT8_T rstState);																																		//---高压模式操作RST端口的函数
 #endif
 	};
 
 	//===定义RST的状态
-	#define ISP_RST_TO_HZ						0													//---RST处于高阻状态
-	#define ISP_RST_TO_GND						1													//---RST处于接地
-	#define ISP_RST_TO_VCC						2													//---RST接工作电压
+	#define ISP_RST_TO_HZ						0																																	//---RST处于高阻状态
+	#define ISP_RST_TO_GND						1																																	//---RST处于接地
+	#define ISP_RST_TO_VCC						2																																	//---RST接工作电压
 
 	//===任务函数
-	#define ISP_TASK_ONE						pIspDevice0											//---任务1
-	#define ISP_TASK_TWO						0													//---任务2
-	#define ISP_TASK_THREE						0													//---任务3
+	#define ISP_TASK_ONE						pIspDevice0																															//---任务1
+	#define ISP_TASK_TWO						0																																	//---任务2
+	#define ISP_TASK_THREE						0																																	//---任务3
 
 	//===外部调用接口
 	extern ISP_HandlerType						g_IspDevice0;

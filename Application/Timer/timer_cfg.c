@@ -35,17 +35,17 @@ void Timer_CalcFreqMode_Init(void)
 #endif
 	LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 #ifdef CALC_FREQ_lEVEL_SHIFT
-	pCalcFreq->msgOE[0].msgGPIOPort=GPIOD;
-	pCalcFreq->msgOE[0].msgGPIOBit= LL_GPIO_PIN_7;
+	pCalcFreq->msgOE[0].msgPort=GPIOD;
+	pCalcFreq->msgOE[0].msgBit= LL_GPIO_PIN_7;
 	//---使能端口时钟
-	GPIO_Clock(pCalcFreq->msgOE[0].msgGPIOPort, 1);
-	GPIO_InitStruct.Pin = pCalcFreq->msgOE[0].msgGPIOBit;
+	GPIO_Clock(pCalcFreq->msgOE[0].msgPort, 1);
+	GPIO_InitStruct.Pin = pCalcFreq->msgOE[0].msgBit;
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 #ifndef USE_MCU_STM32F1
 	GPIO_InitStruct.Alternate = LL_GPIO_AF_0;														//---端口复用模式
 #endif
-	LL_GPIO_Init(pCalcFreq->msgOE[0].msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(pCalcFreq->msgOE[0].msgGPIOPort, pCalcFreq->msgOE[0].msgGPIOBit);
+	LL_GPIO_Init(pCalcFreq->msgOE[0].msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(pCalcFreq->msgOE[0].msgPort, pCalcFreq->msgOE[0].msgBit);
 #endif
 	//////////////////////////////////////////////////////////////////////////////
 	//---GPIO初始化---PC7映射为Tim3_CH2
@@ -65,17 +65,17 @@ void Timer_CalcFreqMode_Init(void)
 #endif
 	LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 #ifdef CALC_FREQ_lEVEL_SHIFT
-	pCalcFreq->msgOE[1].msgGPIOPort = GPIOD;
-	pCalcFreq->msgOE[1].msgGPIOBit = LL_GPIO_PIN_7;
+	pCalcFreq->msgOE[1].msgPort = GPIOD;
+	pCalcFreq->msgOE[1].msgBit = LL_GPIO_PIN_7;
 	//---使能端口时钟
-	GPIO_Clock(pCalcFreq->msgOE[1].msgGPIOPort, 1);
-	GPIO_InitStruct.Pin = pCalcFreq->msgOE[1].msgGPIOBit;
+	GPIO_Clock(pCalcFreq->msgOE[1].msgPort, 1);
+	GPIO_InitStruct.Pin = pCalcFreq->msgOE[1].msgBit;
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 #ifndef USE_MCU_STM32F1
 	GPIO_InitStruct.Alternate = LL_GPIO_AF_0;														//---端口复用模式
 #endif
-	LL_GPIO_Init(pCalcFreq->msgOE[1].msgGPIOPort, &GPIO_InitStruct);
-	GPIO_OUT_1(pCalcFreq->msgOE[1].msgGPIOPort, pCalcFreq->msgOE[1].msgGPIOBit);
+	LL_GPIO_Init(pCalcFreq->msgOE[1].msgPort, &GPIO_InitStruct);
+	GPIO_OUT_1(pCalcFreq->msgOE[1].msgPort, pCalcFreq->msgOE[1].msgBit);
 #endif
 	/*
 	//---计数器的时钟的预分频
@@ -289,7 +289,7 @@ void Timer_CalcFreq_Init(void)
 void Timer_CalcFreq_Task(UINT8_T ch)
 {
 #ifdef CALC_FREQ_lEVEL_SHIFT
-	GPIO_OUT_0(pCalcFreq->msgOE[ch].msgGPIOPort, pCalcFreq->msgOE[0].msgGPIOBit);
+	GPIO_OUT_0(pCalcFreq->msgOE[ch].msgPort, pCalcFreq->msgOE[0].msgBit);
 #endif
 	//---初始化使用的定时器
 	Timer_CalcFreqMode_PreInit(ch);	
@@ -357,7 +357,7 @@ GoToExit:
 	//---销毁定时器的配置
 	Timer_CalcFreqMode_DeInit();
 #ifdef CALC_FREQ_lEVEL_SHIFT
-	GPIO_OUT_1(pCalcFreq->msgOE[ch].msgGPIOPort, pCalcFreq->msgOE[0].msgGPIOBit);
+	GPIO_OUT_1(pCalcFreq->msgOE[ch].msgPort, pCalcFreq->msgOE[0].msgBit);
 #endif
 }
 

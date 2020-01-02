@@ -1,8 +1,8 @@
 #include "at24cxx_cfg.h"
 
 //===全局变量定义
-AT24CXX_HandlerType g_AT24cxxDevice0={0};
-pAT24CXX_HandlerType pAT24cxxDevice0 = &g_AT24cxxDevice0;
+AT24CXX_HandlerType		g_AT24cxxDevice0={0};
+pAT24CXX_HandlerType	pAT24cxxDevice0 = &g_AT24cxxDevice0;
 
 ///////////////////////////////////////////////////////////////////////////////
 //////函	   数：
@@ -138,16 +138,14 @@ UINT8_T AT24CXX_I2C_DeviceType(AT24CXX_HandlerType *AT24CXXx)
  UINT8_T AT24CXX_I2C_Device0_Init(AT24CXX_HandlerType *AT24CXXx)
 {
 	AT24CXXx->msgAT24CXXType = AT24C08;
-
 	//---写保护端口的配置
 #ifdef AT24CXX_I2C_USE_HWWP
-	AT24CXXx->msgWP.msgGPIOPort = GPIOC;
-	AT24CXXx->msgWP.msgGPIOBit = LL_GPIO_PIN_4;
-
+	AT24CXXx->msgWP.msgPort = GPIOC;
+	AT24CXXx->msgWP.msgBit = LL_GPIO_PIN_4;
 	//---初始化写保护
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		GPIOTask_Clock(AT24CXXx->msgWP.msgGPIOPort, 1);
+		GPIOTask_Clock(AT24CXXx->msgWP.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	}
 #endif
 
@@ -163,20 +161,19 @@ UINT8_T AT24CXX_I2C_DeviceType(AT24CXX_HandlerType *AT24CXXx)
 
 	//---WP端口的初始化
 #ifdef AT24CXX_I2C_USE_HWWP
-	GPIO_InitStruct.Pin =AT24CXXx->msgWP.msgGPIOBit;
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	GPIO_InitStruct.Pin =AT24CXXx->msgWP.msgBit;
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		LL_GPIO_Init(AT24CXXx->msgWP.msgGPIOPort, &GPIO_InitStruct);
+		LL_GPIO_Init(AT24CXXx->msgWP.msgPort, &GPIO_InitStruct);
 		//---使能写保护
-		GPIO_OUT_1(AT24CXXx->msgWP.msgGPIOPort, AT24CXXx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(AT24CXXx->msgWP.msgPort, AT24CXXx->msgWP.msgBit);
 	}
 #endif
-
 	AT24CXXx->msgI2C.msgI2Cx = NULL;
-	AT24CXXx->msgI2C.msgSCL.msgGPIOPort = GPIOB;
-	AT24CXXx->msgI2C.msgSCL.msgGPIOBit = LL_GPIO_PIN_6;
-	AT24CXXx->msgI2C.msgSDA.msgGPIOPort = GPIOB;
-	AT24CXXx->msgI2C.msgSDA.msgGPIOBit = LL_GPIO_PIN_7;
+	AT24CXXx->msgI2C.msgSCL.msgPort = GPIOB;
+	AT24CXXx->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_6;
+	AT24CXXx->msgI2C.msgSDA.msgPort = GPIOB;
+	AT24CXXx->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_7;
 	AT24CXXx->msgI2C.msgModelIsHW = 0;
 	AT24CXXx->msgI2C.msgPluseWidth = 0;
 	AT24CXXx->msgI2C.msgDelayus = NULL;
@@ -247,9 +244,9 @@ UINT8_T AT24CXX_SWI2C_WriteOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr,
 
 	//---屏蔽写保护
 	#ifdef AT24CXX_I2C_USE_HWWP
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(AT24CXXx->msgWP.msgGPIOPort, AT24CXXx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(AT24CXXx->msgWP.msgPort, AT24CXXx->msgWP.msgBit);
 	}
 	#endif
 
@@ -321,9 +318,9 @@ UINT8_T AT24CXX_SWI2C_WriteOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr,
 
 	//---使能写保护
 	#ifdef AT24CXX_I2C_USE_HWWP
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(AT24CXXx->msgWP.msgGPIOPort, AT24CXXx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(AT24CXXx->msgWP.msgPort, AT24CXXx->msgWP.msgBit);
 	}
 	#endif
 	//---恢复设备的地址
@@ -362,9 +359,9 @@ UINT8_T AT24CXX_SWI2C_WritePageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T page
 	UINT16_T i = 0;
 	//---屏蔽写保护
 	#ifdef AT24CXX_I2C_USE_HWWP
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(AT24CXXx->msgWP.msgGPIOPort, AT24CXXx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(AT24CXXx->msgWP.msgPort, AT24CXXx->msgWP.msgBit);
 	}
 	#endif
 	//---检查设备类型
@@ -453,9 +450,9 @@ UINT8_T AT24CXX_SWI2C_WritePageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T page
 	}
 	#ifdef AT24CXX_I2C_USE_HWWP
 	//---使能写保护
-	if (AT24CXXx->msgWP.msgGPIOPort != NULL)
+	if (AT24CXXx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(AT24CXXx->msgWP.msgGPIOPort, AT24CXXx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(AT24CXXx->msgWP.msgPort, AT24CXXx->msgWP.msgBit);
 	}
 	#endif
 	return _return;

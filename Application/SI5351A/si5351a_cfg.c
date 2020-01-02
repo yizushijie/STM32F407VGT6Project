@@ -29,10 +29,10 @@ void SI5351A_I2C_ParamsInit(SI5351A_HandlerType* SI5351Ax)
 UINT8_T SI5351A_I2C_Device0_Init(SI5351A_HandlerType* SI5351Ax)
 {
 	SI5351Ax->msgI2C.msgI2Cx = NULL;
-	SI5351Ax->msgI2C.msgSCL.msgGPIOPort = GPIOB;
-	SI5351Ax->msgI2C.msgSCL.msgGPIOBit = LL_GPIO_PIN_8;
-	SI5351Ax->msgI2C.msgSDA.msgGPIOPort = GPIOB;
-	SI5351Ax->msgI2C.msgSDA.msgGPIOBit = LL_GPIO_PIN_9;
+	SI5351Ax->msgI2C.msgSCL.msgPort = GPIOB;
+	SI5351Ax->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_8;
+	SI5351Ax->msgI2C.msgSDA.msgPort = GPIOB;
+	SI5351Ax->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_9;
 	SI5351Ax->msgI2C.msgModelIsHW = 0;
 	SI5351Ax->msgI2C.msgPluseWidth = 1;
 	SI5351Ax->msgI2C.msgDelayus = NULL;

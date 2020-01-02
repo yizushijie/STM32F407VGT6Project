@@ -126,6 +126,9 @@
 "stm32f407vgt6project\usbhid_cfg.o"
 "stm32f407vgt6project\usbhid_lib.o"
 "stm32f407vgt6project\usbhid_task.o"
+"stm32f407vgt6project\usb_cfg.o"
+"stm32f407vgt6project\usb_lib.o"
+"stm32f407vgt6project\usb_task.o"
 --library_type=microlib --strict --scatter "STM32F407VGT6Project\STM32F407VGT6Project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

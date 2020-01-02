@@ -84,13 +84,13 @@ UINT8_T OLED_Device0_Init(OLED_IIC_HandlerType *OLEDx)
 {
 	//---如果为6针的IIC模式，RES端口必须接入端口控制，否者需要拉高处理
 	//---RST端口的配置
-	OLEDx->msgRST.msgGPIOBit = LL_GPIO_PIN_5;
-	OLEDx->msgRST.msgGPIOPort = GPIOB;
+	OLEDx->msgRST.msgBit = LL_GPIO_PIN_5;
+	OLEDx->msgRST.msgPort = GPIOB;
 
 	//---端口初始化
-	if (OLEDx->msgRST.msgGPIOPort != NULL)
+	if (OLEDx->msgRST.msgPort != NULL)
 	{
-		GPIOTask_Clock(OLEDx->msgRST.msgGPIOPort, 1);
+		GPIOTask_Clock(OLEDx->msgRST.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	}
 
 	//---GPIO的结构体
@@ -104,19 +104,19 @@ UINT8_T OLED_Device0_Init(OLED_IIC_HandlerType *OLEDx)
 #endif
 
 //---RST端口的初始化
-	GPIO_InitStruct.Pin = OLEDx->msgRST.msgGPIOBit;
-	if (OLEDx->msgRST.msgGPIOPort != NULL)
+	GPIO_InitStruct.Pin = OLEDx->msgRST.msgBit;
+	if (OLEDx->msgRST.msgPort != NULL)
 	{
-		LL_GPIO_Init(OLEDx->msgRST.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(OLEDx->msgRST.msgGPIOPort, OLEDx->msgRST.msgGPIOBit);
+		LL_GPIO_Init(OLEDx->msgRST.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(OLEDx->msgRST.msgPort, OLEDx->msgRST.msgBit);
 	}
 
 	//---I2C的配置
 	OLEDx->msgI2C.msgI2Cx = NULL;
-	OLEDx->msgI2C.msgSCL.msgGPIOPort = GPIOB;
-	OLEDx->msgI2C.msgSCL.msgGPIOBit = LL_GPIO_PIN_6;
-	OLEDx->msgI2C.msgSDA.msgGPIOPort = GPIOB;
-	OLEDx->msgI2C.msgSDA.msgGPIOBit = LL_GPIO_PIN_7;
+	OLEDx->msgI2C.msgSCL.msgPort = GPIOB;
+	OLEDx->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_6;
+	OLEDx->msgI2C.msgSDA.msgPort = GPIOB;
+	OLEDx->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_7;
 	OLEDx->msgI2C.msgModelIsHW = 0;
 	OLEDx->msgI2C.msgPluseWidth = 1;
 	OLEDx->msgI2C.msgDelayus = NULL;
@@ -401,13 +401,13 @@ void OLED_I2C_SetPos(OLED_IIC_HandlerType *OLEDx, UINT8_T xPos, UINT8_T yPos)
 //////////////////////////////////////////////////////////////////////////////
 void OLED_I2C_HWInit(OLED_IIC_HandlerType *OLEDx)
 {
-	if (OLEDx->msgRST.msgGPIOPort != NULL)
+	if (OLEDx->msgRST.msgPort != NULL)
 	{
-		GPIO_OUT_1(OLEDx->msgRST.msgGPIOPort, OLEDx->msgRST.msgGPIOBit);
+		GPIO_OUT_1(OLEDx->msgRST.msgPort, OLEDx->msgRST.msgBit);
 		DelayTask_ms(100);
-		GPIO_OUT_0(OLEDx->msgRST.msgGPIOPort, OLEDx->msgRST.msgGPIOBit);
+		GPIO_OUT_0(OLEDx->msgRST.msgPort, OLEDx->msgRST.msgBit);
 		DelayTask_ms(100);
-		GPIO_OUT_1(OLEDx->msgRST.msgGPIOPort, OLEDx->msgRST.msgGPIOBit);
+		GPIO_OUT_1(OLEDx->msgRST.msgPort, OLEDx->msgRST.msgBit);
 	}
 
 	OLED_I2C_WriteCmd(OLEDx, 0xAE); //--display off

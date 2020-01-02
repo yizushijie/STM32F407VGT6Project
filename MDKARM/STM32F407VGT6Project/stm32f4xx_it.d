@@ -26,17 +26,7 @@ stm32f407vgt6project/stm32f4xx_it.o: ..\STM32F4xx\stm32f4xx_it.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
-  ..\STM32F4xx\stm32f4xx_it.h ..\Application\SysTick\systick_task.h \
-  ..\Application\SysTick\systick_lib.h \
-  ..\Application\SysTick\systick_cfg.h ..\Complier\complier_lib.h \
-  ..\Complier\complier_cfg.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
-  ..\STM32F4xx\stm32_cfg.h ..\STM32F4xx\stm32f4xx_ll.h \
+  ..\STM32F4xx\stm32f4xx_ll.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_adc.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_bus.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_cortex.h \
@@ -58,20 +48,30 @@ stm32f407vgt6project/stm32f4xx_it.o: ..\STM32F4xx\stm32f4xx_it.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_usart.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_utils.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_wwdg.h \
-  ..\Application\IWDG\iwdg_task.h ..\Application\IWDG\iwdg_lib.h \
-  ..\Application\IWDG\iwdg_cfg.h ..\Application\USART\usart_task.h \
-  ..\Application\USART\usart_lib.h ..\Application\USART\usart_cfg.h \
-  ..\Application\GPIO\gpio_task.h ..\Application\GPIO\gpio_lib.h \
-  ..\Application\GPIO\gpio_cfg.h ..\Application\CRC\crc_task.h \
-  ..\Application\CRC\crc_lib.h ..\Application\CRC\crc_cfg.h \
-  ..\Application\Timer\timer_task.h ..\Application\Timer\timer_lib.h \
-  ..\Application\Timer\timer_cfg.h ..\Application\Random\random_task.h \
-  ..\Application\Random\random_lib.h ..\Application\Random\random_cfg.h \
-  ..\Application\ADC\adc_task.h ..\Application\ADC\adc_lib.h \
-  ..\Application\ADC\adc_cfg.h ..\Application\Delay\delay_task.h \
-  ..\Application\Delay\delay_lib.h ..\Application\Delay\delay_cfg.h \
-  ..\Application\Decode\decode_task.h ..\Application\Decode\decode_lib.h \
-  ..\Application\Decode\decode_cfg.h \
+  ..\STM32F4xx\stm32f4xx_it.h ..\Application\SysTick\systick_task.h \
+  ..\Application\SysTick\systick_lib.h \
+  ..\Application\SysTick\systick_cfg.h ..\Complier\complier_lib.h \
+  ..\Complier\complier_cfg.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  D:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  ..\STM32F4xx\stm32_cfg.h ..\Application\IWDG\iwdg_task.h \
+  ..\Application\IWDG\iwdg_lib.h ..\Application\IWDG\iwdg_cfg.h \
+  ..\Application\USART\usart_task.h ..\Application\USART\usart_lib.h \
+  ..\Application\USART\usart_cfg.h ..\Application\GPIO\gpio_task.h \
+  ..\Application\GPIO\gpio_lib.h ..\Application\GPIO\gpio_cfg.h \
+  ..\Application\CRC\crc_task.h ..\Application\CRC\crc_lib.h \
+  ..\Application\CRC\crc_cfg.h ..\Application\Timer\timer_task.h \
+  ..\Application\Timer\timer_lib.h ..\Application\Timer\timer_cfg.h \
+  ..\Application\Random\random_task.h ..\Application\Random\random_lib.h \
+  ..\Application\Random\random_cfg.h ..\Application\ADC\adc_task.h \
+  ..\Application\ADC\adc_lib.h ..\Application\ADC\adc_cfg.h \
+  ..\Application\Delay\delay_task.h ..\Application\Delay\delay_lib.h \
+  ..\Application\Delay\delay_cfg.h ..\Application\Decode\decode_task.h \
+  ..\Application\Decode\decode_lib.h ..\Application\Decode\decode_cfg.h \
   ..\Application\RFASKHW\rfaskhw_cfg.h ..\Application\RFASK\rfask_task.h \
   ..\Application\RFASK\rfask_lib.h ..\Application\RFASK\rfask_cfg.h \
   ..\Application\WM8510\wm8510_task.h ..\Application\WM8510\wm8510_lib.h \

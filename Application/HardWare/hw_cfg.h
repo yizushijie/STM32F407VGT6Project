@@ -36,13 +36,13 @@ extern "C" {
 	#define RST_NEN_OUT_1						GPIO_OUT_1(    RST_NEN_PORT,RST_NEN_BIT)
 	#define RST_NEN_OUT_C						GPIO_OUT_C(    RST_NEN_PORT,RST_NEN_BIT)
 	//===RST接到VCC
-	#define RST_TO_VCC							( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_1 )
+	#define RST_PORT_TO_VCC						( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_1 )
 	//===RST接到GND
-	#define RST_TO_GND							( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0,RST_LEN_OUT_1 )
+	#define RST_PORT_TO_GND						( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0,RST_LEN_OUT_1 )
 	//===RST接到12V
-	#define RST_TO_12V							( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0,RST_HEN_OUT_1 )
+	#define RST_PORT_TO_12V						( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0,RST_HEN_OUT_1 )
 	//===RST处于高阻态	
-	#define RST_TO_HZ							( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0 )
+	#define RST_PORT_TO_HZ						( RST_LEN_OUT_0,RST_HEN_OUT_0,RST_NEN_OUT_0 )
 
 	//===函数定义
 	void HardWare_Init();

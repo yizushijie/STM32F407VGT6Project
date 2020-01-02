@@ -18,13 +18,12 @@ UINT8_T W25QXX_SPI_Device0_Init(W25QXX_HandlerType *W25Qx)
 {
 	//---写保护端口的配置
 #ifdef WM25QXX_SPI_USE_HWWP
-	W25Qx->msgWP.msgGPIOPort = GPIOC;
-	W25Qx->msgWP.msgGPIOBit = LL_GPIO_PIN_4;
-
+	W25Qx->msgWP.msgPort = GPIOC;
+	W25Qx->msgWP.msgBit = LL_GPIO_PIN_4;
 	//---初始化写保护
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIOTask_Clock(W25Qx->msgWP.msgGPIOPort, 1);
+		GPIOTask_Clock(W25Qx->msgWP.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	}
 #endif
 
@@ -47,42 +46,33 @@ UINT8_T W25QXX_SPI_Device0_Init(W25QXX_HandlerType *W25Qx)
 	//---PB15------ > SPI2_MOSI
 
 	//---CS
-	W25Qx->msgSPI.msgCS.msgGPIOPort = GPIOB;//GPIOA;
-	W25Qx->msgSPI.msgCS.msgGPIOBit  = LL_GPIO_PIN_14;//LL_GPIO_PIN_4;
-
+	W25Qx->msgSPI.msgCS.msgPort = GPIOB;//GPIOA;
+	W25Qx->msgSPI.msgCS.msgBit  = LL_GPIO_PIN_14;//LL_GPIO_PIN_4;
 	//---SCK
-	W25Qx->msgSPI.msgSCK.msgGPIOPort = GPIOB;// GPIOA;
-	W25Qx->msgSPI.msgSCK.msgGPIOBit = LL_GPIO_PIN_3; //LL_GPIO_PIN_5;
-
+	W25Qx->msgSPI.msgSCK.msgPort = GPIOB;// GPIOA;
+	W25Qx->msgSPI.msgSCK.msgBit = LL_GPIO_PIN_3; //LL_GPIO_PIN_5;
 	//---MISO  
-	W25Qx->msgSPI.msgMISO.msgGPIOPort = GPIOB;//GPIOA;
-	W25Qx->msgSPI.msgMISO.msgGPIOBit = LL_GPIO_PIN_4;//LL_GPIO_PIN_6;
-
+	W25Qx->msgSPI.msgMISO.msgPort = GPIOB;//GPIOA;
+	W25Qx->msgSPI.msgMISO.msgBit = LL_GPIO_PIN_4;//LL_GPIO_PIN_6;
 	//---MOSI
-	W25Qx->msgSPI.msgMOSI.msgGPIOPort = GPIOB; //GPIOA;
-	W25Qx->msgSPI.msgMOSI.msgGPIOBit = LL_GPIO_PIN_5; //LL_GPIO_PIN_7;
-
+	W25Qx->msgSPI.msgMOSI.msgPort = GPIOB; //GPIOA;
+	W25Qx->msgSPI.msgMOSI.msgBit = LL_GPIO_PIN_5; //LL_GPIO_PIN_7;
 	//---复用模式
 #ifndef USE_MCU_STM32F1
 	W25Qx->msgSPI.msgGPIOAlternate = LL_GPIO_AF_5;
 #endif
-
 	//---SPI序号
 	W25Qx->msgSPI.msgSPIx = SPI1;
 #ifndef USE_MCU_STM32F1
-
 	//---SPI的协议
 	W25Qx->msgSPI.msgStandard = LL_SPI_PROTOCOL_MOTOROLA;
 #endif
-
 	//---定义脉冲宽度
 	W25Qx->msgSPI.msgPluseWidth = 0;
-
 	//---时钟空闲为低电平
 	W25Qx->msgSPI.msgCPOL = 0;
 	//---数据采样在第一个时钟边沿
 	W25Qx->msgSPI.msgCPOH = 0;
-
 	return OK_0;
 }
 
@@ -121,30 +111,26 @@ UINT8_T W25QXX_SPI_HW_Init(W25QXX_HandlerType *W25Qx)
 {
 	//---注销当前的所有配置
 	SPITask_DeInit(&(W25Qx->msgSPI),1);
-
 	//---硬件端口的配置---硬件实现
 	SPITask_MHW_GPIO_Init(&(W25Qx->msgSPI));
-
 	//---硬件SPI的初始化
 	LL_SPI_InitTypeDef SPI_InitStruct = { 0 };
-
 	//---SPI的模式配置
 	SPI_InitStruct.TransferDirection = LL_SPI_FULL_DUPLEX;
-	SPI_InitStruct.Mode = LL_SPI_MODE_MASTER;						//---主机模式
-	SPI_InitStruct.DataWidth = LL_SPI_DATAWIDTH_8BIT;				//---8位数据
-																	//---时钟空闲时的极性
+	SPI_InitStruct.Mode = LL_SPI_MODE_MASTER;														//---主机模式
+	SPI_InitStruct.DataWidth = LL_SPI_DATAWIDTH_8BIT;												//---8位数据
+	//---时钟空闲时的极性
 	if (W25Qx->msgSPI.msgCPOL == 0)
 	{
 		//---CLK空闲时为低电平 (CLK空闲是只能是低电平)
 		SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_LOW;				
-		GPIO_OUT_0(W25Qx->msgSPI.msgSCK.msgGPIOPort, W25Qx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgSPI.msgSCK.msgPort, W25Qx->msgSPI.msgSCK.msgBit);
 	}
 	else
 	{
 		//---CLK空闲时为高电平 (CLK空闲是只能是低电平)
 		SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_HIGH;				
 	}
-
 	//---数据采样的时钟边沿位置
 	if (W25Qx->msgSPI.msgCPOL == 0)
 	{
@@ -153,14 +139,12 @@ UINT8_T W25QXX_SPI_HW_Init(W25QXX_HandlerType *W25Qx)
 	else
 	{
 		SPI_InitStruct.ClockPhase = LL_SPI_PHASE_2EDGE;
-	}
-	
-	SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;							//---软件控制
-	SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV4;		//---系统时钟256分频
-	SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;						//---高位在前
-	SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;	//---硬件CRC不使能
+	}	
+	SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;															//---软件控制
+	SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV4;										//---系统时钟256分频
+	SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;														//---高位在前
+	SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;									//---硬件CRC不使能
 	SPI_InitStruct.CRCPoly = 7;
-
 	//---初始化查询方式的SPI
 	SPITask_MHW_PollMode_Init(&(W25Qx->msgSPI), SPI_InitStruct);
 	return OK_0;
@@ -176,20 +160,17 @@ UINT8_T W25QXX_SPI_HW_Init(W25QXX_HandlerType *W25Qx)
 UINT8_T W25QXX_SPI_SW_Init(W25QXX_HandlerType *W25Qx)
 {
 	SPITask_DeInit(&(W25Qx->msgSPI),1);
-
 	//---硬件端口的配置---软件实现
 	SPITask_MSW_GPIO_Init(&(W25Qx->msgSPI));
-
 	//---时钟空闲时的极性
 	if (W25Qx->msgSPI.msgCPOL == 0)
 	{
-		GPIO_OUT_0(W25Qx->msgSPI.msgSCK.msgGPIOPort, W25Qx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgSPI.msgSCK.msgPort, W25Qx->msgSPI.msgSCK.msgBit);
 	}
 	else
 	{
-		GPIO_OUT_1(W25Qx->msgSPI.msgSCK.msgGPIOPort, W25Qx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_1(W25Qx->msgSPI.msgSCK.msgPort, W25Qx->msgSPI.msgSCK.msgBit);
 	}
-
 	return OK_0;
 }
 
@@ -245,7 +226,6 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 	{
 		return ERROR_1;
 	}
-
 	//---判断初始化的方式
 	if (isHW != 0)
 	{
@@ -263,7 +243,6 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 		//---命令读写
 		W25QXX_SEND_CMD = W25QXX_SPI_SW_SendCmd;
 	}
-
 	//---注册ms延时时间
 	if (pFuncDelayms != NULL)
 	{
@@ -273,7 +252,6 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 	{
 		W25Qx->msgDelayms = DelayTask_ms;
 	}
-
 	//---注册us延时函数
 	if (pFuncDelayus != NULL)
 	{
@@ -293,26 +271,25 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 		W25Qx->msgSPI.msgTimeTick = SysTickTask_GetTick;
 	}	
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
 		//---使能GPIO的时钟
-		GPIOTask_Clock(W25Qx->msgWP.msgGPIOPort, 1);
+		GPIOTask_Clock(W25Qx->msgWP.msgPort, PERIPHERAL_CLOCK_ENABLE);
 		//---GPIO的结构体
 		LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-		GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;						//---配置状态为输出模式
-		GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_MEDIUM;				//---GPIO的速度---低速设备
-		GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;			//---输出模式---推挽输出
-		GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;							//---上拉
+		GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;													//---配置状态为输出模式
+		GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_MEDIUM;											//---GPIO的速度---低速设备
+		GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;										//---输出模式---推挽输出
+		GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;														//---上拉
 #ifndef USE_MCU_STM32F1
-		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;						//---端口复用模式
+		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;													//---端口复用模式
 #endif
 		//---WPs_BIT的初始化
-		GPIO_InitStruct.Pin = W25Qx->msgWP.msgGPIOBit;
-		LL_GPIO_Init(W25Qx->msgWP.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_0(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_InitStruct.Pin = W25Qx->msgWP.msgBit;
+		LL_GPIO_Init(W25Qx->msgWP.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_0(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
-
 	return OK_0;
 }
 
@@ -367,12 +344,11 @@ UINT8_T W25QXX_SPI_ReadRegSR1(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_REG_SR1, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &_return);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -396,12 +372,11 @@ UINT8_T W25QXX_SPI_ReadRegSR2(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_REG_SR2, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &_return);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -424,18 +399,18 @@ void W25QXX_SPI_WriteRegSR1(W25QXX_HandlerType *W25Qx, UINT8_T cmd, UINT8_T isAu
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---屏蔽写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_WRITE_REG_SR, NULL);
 	W25QXX_SEND_CMD(W25Qx, cmd, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -443,9 +418,9 @@ void W25QXX_SPI_WriteRegSR1(W25QXX_HandlerType *W25Qx, UINT8_T cmd, UINT8_T isAu
 	}
 	//---加载写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 }
@@ -467,23 +442,21 @@ void W25QXX_SPI_WriteRegSR2(W25QXX_HandlerType *W25Qx, UINT8_T cmd, UINT8_T isAu
 	}
 	//---读取SR1的值
 	_return =  W25QXX_SPI_ReadRegSR1(W25Qx,0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---屏蔽写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_WRITE_REG_SR, NULL);
-
 	//---写SR1
 	W25QXX_SEND_CMD(W25Qx, _return, NULL);
-
 	//---写SR2
 	W25QXX_SEND_CMD(W25Qx, cmd, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -491,9 +464,9 @@ void W25QXX_SPI_WriteRegSR2(W25QXX_HandlerType *W25Qx, UINT8_T cmd, UINT8_T isAu
 	}
 	//---加载写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 }
@@ -512,11 +485,10 @@ void W25QXX_SPI_EnableWrite(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ENABLE_WRITE, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -538,11 +510,10 @@ void W25QXX_SPI_DisableWrite(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_DISABLE_WRITE, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -566,21 +537,19 @@ UINT16_T W25QXX_SPI_ReadID(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取ID命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_MANUFACT_DEVICE_ID, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
-
 	//---读取设备的ID信息高位值
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &temp);
 	_return = temp;
 	//---读取设备的ID信息低位值
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &temp);	
 	_return = (_return << 8) + temp;
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-	
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);	
 	W25Qx->msgChipID = _return;
 	switch (W25Qx->msgChipID)
 	{
@@ -640,18 +609,15 @@ UINT8_T W25QXX_SPI_WaitBusy(W25QXX_HandlerType *W25Qx,UINT32_T timeOut, UINT8_T 
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
 	_return=W25QXX_SPI_ReadRegSR1(W25Qx,0);
-
 	//---获取时间标签
 	UINT32_T nowTime = 0;
 	UINT32_T oldTime = 0;
 	UINT64_T cnt = 0;
-
 	//---获取当前时间节拍
 	if (W25Qx->msgSPI.msgTimeTick != NULL)
 	{
 		oldTime = W25Qx->msgSPI.msgTimeTick();
 	}
-
 	//---等待BUSY位清空
 	while ((_return & 0x01) == 0x01)
 	{
@@ -660,7 +626,6 @@ UINT8_T W25QXX_SPI_WaitBusy(W25QXX_HandlerType *W25Qx,UINT32_T timeOut, UINT8_T 
 		{
 			//---当前时间
 			nowTime = W25Qx->msgSPI.msgTimeTick();
-
 			//---判断滴答定时是否发生溢出操作
 			if (nowTime < oldTime)
 			{
@@ -670,7 +635,6 @@ UINT8_T W25QXX_SPI_WaitBusy(W25QXX_HandlerType *W25Qx,UINT32_T timeOut, UINT8_T 
 			{
 				cnt = nowTime - oldTime;
 			}
-
 			//---判断是否超时
 			if (cnt > timeOut)
 			{
@@ -712,24 +676,20 @@ void W25QXX_SPI_ReadData(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T *pVal
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
 	//--使能片选
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//----发送读取命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_DATA, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr), NULL);
-
 	//---循环读取数据
 	for (i = 0; i < length; i++)
 	{
 		W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[i]);
 	}
-
 	//---取消片选
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -753,27 +713,22 @@ void W25QXX_SPI_ReadFast(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T *pVal
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
 	//--使能片选
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//----发送读取命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_FAST, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(addr), NULL);
-
 	//---发送伪字节
 	W25QXX_SEND_CMD(W25Qx, 0xFF, NULL);
-
 	//---循环读取数据
 	for (i = 0; i < length; i++)
 	{
 		W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[i]);
 	}
-
 	//---取消片选
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -803,42 +758,34 @@ void W25QXX_SPI_WritePage(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T *pVa
 	{
 		length = W25QXX_PAGE_BYTE_SIZE;
 	}
-
 	//---校验页地址
 	pageAdddr = (addr & W25QXX_PAGE_NUM_MASK);
-
 	//---校验页序号
 	pageIndex = (UINT8_T)(addr & W25QXX_PAGE_BYTE_MASK);
-
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//--使能片选
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---屏蔽写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 	//----发送写页命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_PAGE_PROGRAM, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(pageAdddr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(pageAdddr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(pageAdddr), NULL);
-
 	//---循环写入数据
 	for (i = pageIndex; i < length; i++)
 	{
 		W25QXX_SEND_CMD(W25Qx, pVal[i - pageIndex], NULL);
 	}
-
 	//---取消片选
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待写入结束
 	W25QXX_SPI_WaitBusy(W25Qx,100, 0);
 	//---自适应软件和硬件时序结束
@@ -848,9 +795,9 @@ void W25QXX_SPI_WritePage(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T *pVa
 	}
 	//---使能写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 }
@@ -870,15 +817,12 @@ void W25QXX_SPI_EraseChip(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx,100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送片擦除命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_CHIP, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-	
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);	
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx,W25Qx->msgEraseDelayMS, 0);
 	//---自适应软件和硬件时序结束
@@ -904,15 +848,12 @@ void W25QXX_SPI_EraseSuspend(W25QXX_HandlerType* W25Qx, UINT8_T isAutoInit)
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx,0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx, 100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送片擦除命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_SUSPEND, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx, 100, 0);
 	//---自适应软件和硬件时序结束
@@ -938,15 +879,12 @@ void W25QXX_SPI_EraseResume(W25QXX_HandlerType* W25Qx, UINT8_T isAutoInit)
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx, 100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送片擦除命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_RESUME, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx, 100, 0);
 	//---自适应软件和硬件时序结束
@@ -974,20 +912,16 @@ void W25QXX_SPI_EraseSector(W25QXX_HandlerType *W25Qx, UINT32_T sectorNum, UINT8
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx,100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_SECTOR, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(sectorNum >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(sectorNum >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(sectorNum), NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx, W25Qx->msgEraseSectorDelayMS, 0);
 	//---自适应软件和硬件时序结束
@@ -1029,20 +963,16 @@ void W25QXX_SPI_EraseBlock32KB(W25QXX_HandlerType *W25Qx, UINT32_T block32KbNum,
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx,100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_BLOCK_32KB, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(block32KbNum >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(block32KbNum >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(block32KbNum), NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx, W25Qx->msgErase32KbBlockDelayMS, 0);
 	//---自适应软件和硬件时序结束
@@ -1084,20 +1014,16 @@ void W25QXX_SPI_EraseBlock64KB(W25QXX_HandlerType *W25Qx, UINT32_T blockNum, UIN
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx, 0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx,100, 0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_BLOCK_64KB, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(blockNum >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(blockNum >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(blockNum), NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx, W25Qx->msgErase64KbBlockDelayMS, 0);
 	//---自适应软件和硬件时序结束
@@ -1135,13 +1061,10 @@ void W25QXX_SPI_PowerDown(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-	
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);	
 	//---发送掉电命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_POWER_DOWN, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---TDP
 	W25Qx->msgSPI.msgDelayus(3);
 	//---自适应软件和硬件时序结束
@@ -1165,12 +1088,10 @@ void W25QXX_SPI_WakeUp(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送唤醒命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_RELEASE_POWER_DOWN, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---TRES1
 	W25Qx->msgSPI.msgDelayus(3);
 	//---自适应软件和硬件时序结束
@@ -1195,15 +1116,13 @@ void W25QXX_SPI_ReadUniqueIDNumber(W25QXX_HandlerType *W25Qx, UINT8_T *pVal, UIN
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
 	//---准备读取
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取ID命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_UNIQUE_ID, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0x00, NULL);
-
 	//---读取64Bit的UniqueSerialNumber
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[0]);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[1]);
@@ -1214,7 +1133,7 @@ void W25QXX_SPI_ReadUniqueIDNumber(W25QXX_HandlerType *W25Qx, UINT8_T *pVal, UIN
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[6]);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[7]);
 	//---结束读取
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1235,15 +1154,13 @@ void W25QXX_SPI_ReadJEDECID(W25QXX_HandlerType *W25Qx, UINT8_T *pVal, UINT8_T is
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取ID命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_JEDEC_ID, NULL);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[0]);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[1]);
 	W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[2]);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1267,23 +1184,18 @@ void W25QXX_SPI_EraseSecurityReg(W25QXX_HandlerType *W25Qx, UINT32_T regAddr, UI
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx,0);
-
 	//---等待忙结束
 	W25QXX_SPI_WaitBusy(W25Qx,100,0);
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//--发送读取状态寄存器的命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ERASE_SECURITY_REG, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr), NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待擦除结束
 	W25QXX_SPI_WaitBusy(W25Qx,100,0);
-
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1314,36 +1226,30 @@ void W25QXX_SPI_ProgramSecurityReg(W25QXX_HandlerType *W25Qx, UINT32_T regAddr, 
 	}
 	//---设置WEL
 	W25QXX_SPI_EnableWrite(W25Qx,0);
-
 	//--使能片选
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---屏蔽写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_1(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_1(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 	//----发送写页命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_PROGRAM_SECURITY_REG, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr), NULL);
-
 	//---循环写入数据
 	for (i = 0; i < length; i++)
 	{
 		W25QXX_SEND_CMD(W25Qx, pVal[i], NULL);
 	}
-
 	//---取消片选
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---等待写入结束
 	W25QXX_SPI_WaitBusy(W25Qx,100,0);
-
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1351,9 +1257,9 @@ void W25QXX_SPI_ProgramSecurityReg(W25QXX_HandlerType *W25Qx, UINT32_T regAddr, 
 	}
 	//---使能写保护
 #ifdef WM25QXX_SPI_USE_HWWP
-	if (W25Qx->msgWP.msgGPIOPort != NULL)
+	if (W25Qx->msgWP.msgPort != NULL)
 	{
-		GPIO_OUT_0(W25Qx->msgWP.msgGPIOPort, W25Qx->msgWP.msgGPIOBit);
+		GPIO_OUT_0(W25Qx->msgWP.msgPort, W25Qx->msgWP.msgBit);
 	}
 #endif
 }
@@ -1374,24 +1280,20 @@ void W25QXX_SPI_ReadSecurityReg(W25QXX_HandlerType *W25Qx, UINT32_T regAddr, UIN
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
 	//--使能片选
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//----发送读取命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_READ_SECURITY_REG, NULL);
-
 	//----发送24bit地址
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 16), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr >> 8), NULL);
 	W25QXX_SEND_CMD(W25Qx, (UINT8_T)(regAddr), NULL);
-
 	//---循环读取数据
 	for (i = 0; i < length; i++)
 	{
 		W25QXX_SEND_CMD(W25Qx, 0xFF, &pVal[i]);
 	}
-
 	//---取消片选
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1413,11 +1315,10 @@ void W25QXX_SPI_EnableReset(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送使能复位命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_ENABLE_RESET, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1439,11 +1340,10 @@ void W25QXX_SPI_Reset(W25QXX_HandlerType *W25Qx, UINT8_T isAutoInit)
 	{
 		W25QXX_SPI_AutoInit(W25Qx);
 	}
-	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
-
+	GPIO_OUT_0(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---发送师恩能够复位命令
 	W25QXX_SEND_CMD(W25Qx, W25QXX_CMD_RESET, NULL);
-	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgGPIOPort, W25Qx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(W25Qx->msgSPI.msgCS.msgPort, W25Qx->msgSPI.msgCS.msgBit);
 	//---自适应软件和硬件时序结束
 	if (isAutoInit)
 	{
@@ -1462,7 +1362,6 @@ void W25QXX_SPI_WriteNoCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T* 
 {
 	//---不满页的字节数
 	UINT16_T byteNum = W25QXX_PAGE_BYTE_SIZE - (UINT8_T)(addr&W25QXX_PAGE_BYTE_MASK);
-
 	if (length <= byteNum)
 	{
 		//---不大于256个字节
@@ -1521,16 +1420,12 @@ void W25QXX_SPI_WriteAndCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T*
 	UINT16_T sectorOffset = 0;
 	UINT16_T sectorRemainSize = 0;
 	UINT16_T i = 0;
-
 	//---扇区地址
 	sectorAddr = addr & W25QXX_SECTOR_NUM_MASK;
-
 	//---在扇区内的偏移
 	sectorOffset = addr & W25QXX_SECTOR_BYTE_MASK;
-
 	//---扇区剩余空间大小
 	sectorRemainSize = W25QXX_SECTOR_BYTE_SIZE - sectorOffset;
-
 	if (length <= sectorRemainSize)
 	{
 		//---不大于4096个字节
@@ -1546,7 +1441,6 @@ void W25QXX_SPI_WriteAndCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T*
 	{
 		//---读出整个扇区的内容
 		W25QXX_SPI_ReadData(W25Qx, sectorAddr , W25Qx->msgBuffer, W25QXX_SECTOR_BYTE_SIZE,0);
-
 		//---校验数据
 		for (i = 0; i < sectorRemainSize; i++)
 		{
@@ -1556,19 +1450,16 @@ void W25QXX_SPI_WriteAndCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T*
 				break;
 			}
 		}
-
 		//---判断是否需要擦除
 		if (i < sectorRemainSize)
 		{
 			//---擦除这个扇区
 			W25QXX_SPI_EraseAddrSector(W25Qx, sectorAddr,0);
-
 			//---复制
 			for (i = 0; i < sectorRemainSize; i++)
 			{
 				W25Qx->msgBuffer[i + sectorOffset] = pVal[i];
 			}
-
 			//---写入整个扇区
 			W25QXX_SPI_WriteNoCheck(W25Qx, sectorAddr, W25Qx->msgBuffer, W25QXX_SECTOR_BYTE_SIZE,0);
 		}
@@ -1577,7 +1468,6 @@ void W25QXX_SPI_WriteAndCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T*
 			//---写已经擦除了的,直接写入扇区剩余区间.
 			W25QXX_SPI_WriteNoCheck(W25Qx, addr, pVal, sectorRemainSize,0);
 		}
-
 		//---判断是否写入完成
 		if (length == sectorRemainSize)
 		{
@@ -1589,19 +1479,14 @@ void W25QXX_SPI_WriteAndCheck(W25QXX_HandlerType *W25Qx, UINT32_T addr, UINT8_T*
 			//---写入未结束
 			//---扇区地址偏移
 			sectorAddr+= W25QXX_SECTOR_BYTE_SIZE;
-
 			//---偏移位置为0
 			sectorOffset = 0;
-
 			//---指针偏移
 			pVal += sectorRemainSize;
-
 			//---写地址偏移
 			addr += sectorRemainSize;
-
 			//---字节数递减
 			length -= sectorRemainSize;
-
 			//---判断下一个扇区是否能够写完
 			if (length >= W25QXX_SECTOR_BYTE_SIZE)
 			{

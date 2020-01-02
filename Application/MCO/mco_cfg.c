@@ -4,7 +4,7 @@
 void MCO1_Init(void)
 {
     //---使能端口时钟
-    GPIOTask_Clock(GPIOA, 1);
+    GPIOTask_Clock(GPIOA, PERIPHERAL_CLOCK_ENABLE);
     //---初始化端口
     LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
     GPIO_InitStruct.Pin = LL_GPIO_PIN_8;

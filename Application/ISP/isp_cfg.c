@@ -18,15 +18,15 @@ void ISP_Device0_RST(UINT8_T rstState)
 {
 	if (rstState == ISP_RST_TO_GND)
 	{
-		RST_TO_GND;
+		RST_PORT_TO_GND;
 	}
 	else if (rstState == ISP_RST_TO_VCC)
 	{
-		RST_TO_VCC;
+		RST_PORT_TO_VCC;
 	}
 	else
 	{
-		RST_TO_HZ;
+		RST_PORT_TO_HZ;
 	}
 }
 
@@ -77,7 +77,7 @@ UINT8_T ISP_HW_Init(ISP_HandlerType *ISPx)
 	if(ISPx->msgSPI.msgCPOL==0)
 	{
 		SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_LOW;											//---CLK空闲时为低电平 (CLK空闲是只能是低电平)
-		GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 	}
 	else
 	{
@@ -117,15 +117,15 @@ UINT8_T ISP_SW_Init(ISP_HandlerType *ISPx)
 	//---时钟空闲时的极性
 	if (ISPx->msgSPI.msgCPOL == 0)
 	{
-		GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 	}
 	else
 	{
-		GPIO_OUT_1(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+		GPIO_OUT_1(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 	}
 	//---除片选信号输出高电平，其余端口都输出低电平，默认的初始化是高电平，在这里需要改动
-	GPIO_OUT_0(ISPx->msgSPI.msgMOSI.msgGPIOPort, ISPx->msgSPI.msgMOSI.msgGPIOBit);
-	GPIO_OUT_0(ISPx->msgSPI.msgMISO.msgGPIOPort, ISPx->msgSPI.msgMISO.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgMOSI.msgPort, ISPx->msgSPI.msgMOSI.msgBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgMISO.msgPort, ISPx->msgSPI.msgMISO.msgBit);
 	ISPx->msgInit = 1;
 	return OK_0;
 }
@@ -150,9 +150,9 @@ UINT8_T ISP_Device0_Init(ISP_HandlerType *ISPx)
 	//---初始化
 	ISPx->msgHideAddr = 0;
 	//---设置为延时模式
-	ISPx->msgIsPollReady=0;
+	ISPx->msgPollReady=0;
 	//---设置Eeprom不支持页编程模式
-	ISPx->msgEepromIsPageMode=0;
+	ISPx->msgEepromPageMode=0;
 	//---设置Flash每页的字节数
 	ISPx->msgFlashPerPageWordSize=0;
 	//---初始化缓存区的序号
@@ -165,11 +165,11 @@ UINT8_T ISP_Device0_Init(ISP_HandlerType *ISPx)
 	//---电平转换使能控制端
 #ifdef ISP_USE_lEVEL_SHIFT
     #ifdef ISP_USE_HV_RESET
-	   ISPx->msgOE.msgGPIOPort=GPIOD;
-	   ISPx->msgOE.msgGPIOBit = LL_GPIO_PIN_10;
+	   ISPx->msgOE.msgPort=GPIOD;
+	   ISPx->msgOE.msgBit = LL_GPIO_PIN_10;
 	#else
-	   ISPx->msgOE.msgGPIOPort=GPIOD;
-	   ISPx->msgOE.msgGPIOBit = LL_GPIO_PIN_14;
+	   ISPx->msgOE.msgPort=GPIOD;
+	   ISPx->msgOE.msgBit = LL_GPIO_PIN_14;
     #endif
 #endif
 	//---常规板子
@@ -189,26 +189,26 @@ UINT8_T ISP_Device0_Init(ISP_HandlerType *ISPx)
 #ifdef ISP_USE_HV_RESET
 	ISPx->msgPortRst = ISP_Device0_RST;
 	//---SCK
-	ISPx->msgSPI.msgSCK.msgGPIOPort = GPIOB;
-	ISPx->msgSPI.msgSCK.msgGPIOBit = LL_GPIO_PIN_13;
+	ISPx->msgSPI.msgSCK.msgPort = GPIOB;
+	ISPx->msgSPI.msgSCK.msgBit = LL_GPIO_PIN_13;
 	//---MISO
-	ISPx->msgSPI.msgMISO.msgGPIOPort = GPIOC;
-	ISPx->msgSPI.msgMISO.msgGPIOBit = LL_GPIO_PIN_2;
+	ISPx->msgSPI.msgMISO.msgPort = GPIOC;
+	ISPx->msgSPI.msgMISO.msgBit = LL_GPIO_PIN_2;
 	//---MOSI
-	ISPx->msgSPI.msgMOSI.msgGPIOPort = GPIOC;
-	ISPx->msgSPI.msgMOSI.msgGPIOBit = LL_GPIO_PIN_3;
+	ISPx->msgSPI.msgMOSI.msgPort = GPIOC;
+	ISPx->msgSPI.msgMOSI.msgBit = LL_GPIO_PIN_3;
 #else
-	ISPx->msgSPI.msgCS.msgGPIOPort = GPIOB;
-	ISPx->msgSPI.msgCS.msgGPIOBit = LL_GPIO_PIN_12;
+	ISPx->msgSPI.msgCS.msgPort = GPIOB;
+	ISPx->msgSPI.msgCS.msgBit = LL_GPIO_PIN_12;
 	//---SCK
-	ISPx->msgSPI.msgSCK.msgGPIOPort = GPIOB;
-	ISPx->msgSPI.msgSCK.msgGPIOBit = LL_GPIO_PIN_13;
+	ISPx->msgSPI.msgSCK.msgPort = GPIOB;
+	ISPx->msgSPI.msgSCK.msgBit = LL_GPIO_PIN_13;
 	//---MISO
-	ISPx->msgSPI.msgMISO.msgGPIOPort = GPIOB;
-	ISPx->msgSPI.msgMISO.msgGPIOBit = LL_GPIO_PIN_14;
+	ISPx->msgSPI.msgMISO.msgPort = GPIOB;
+	ISPx->msgSPI.msgMISO.msgBit = LL_GPIO_PIN_14;
 	//---MOSI
-	ISPx->msgSPI.msgMOSI.msgGPIOPort = GPIOB;
-	ISPx->msgSPI.msgMOSI.msgGPIOBit = LL_GPIO_PIN_15;
+	ISPx->msgSPI.msgMOSI.msgPort = GPIOB;
+	ISPx->msgSPI.msgMOSI.msgBit = LL_GPIO_PIN_15;
 #endif
 	
 	//---复用模式
@@ -304,10 +304,10 @@ UINT8_T ISP_Init(ISP_HandlerType *ISPx, void(*pFuncDelayus)(UINT32_T delay), voi
 	}
 	//---配置OE端口
 #ifdef ISP_USE_lEVEL_SHIFT
-	if (ISPx->msgOE.msgGPIOPort != NULL)
+	if (ISPx->msgOE.msgPort != NULL)
 	{
 		//---使能GPIO的时钟
-		GPIOTask_Clock(ISPx->msgOE.msgGPIOPort, 1);
+		GPIOTask_Clock(ISPx->msgOE.msgPort, 1);
 		//---GPIO的结构体
 		LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 		GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;													//---配置状态为输出模式
@@ -318,9 +318,9 @@ UINT8_T ISP_Init(ISP_HandlerType *ISPx, void(*pFuncDelayus)(UINT32_T delay), voi
 		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;													//---端口复用模式
 #endif
 		//---ISP_OE_BIT的初始化
-		GPIO_InitStruct.Pin = ISPx->msgOE.msgGPIOBit;
-		LL_GPIO_Init(ISPx->msgOE.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(ISPx->msgOE.msgGPIOPort, ISPx->msgOE.msgGPIOBit);
+		GPIO_InitStruct.Pin = ISPx->msgOE.msgBit;
+		LL_GPIO_Init(ISPx->msgOE.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(ISPx->msgOE.msgPort, ISPx->msgOE.msgBit);
 	}
 #endif
 	//---当前时间戳
@@ -344,7 +344,7 @@ UINT8_T ISP_DeInit(ISP_HandlerType *ISPx)
 #endif
 	//---处理电平转换芯片
 #ifdef ISP_USE_lEVEL_SHIFT
-	GPIO_OUT_1(ISPx->msgOE.msgGPIOPort, ISPx->msgOE.msgGPIOBit);
+	GPIO_OUT_1(ISPx->msgOE.msgPort, ISPx->msgOE.msgBit);
 #endif
 	return OK_0;
 }
@@ -519,7 +519,7 @@ UINT8_T ISP_SetClock(ISP_HandlerType *ISPx, UINT8_T clok)
 		ISP_SEND_CMD = ISP_SW_SendCmd;
 	}
 #ifdef ISP_USE_lEVEL_SHIFT
-	GPIO_OUT_0(ISPx->msgOE.msgGPIOPort, ISPx->msgOE.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgOE.msgPort, ISPx->msgOE.msgBit);
 #endif
 	return OK_0;
 }
@@ -599,9 +599,9 @@ UINT8_T ISP_HW_SendCmd(ISP_HandlerType *ISPx, UINT8_T val1, UINT8_T Val2, UINT8_
 UINT8_T ISP_PreEnterProg(ISP_HandlerType *ISPx)
 {
 	//---设置端口CS端口为输出模式
-	GPIO_SET_WRITE(ISPx->msgSPI.msgCS.msgGPIOPort, ISPx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_SET_WRITE(ISPx->msgSPI.msgCS.msgPort, ISPx->msgSPI.msgCS.msgBit);
 	//---首先拉低时钟线
-	GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 #ifdef ISP_USE_HV_RESET
 	ISPx->msgPortRst(ISP_RST_TO_GND);
 #else
@@ -610,23 +610,23 @@ UINT8_T ISP_PreEnterProg(ISP_HandlerType *ISPx)
 	//---打开电源
 	//POWER_DUT_ON;
 	//---首先拉低时钟线
-	GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 #ifdef ISP_USE_HV_RESET
 	ISPx->msgPortRst(ISP_RST_TO_GND);
 #else
-	GPIO_OUT_0(ISPx->msgSPI.msgCS.msgGPIOPort, ISPx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgCS.msgPort, ISPx->msgSPI.msgCS.msgBit);
 #endif
 	ISPx->msgDelayms(1);
 #ifdef ISP_USE_HV_RESET
 	ISPx->msgPortRst(ISP_RST_TO_VCC);
 #else
-	GPIO_OUT_1(ISPx->msgSPI.msgCS.msgGPIOPort, ISPx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_1(ISPx->msgSPI.msgCS.msgPort, ISPx->msgSPI.msgCS.msgBit);
 #endif
 	ISPx->msgDelayms(1);
 #ifdef ISP_USE_HV_RESET
 	ISPx->msgPortRst(ISP_RST_TO_GND);
 #else
-	GPIO_OUT_0(ISPx->msgSPI.msgCS.msgGPIOPort, ISPx->msgSPI.msgCS.msgGPIOBit);
+	GPIO_OUT_0(ISPx->msgSPI.msgCS.msgPort, ISPx->msgSPI.msgCS.msgBit);
 #endif
 	ISPx->msgDelayms(1);
 	//---解除64K的限制
@@ -659,7 +659,7 @@ UINT8_T ISP_EnterProg(ISP_HandlerType *ISPx,UINT8_T isPollReady)
 			//---编程状态为编程模式
 			ISPx->msgState = 1;
 			//---配置查询准备好信号的标志
-			ISPx->msgIsPollReady=isPollReady;
+			ISPx->msgPollReady=isPollReady;
 			//---增加监控函数
 			ISP_AddWatch(ISPx);
 			return OK_0;
@@ -694,11 +694,11 @@ UINT8_T ISP_EnterProg(ISP_HandlerType *ISPx,UINT8_T isPollReady)
 #endif
 		ISPx->msgDelayms(1);
 		//---清零时钟线和片选端
-		//GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgGPIOPort, ISPx->msgSPI.msgSCK.msgGPIOBit);
+		//GPIO_OUT_0(ISPx->msgSPI.msgSCK.msgPort, ISPx->msgSPI.msgSCK.msgBit);
 #ifdef ISP_USE_HV_RESET
 		ISPx->msgPortRst(ISP_RST_TO_GND);
 #else
-		GPIO_OUT_0(ISPx->msgSPI.msgCS.msgGPIOPort, ISPx->msgSPI.msgCS.msgGPIOBit);
+		GPIO_OUT_0(ISPx->msgSPI.msgCS.msgPort, ISPx->msgSPI.msgCS.msgBit);
 #endif
 		ISPx->msgDelayms(1);
 	}
@@ -707,7 +707,7 @@ UINT8_T ISP_EnterProg(ISP_HandlerType *ISPx,UINT8_T isPollReady)
 	ISPx->msgPortRst(ISP_RST_TO_HZ);
 #endif 
 #ifdef ISP_USE_lEVEL_SHIFT
-	GPIO_OUT_1(ISPx->msgOE.msgGPIOPort, ISPx->msgOE.msgGPIOBit);
+	GPIO_OUT_1(ISPx->msgOE.msgPort, ISPx->msgOE.msgBit);
 #endif
 	return ERROR_1;
 }
@@ -729,7 +729,7 @@ UINT8_T ISP_ExitProg(ISP_HandlerType *ISPx)
 		ISPx->msgSetClok = ISP_SCK_DEFAULT_CLOCK;
 	}
 	//---清除Eeprom页编程模式
-	ISPx->msgEepromIsPageMode = 0;
+	ISPx->msgEepromPageMode = 0;
 	//---清除数据缓存区的序号
 	ISPx->msgPageWordIndex = 0;
 	//---解除64K的限制
@@ -737,7 +737,7 @@ UINT8_T ISP_ExitProg(ISP_HandlerType *ISPx)
 	//---编程状态为空闲模式
 	ISPx->msgState=0;
 	//---检查编程结束模式设置为延时等待
-	ISPx->msgIsPollReady=0;
+	ISPx->msgPollReady=0;
 	//---移除注册的监控函数
 	ISP_RemoveWatch(ISPx);
 	return OK_0;
@@ -1011,7 +1011,7 @@ UINT8_T ISP_EraseChip(ISP_HandlerType *ISPx)
 	if (_return == 0)
 	{
 		//---检查轮询方式
-		if (ISPx->msgIsPollReady!=0)
+		if (ISPx->msgPollReady!=0)
 		{
 			_return = ISP_ReadReady(ISPx);
 			_return+=0x80;
@@ -1045,7 +1045,7 @@ UINT8_T ISP_ReadChipID(ISP_HandlerType *ISPx, UINT8_T *pVal)
 			_return = (i + 2);
 			break;
 		}
-		pVal[i] = ISPx->msgReadByte[3];
+		*(pVal++) = ISPx->msgReadByte[3];
 	}
 	return _return;
 }
@@ -1068,7 +1068,7 @@ UINT8_T ISP_ReadChipCalibration(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T le
 			_return = (i + 2);
 			break;
 		}
-		pVal[i] = ISPx->msgReadByte[3];
+		*(pVal++) = ISPx->msgReadByte[3];
 	}
 	return _return;
 }
@@ -1193,7 +1193,7 @@ UINT8_T ISP_WriteChipFuse(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T isNeedEx
 		return ERROR_2;
 	}
 	//---检查轮询方式
-	if (ISPx->msgIsPollReady != 0)
+	if (ISPx->msgPollReady != 0)
 	{
 		_return = ISP_ReadReady(ISPx);
 		_return += 0x80;
@@ -1210,7 +1210,7 @@ UINT8_T ISP_WriteChipFuse(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T isNeedEx
 		return ERROR_3;
 	}
 	//---检查轮询方式
-	if (ISPx->msgIsPollReady != 0)
+	if (ISPx->msgPollReady != 0)
 	{
 		_return = ISP_ReadReady(ISPx);
 		_return += 0x80;
@@ -1229,7 +1229,7 @@ UINT8_T ISP_WriteChipFuse(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T isNeedEx
 		if (_return == OK_0)
 		{
 			//---检查轮询方式
-			if (ISPx->msgIsPollReady != 0)
+			if (ISPx->msgPollReady != 0)
 			{
 				_return = ISP_ReadReady(ISPx);
 				_return += 0x80;
@@ -1259,7 +1259,7 @@ UINT8_T ISP_WriteChipLock(ISP_HandlerType *ISPx, UINT8_T val)
 	if (_return == OK_0)
 	{
 		//---检查轮询方式
-		if (ISPx->msgIsPollReady != 0)
+		if (ISPx->msgPollReady != 0)
 		{
 			_return = ISP_ReadReady(ISPx);
 			_return += 0x80;
@@ -1343,7 +1343,7 @@ UINT8_T ISP_WriteChipEepromAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T hi
 			break;
 		}
 		//---检查轮询方式
-		if (ISPx->msgIsPollReady != 0)
+		if (ISPx->msgPollReady != 0)
 		{
 			_return = ISP_ReadReady(ISPx);
 			//_return += 0x80;
@@ -1412,7 +1412,7 @@ UINT8_T ISP_UpdateChipEepromAddr(ISP_HandlerType* ISPx,UINT8_T highAddr, UINT8_T
 	if (_return == OK_0)
 	{
 		//---检查轮询方式
-		if (ISPx->msgIsPollReady != 0)
+		if (ISPx->msgPollReady != 0)
 		{
 			_return = ISP_ReadReady(ISPx);
 			_return += 0x80;
@@ -1468,7 +1468,7 @@ UINT8_T ISP_WriteChipEepromPage(ISP_HandlerType* ISPx, UINT8_T* pVal, UINT8_T hi
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -1539,7 +1539,7 @@ UINT8_T ISP_WriteChipEepromAddrWithJumpEmpty(ISP_HandlerType *ISPx, UINT8_T *pVa
 				break;
 			}
 			//---检查轮询方式
-			if (ISPx->msgIsPollReady != 0)
+			if (ISPx->msgPollReady != 0)
 			{
 				_return = ISP_ReadReady(ISPx);
 				_return += 0x80;
@@ -1585,7 +1585,7 @@ UINT8_T ISP_WriteChipEepromLongAddrWithJumpEmpty(ISP_HandlerType *ISPx, UINT8_T 
 UINT8_T ISP_WriteChipEeprom(ISP_HandlerType* ISPx, UINT8_T* pVal, UINT8_T highAddr, UINT8_T lowAddr, UINT16_T pageNum)
 {
 	//---校验编程模式
-	if (ISPx->msgEepromIsPageMode != 0)
+	if (ISPx->msgEepromPageMode != 0)
 	{
 		//---编程指定位置的Eeprom数据,编程模式页模式
 		return ISP_WriteChipEepromPage(ISPx,pVal,highAddr,lowAddr, pageNum);
@@ -1767,7 +1767,7 @@ UINT8_T ISP_UpdateChipFlashAddr(ISP_HandlerType *ISPx, UINT8_T externAddr, UINT8
 		if (_return == OK_0)
 		{
 			//---检查轮询方式
-			if (ISPx->msgIsPollReady != 0)
+			if (ISPx->msgPollReady != 0)
 			{
 				_return = ISP_ReadReady(ISPx);
 				_return += 0x80;
@@ -1809,7 +1809,7 @@ UINT8_T ISP_WriteChipFlashPage(ISP_HandlerType* ISPx, UINT8_T* pVal, UINT8_T ext
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -1969,6 +1969,6 @@ UINT8_T ISP_SetConfigInfo(ISP_HandlerType* ISPx,UINT8_T *pVal)
 	ISPx->msgEerpomPerPageByteSize= *(pVal++);
 	ISPx->msgEerpomPerPageByteSize = (ISPx->msgEerpomPerPageByteSize<<8)+*(pVal++);
 	//---Eeprom是否支持页编程模式
-	ISPx->msgEepromIsPageMode= *(pVal++);
+	ISPx->msgEepromPageMode= *(pVal++);
 	return OK_0;
 }

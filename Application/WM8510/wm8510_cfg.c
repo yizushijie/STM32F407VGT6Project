@@ -74,15 +74,15 @@ UINT8_T WM8510_I2C_Device0_Init(WM8510_HandlerType *WM8510x)
 {
 	WM8510x->msgI2C.msgI2Cx = NULL;
 	#ifdef WM8510_USE_HV_RESET
-		WM8510x->msgI2C.msgSCL.msgGPIOPort = GPIOB;
-		WM8510x->msgI2C.msgSCL.msgGPIOBit = LL_GPIO_PIN_6;
-		WM8510x->msgI2C.msgSDA.msgGPIOPort = GPIOB;
-		WM8510x->msgI2C.msgSDA.msgGPIOBit = LL_GPIO_PIN_7;
+		WM8510x->msgI2C.msgSCL.msgPort = GPIOB;
+		WM8510x->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_6;
+		WM8510x->msgI2C.msgSDA.msgPort = GPIOB;
+		WM8510x->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_7;
 	#else
-		WM8510x->msgI2C.msgSCL.msgGPIOPort = GPIOB;
-		WM8510x->msgI2C.msgSCL.msgGPIOBit = LL_GPIO_PIN_8;
-		WM8510x->msgI2C.msgSDA.msgGPIOPort = GPIOB;
-		WM8510x->msgI2C.msgSDA.msgGPIOBit = LL_GPIO_PIN_9;
+		WM8510x->msgI2C.msgSCL.msgPort = GPIOB;
+		WM8510x->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_8;
+		WM8510x->msgI2C.msgSDA.msgPort = GPIOB;
+		WM8510x->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_9;
 	#endif
 	WM8510x->msgI2C.msgModelIsHW = 0;
 	WM8510x->msgI2C.msgPluseWidth = 2;
@@ -90,8 +90,8 @@ UINT8_T WM8510_I2C_Device0_Init(WM8510_HandlerType *WM8510x)
 	WM8510x->msgI2C.msgAddr = WM8510_WADDR;
 	WM8510x->msgI2C.msgClockSpeed = 0;
 	#ifdef WM8510_USE_lEVEL_SHIFT
-		WM8510x->msgOE.msgGPIOPort=GPIOB;
-		WM8510x->msgOE.msgGPIOBit=LL_GPIO_PIN_5;
+		WM8510x->msgOE.msgPort=GPIOB;
+		WM8510x->msgOE.msgBit=LL_GPIO_PIN_5;
 		//---GPIO的结构体
 		LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 		GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;														//---配置状态为输出模式
@@ -101,10 +101,10 @@ UINT8_T WM8510_I2C_Device0_Init(WM8510_HandlerType *WM8510x)
 	#ifndef USE_MCU_STM32F1
 		GPIO_InitStruct.Alternate = LL_GPIO_AF_0;														//---端口复用模式
 	#endif
-		//---TDI---输出为低
-		GPIO_InitStruct.Pin = WM8510x->msgOE.msgGPIOBit;
-		LL_GPIO_Init(WM8510x->msgOE.msgGPIOPort, &GPIO_InitStruct);
-		GPIO_OUT_1(WM8510x->msgOE.msgGPIOPort,WM8510x->msgOE.msgGPIOBit);
+		//---OE---输出为低
+		GPIO_InitStruct.Pin = WM8510x->msgOE.msgBit;
+		LL_GPIO_Init(WM8510x->msgOE.msgPort, &GPIO_InitStruct);
+		GPIO_OUT_1(WM8510x->msgOE.msgPort,WM8510x->msgOE.msgBit);
 	#endif
 	return OK_0;
 }
@@ -209,7 +209,7 @@ GoToExit:
 UINT8_T WM8510_I2C_DeInit(WM8510_HandlerType *WM8510x)
 {
 #ifdef WM8510_USE_lEVEL_SHIFT
-	GPIO_OUT_1(WM8510x->msgOE.msgGPIOPort, WM8510x->msgOE.msgGPIOBit);
+	GPIO_OUT_1(WM8510x->msgOE.msgPort, WM8510x->msgOE.msgBit);
 #endif
 	//---注销I2C设备
 	if (WM8510x->msgI2C.msgModelIsHW == 1)
@@ -610,7 +610,7 @@ UINT8_T WM8510_I2C_SetFreqHz(WM8510_HandlerType *WM8510x, UINT32_T freq)
 		}
 	}
 	#ifdef WM8510_USE_lEVEL_SHIFT
-		GPIO_OUT_0(WM8510x->msgOE.msgGPIOPort, WM8510x->msgOE.msgGPIOBit);
+		GPIO_OUT_0(WM8510x->msgOE.msgPort, WM8510x->msgOE.msgBit);
 	#endif
 GoToExit:
 	return _return;
@@ -682,7 +682,7 @@ void WM8510_I2C_Reset(WM8510_HandlerType *WM8510x)
 	//---输出频率归零
 	WM8510x->msgFreqHz = 0;
 #ifdef WM8510_USE_lEVEL_SHIFT
-	GPIO_OUT_1(WM8510x->msgOE.msgGPIOPort, WM8510x->msgOE.msgGPIOBit);
+	GPIO_OUT_1(WM8510x->msgOE.msgPort, WM8510x->msgOE.msgBit);
 #endif
 }
 
@@ -745,7 +745,7 @@ UINT8_T WM8510_I2C_SetFreqHzWithAllFreqReg(WM8510_HandlerType *WM8510x, UINT32_T
 		_return = ERROR_5;
 	}
 #ifdef WM8510_USE_lEVEL_SHIFT
-	GPIO_OUT_0(WM8510x->msgOE.msgGPIOPort, WM8510x->msgOE.msgGPIOBit);
+	GPIO_OUT_0(WM8510x->msgOE.msgPort, WM8510x->msgOE.msgBit);
 #endif
 GoToExit:
 	return _return;

@@ -83,7 +83,7 @@
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>$K\ARM\ARMCC\bin\fromelf.exe --bin --output=@L.bin !L</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -339,7 +339,7 @@
               <MiscControls>-fgnu</MiscControls>
               <Define>USE_FULL_LL_DRIVER,USE_HAL_DRIVER,HSE_VALUE=12000000UL,HSE_STARTUP_TIMEOUT=100,LSE_STARTUP_TIMEOUT=5000,LSE_VALUE=32768,EXTERNAL_CLOCK_VALUE=12288000,HSI_VALUE=16000000,LSI_VALUE=32000,STM32F407xx,__TARGET_FPU_VFP,ARM_MATH_MATRIX_CHECK,ARM_MATH_ROUNDING,ARM_MATH_CM4,__FPU_PRESENT=1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Complier;..\Doc;..\STM32F4xx;..\STARTUP\MDKARM;..\Drivers\CMSIS\Include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Src;..\Application\APP;..\Application\IWDG;..\Application\AD5593;..\Application\AT24Cxx;..\Application\CRC;..\Application\Delay;..\Application\GPIO;..\Application\I2C;..\Application\Random;..\Application\SysTick;..\Application\USART;..\Application\WM8510;..\Application\ISP;..\Application\SPI;..\Application\LED;..\Application\ADC;..\Application\Timer;..\Application\Key;..\Application\Power;..\Application\Decode;..\Application\OLED;..\Application\WWDG;..\Application\W25Qxx;..\Application\RFASKHW;..\Application\MyMalloc;..\Application\DAC;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\Application\SI5351A;..\Application\TaskManage;..\Application\JTAG;..\Application\HVPP;..\Application\HVSP;..\Application\RFASK;..\Application\HMC472;..\Application\Encode;..\Application\HardWare;..\Application\MCO;..\Application\USBHid;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc</IncludePath>
+              <IncludePath>..\Complier;..\Doc;..\STM32F4xx;..\STARTUP\MDKARM;..\Drivers\CMSIS\Include;..\Drivers\STM32F4xx_HAL_Driver\Inc;..\Drivers\STM32F4xx_HAL_Driver\Src;..\Application\APP;..\Application\IWDG;..\Application\AD5593;..\Application\AT24Cxx;..\Application\CRC;..\Application\Delay;..\Application\GPIO;..\Application\I2C;..\Application\Random;..\Application\SysTick;..\Application\USART;..\Application\WM8510;..\Application\ISP;..\Application\SPI;..\Application\LED;..\Application\ADC;..\Application\Timer;..\Application\Key;..\Application\Power;..\Application\Decode;..\Application\OLED;..\Application\WWDG;..\Application\W25Qxx;..\Application\RFASKHW;..\Application\MyMalloc;..\Application\DAC;..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;..\Application\SI5351A;..\Application\TaskManage;..\Application\JTAG;..\Application\HVPP;..\Application\HVSP;..\Application\RFASK;..\Application\HMC472;..\Application\Encode;..\Application\HardWare;..\Application\MCO;..\Application\USB\USBHid;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Inc;..\Application\USB\USB</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -707,6 +707,11 @@
               <FileName>stm32f4xx_ll_pwr.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_pwr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ll_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_ll_i2c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1876,37 +1881,72 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Application/USBHid</GroupName>
+          <GroupName>Application/USB/USBHid</GroupName>
           <Files>
             <File>
               <FileName>usbhid_cfg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Application\USBHid\usbhid_cfg.c</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_cfg.c</FilePath>
             </File>
             <File>
               <FileName>usbhid_cfg.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Application\USBHid\usbhid_cfg.h</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_cfg.h</FilePath>
             </File>
             <File>
               <FileName>usbhid_lib.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Application\USBHid\usbhid_lib.c</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_lib.c</FilePath>
             </File>
             <File>
               <FileName>usbhid_lib.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Application\USBHid\usbhid_lib.h</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_lib.h</FilePath>
             </File>
             <File>
               <FileName>usbhid_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Application\USBHid\usbhid_task.c</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_task.c</FilePath>
             </File>
             <File>
               <FileName>usbhid_task.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Application\USBHid\usbhid_task.h</FilePath>
+              <FilePath>..\Application\USB\USBHid\usbhid_task.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application/USB/USB</GroupName>
+          <Files>
+            <File>
+              <FileName>usb_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\USB\USB\usb_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Application\USB\USB\usb_cfg.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\USB\USB\usb_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_lib.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Application\USB\USB\usb_lib.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Application\USB\USB\usb_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb_task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Application\USB\USB\usb_task.h</FilePath>
             </File>
           </Files>
         </Group>

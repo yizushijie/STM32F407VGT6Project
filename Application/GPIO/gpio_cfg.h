@@ -117,8 +117,8 @@ extern "C" {
 	#define GPIO_OUT_0(	name, index )				LL_GPIO_ResetOutputPin( name, index )	
 	//===设置端口输出取反
 	#define GPIO_OUT_C(	name, index )				LL_GPIO_TogglePin(	name, index )	
-	//===获取端口的输入状态
-	#define GPIO_GET_STATE(	name, index )			LL_GPIO_IsInputPinSet(	name, index )	
+	//===获取端口的输入状态,0---低电平，1---高电平
+	#define GPIO_GET_STATE(	name, index )			((LL_GPIO_IsInputPinSet(	name, index )!=0)?1:0)
 	//===GPIO低八位的数据
 	#define GPIO_L8BITS_OUT( name, val	)			( name->ODR=(name->ODR&0xFF00)| (val&0x00FF) )	
 	//===GPIO高八位的数据
@@ -133,12 +133,12 @@ extern "C" {
 	//===结构定义
 	struct _GPIO_HandlerType
 	{
-		GPIO_TypeDef	*msgGPIOPort;																//---端口
-		UINT32_T		msgGPIOBit;																	//---序号
+		GPIO_TypeDef	*msgPort;																																					//---端口
+		UINT32_T		msgBit;																																						//---序号
 	};
 
 	//===函数定义
-	void GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable);
+	UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable);
 	void GPIO_Init(void);
 	//////////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus

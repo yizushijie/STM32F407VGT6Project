@@ -44,10 +44,10 @@ UINT32_T     g_DecodeByteOldVal[DECODE_SITE_COUNT] = { 0 };
 void Decode_DecodeLEDInit(void)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(DECA_LED_PORT, 1);
-	GPIOTask_Clock(DECB_LED_PORT, 1);
-	GPIOTask_Clock(DECC_LED_PORT, 1);
-	GPIOTask_Clock(DECD_LED_PORT, 1);
+	GPIOTask_Clock(DECA_LED_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECB_LED_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECC_LED_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECD_LED_PORT, PERIPHERAL_CLOCK_ENABLE);
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
@@ -90,10 +90,10 @@ void Decode_DecodeLEDInit(void)
 void Decode_DecodeRSTInit(void)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(DECA_RST_PORT, 1);
-	GPIOTask_Clock(DECB_RST_PORT, 1);
-	GPIOTask_Clock(DECC_RST_PORT, 1);
-	GPIOTask_Clock(DECD_RST_PORT, 1);
+	GPIOTask_Clock(DECA_RST_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECB_RST_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECC_RST_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECD_RST_PORT, PERIPHERAL_CLOCK_ENABLE);
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
@@ -136,10 +136,10 @@ void Decode_DecodeRSTInit(void)
 void Decode_DecodeCHInit(void)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(DECA_CH_PORT, 1);
-	GPIOTask_Clock(DECB_CH_PORT, 1);
-	GPIOTask_Clock(DECC_CH_PORT, 1);
-	GPIOTask_Clock(DECD_CH_PORT, 1);
+	GPIOTask_Clock(DECA_CH_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECB_CH_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECC_CH_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECD_CH_PORT, PERIPHERAL_CLOCK_ENABLE);
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
@@ -182,10 +182,10 @@ void Decode_DecodeCHInit(void)
 void Decode_DecodePassInit(void)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(DECA_PASS_CTR_PORT, 1);
-	GPIOTask_Clock(DECB_PASS_CTR_PORT, 1);
-	GPIOTask_Clock(DECC_PASS_CTR_PORT, 1);
-	GPIOTask_Clock(DECD_PASS_CTR_PORT, 1);
+	GPIOTask_Clock(DECA_PASS_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECB_PASS_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECC_PASS_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECD_PASS_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
@@ -228,10 +228,10 @@ void Decode_DecodePassInit(void)
 void Decode_DecodeWaveInit(void)
 {
 	//---使能GPIO的时钟
-	GPIOTask_Clock(DECA_WAVE_CTR_PORT, 1);
-	GPIOTask_Clock(DECB_WAVE_CTR_PORT, 1);
-	GPIOTask_Clock(DECC_WAVE_CTR_PORT, 1);
-	GPIOTask_Clock(DECD_WAVE_CTR_PORT, 1);
+	GPIOTask_Clock(DECA_WAVE_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECB_WAVE_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECC_WAVE_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
+	GPIOTask_Clock(DECD_WAVE_CTR_PORT, PERIPHERAL_CLOCK_ENABLE);
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };

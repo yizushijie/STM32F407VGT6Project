@@ -28,176 +28,176 @@ extern "C" {
 	#define WM8510_PLLR_MIN_LIMIT		6
 	
 	//---频率输出----在12MHz时钟条件下，设定最大输出38MHz，最小输出20KHz
-	#define PDIV0_MDIV1_BDIV1_MAX		( WM8510_MCLK_HZ * WM8510_PLLR_MAX / 4					)			//39000000
+	#define PDIV0_MDIV1_BDIV1_MAX		( WM8510_MCLK_HZ * WM8510_PLLR_MAX / 4					)																					//39000000
 	
-	#define PDIV0_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4				)			//18000000
-	#define PDIV0_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/4			)			//12000000
-	#define PDIV0_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4			)			//9000000
-	#define PDIV0_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/4			)			//6000000
-	#define PDIV0_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4			)			//4500000
-	#define PDIV0_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/4			)			//3000000
-	#define PDIV0_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4			)			//2250000
-	#define PDIV0_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/4			)			//1500000
+	#define PDIV0_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4				)																					//18000000
+	#define PDIV0_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/4			)																					//12000000
+	#define PDIV0_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4			)																					//9000000
+	#define PDIV0_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/4			)																					//6000000
+	#define PDIV0_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4			)																					//4500000
+	#define PDIV0_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/4			)																					//3000000
+	#define PDIV0_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4			)																					//2250000
+	#define PDIV0_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/4			)																					//1500000
 	
-	#define PDIV0_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4			)			//9000000
-	#define PDIV0_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4		)			//6000000
-	#define PDIV0_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/2/4			)			//4500000
-	#define PDIV0_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/2/4			)			//3000000
-	#define PDIV0_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/2/4			)			//2250000
-	#define PDIV0_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/2/4			)			//1500000
-	#define PDIV0_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/2/4			)			//1125000
-	#define PDIV0_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/2/4		)			//0750000
+	#define PDIV0_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4			)																					//9000000
+	#define PDIV0_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4		)																					//6000000
+	#define PDIV0_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/2/4			)																					//4500000
+	#define PDIV0_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/2/4			)																					//3000000
+	#define PDIV0_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/2/4			)																					//2250000
+	#define PDIV0_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/2/4			)																					//1500000
+	#define PDIV0_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/2/4			)																					//1125000
+	#define PDIV0_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/2/4		)																					//0750000
 	
-	#define PDIV0_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4			)			//4500000
-	#define PDIV0_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/4/4		)			//3000000
-	#define PDIV0_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4/4			)			//2250000
-	#define PDIV0_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/4/4			)			//1500000
-	#define PDIV0_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4/4			)			//1125000
-	#define PDIV0_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/4/4			)			//0750000
-	#define PDIV0_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4/4			)			//0562500
-	#define PDIV0_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/4/4		)			//0375000
+	#define PDIV0_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4			)																					//4500000
+	#define PDIV0_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/4/4		)																					//3000000
+	#define PDIV0_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/4/4			)																					//2250000
+	#define PDIV0_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/4/4			)																					//1500000
+	#define PDIV0_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/4/4			)																					//1125000
+	#define PDIV0_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/4/4			)																					//0750000
+	#define PDIV0_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4/4			)																					//0562500
+	#define PDIV0_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/4/4		)																					//0375000
 	
-	#define PDIV0_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4			)			//2250000
-	#define PDIV0_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/8/4		)			//1500000
-	#define PDIV0_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/8/4			)			//1125000
-	#define PDIV0_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/8/4			)			//0750000
-	#define PDIV0_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/8/4			)			//0562500
-	#define PDIV0_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/8/4			)			//0375000
-	#define PDIV0_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/8/4			)			//0281250
-	#define PDIV0_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/8/4		)			//0187500
+	#define PDIV0_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/4			)																					//2250000
+	#define PDIV0_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/8/4		)																					//1500000
+	#define PDIV0_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/8/4			)																					//1125000
+	#define PDIV0_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/8/4			)																					//0750000
+	#define PDIV0_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/8/4			)																					//0562500
+	#define PDIV0_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/8/4			)																					//0375000
+	#define PDIV0_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/8/4			)																					//0281250
+	#define PDIV0_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/8/4		)																					//0187500
 	
-	#define PDIV0_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /16/4			)			//1125000
-	#define PDIV0_MDIV1D5_BDIV16_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/16/4		)			//0750000
-	#define PDIV0_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/16/4		)			//0562500
-	#define PDIV0_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/16/4		)			//0375000
-	#define PDIV0_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/16/4		)			//0281250
-	#define PDIV0_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/16/4		)			//0187500
-	#define PDIV0_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/16/4		)			//0140625
-	#define PDIV0_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/16/4		)			//0093750
+	#define PDIV0_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /16/4			)																					//1125000
+	#define PDIV0_MDIV1D5_BDIV16_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/16/4		)																					//0750000
+	#define PDIV0_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/16/4		)																					//0562500
+	#define PDIV0_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/16/4		)																					//0375000
+	#define PDIV0_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/16/4		)																					//0281250
+	#define PDIV0_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/16/4		)																					//0187500
+	#define PDIV0_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/16/4		)																					//0140625
+	#define PDIV0_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/16/4		)																					//0093750
 	
-	#define PDIV0_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /32/4			)			//0562500
-	#define PDIV0_MDIV1D5_BDIV32_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/32/4		)			//0375000
-	#define PDIV0_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/32/4		)			//0281250
-	#define PDIV0_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/32/4		)			//0187500
-	#define PDIV0_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/32/4		)			//0140625
-	#define PDIV0_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/32/4		)			//0093750
-	#define PDIV0_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/32/4		)			//0070313
-	#define PDIV0_MDIV12_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/32/4		)			//0046875
+	#define PDIV0_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /32/4			)																					//0562500
+	#define PDIV0_MDIV1D5_BDIV32_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/32/4		)																					//0375000
+	#define PDIV0_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /2/32/4		)																					//0281250
+	#define PDIV0_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /3/32/4		)																					//0187500
+	#define PDIV0_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /4/32/4		)																					//0140625
+	#define PDIV0_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /6/32/4		)																					//0093750
+	#define PDIV0_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /8/32/4		)																					//0070313
+	#define PDIV0_MDIV12_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT /12/32/4		)																					//0046875
 	
-	#define PDIV1_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4			)			//9000000
-	#define PDIV1_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4		)			//6000000
-	#define PDIV1_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4			)			//4500000
-	#define PDIV1_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/4			)			//3000000
-	#define PDIV1_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4			)			//2250000
-	#define PDIV1_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/4			)			//1500000
-	#define PDIV1_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4			)			//1125000
-	#define PDIV1_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/4		)			//0750000
+	#define PDIV1_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4			)																					//9000000
+	#define PDIV1_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4		)																					//6000000
+	#define PDIV1_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4			)																					//4500000
+	#define PDIV1_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/4			)																					//3000000
+	#define PDIV1_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4			)																					//2250000
+	#define PDIV1_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/4			)																					//1500000
+	#define PDIV1_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4			)																					//1125000
+	#define PDIV1_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/4		)																					//0750000
 	
-	#define PDIV1_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4			)			//4500000
-	#define PDIV1_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/2/4		)			//3000000
-	#define PDIV1_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/2/4		)			//2250000
-	#define PDIV1_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/2/4		)			//1500000
-	#define PDIV1_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/2/4		)			//1125000
-	#define PDIV1_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/2/4		)			//0750000
-	#define PDIV1_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/2/4		)			//0562500
-	#define PDIV1_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/2/4		)			//0375000
+	#define PDIV1_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4			)																					//4500000
+	#define PDIV1_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/2/4		)																					//3000000
+	#define PDIV1_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/2/4		)																					//2250000
+	#define PDIV1_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/2/4		)																					//1500000
+	#define PDIV1_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/2/4		)																					//1125000
+	#define PDIV1_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/2/4		)																					//0750000
+	#define PDIV1_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/2/4		)																					//0562500
+	#define PDIV1_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/2/4		)																					//0375000
 	
-	#define PDIV1_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4			)			//2250000
-	#define PDIV1_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4/4		)			//1500000
-	#define PDIV1_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4/4		)			//1125000
-	#define PDIV1_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/4/4		)			//0750000
-	#define PDIV1_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4/4		)			//0562500
-	#define PDIV1_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/4/4		)			//0375000
-	#define PDIV1_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4/4		)			//0281250
-	#define PDIV1_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/4/4		)			//0187500
+	#define PDIV1_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4			)																					//2250000
+	#define PDIV1_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/4/4		)																					//1500000
+	#define PDIV1_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/4/4		)																					//1125000
+	#define PDIV1_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/4/4		)																					//0750000
+	#define PDIV1_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/4/4		)																					//0562500
+	#define PDIV1_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/4/4		)																					//0375000
+	#define PDIV1_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4/4		)																					//0281250
+	#define PDIV1_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/4/4		)																					//0187500
 	
-	#define PDIV1_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4			)			//1125000
-	#define PDIV1_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/8/4		)			//0750000
-	#define PDIV1_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/8/4		)			//0562500
-	#define PDIV1_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/8/4		)			//0375000
-	#define PDIV1_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/8/4		)			//0281250
-	#define PDIV1_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/8/4		)			//0187500
-	#define PDIV1_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/8/4		)			//0140625
-	#define PDIV1_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/8/4		)			//0093750
+	#define PDIV1_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/4			)																					//1125000
+	#define PDIV1_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/8/4		)																					//0750000
+	#define PDIV1_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/8/4		)																					//0562500
+	#define PDIV1_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/8/4		)																					//0375000
+	#define PDIV1_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/8/4		)																					//0281250
+	#define PDIV1_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/8/4		)																					//0187500
+	#define PDIV1_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/8/4		)																					//0140625
+	#define PDIV1_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/8/4		)																					//0093750
 	
-	#define PDIV1_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /16/4		)			//0562500
-	#define PDIV1_MDIV1D5_BDIV16_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/16/4		)			//0375000
-	#define PDIV1_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/16/4		)			//0281250
-	#define PDIV1_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/16/4		)			//0187500
-	#define PDIV1_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/16/4		)			//0140625
-	#define PDIV1_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/16/4		)			//0093750
-	#define PDIV1_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/16/4		)			//0070313
-	#define PDIV1_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/16/4		)			//0046875
+	#define PDIV1_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /16/4		)																					//0562500
+	#define PDIV1_MDIV1D5_BDIV16_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/16/4		)																					//0375000
+	#define PDIV1_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/16/4		)																					//0281250
+	#define PDIV1_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/16/4		)																					//0187500
+	#define PDIV1_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/16/4		)																					//0140625
+	#define PDIV1_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/16/4		)																					//0093750
+	#define PDIV1_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/16/4		)																					//0070313
+	#define PDIV1_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/16/4		)																					//0046875
 	
-	#define PDIV1_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /32/4		)			//0281250
-	#define PDIV1_MDIV1D5_BDIV32_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/32/4		)			//0187500
-	#define PDIV1_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/32/4		)			//0140625
-	#define PDIV1_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/32/4		)			//0093750
-	#define PDIV1_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/32/4		)			//0070313
-	#define PDIV1_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/32/4		)			//0046875
-	#define PDIV1_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/32/4		)			//0035156
-	#define PDIV1_MDIV12_BDIV32_MIN_1	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/32/4		)			//0023438
-	#define PDIV1_MDIV12_BDIV32_MIN_2	( WM8510_MCLK_HZ * WM8510_PLLR_MIN/2 /12/32/4			)			//0019531
+	#define PDIV1_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /32/4		)																					//0281250
+	#define PDIV1_MDIV1D5_BDIV32_MIN	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT*2/3/2/32/4		)																					//0187500
+	#define PDIV1_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /2/32/4		)																					//0140625
+	#define PDIV1_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /3/32/4		)																					//0093750
+	#define PDIV1_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /4/32/4		)																					//0070313
+	#define PDIV1_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /6/32/4		)																					//0046875
+	#define PDIV1_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /8/32/4		)																					//0035156
+	#define PDIV1_MDIV12_BDIV32_MIN_1	( WM8510_MCLK_HZ * WM8510_PLLR_MIN_LIMIT/2 /12/32/4		)																					//0023438
+	#define PDIV1_MDIV12_BDIV32_MIN_2	( WM8510_MCLK_HZ * WM8510_PLLR_MIN/2 /12/32/4			)																					//0019531
 	#define PDIV1_MDIV12_BDIV32_MIN		PDIV1_MDIV12_BDIV32_MIN_2
 	
-	#define WM8510_OUT_MAX_FREQ			( (WM8510_MCLK_MHZ*WM8510_PLLR_MAX /4 -1)*1000000UL )				//38000000
+	#define WM8510_OUT_MAX_FREQ			( (WM8510_MCLK_MHZ*WM8510_PLLR_MAX /4 -1)*1000000UL )																						//38000000
 	#define WM8510_OUT_MAX_FREQ_ADD		( (WM8510_MCLK_MHZ*WM8510_PLLR_MAX /4 -1)*150 )
-	#define WM8510_OUT_MIN_FREQ			( ((PDIV1_MDIV12_BDIV32_MIN/1000)+2)*1000UL )						//20000
+	#define WM8510_OUT_MIN_FREQ			( ((PDIV1_MDIV12_BDIV32_MIN/1000)+2)*1000UL )																								//20000
 	#define WM8510_OUT_MIN_FREQ_ADD		( (UINT8_T)((WM8510_OUT_MIN_FREQ*15+50000)/100000UL) )
 	
-	#define MCLK_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ										)			//12000000
-	#define MCLK_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ*2/3									)			//08000000
-	#define MCLK_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ/2										)			//06000000
-	#define MCLK_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ/3										)			//04000000
-	#define MCLK_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ/4										)			//03000000
-	#define MCLK_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ/6										)			//02000000
-	#define MCLK_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ/8										)			//01500000
-	#define MCLK_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ/12										)			//01000000
+	#define MCLK_MDIV1_BDIV1_MIN		( WM8510_MCLK_HZ										)																					//12000000
+	#define MCLK_MDIV1D5_BDIV1_MIN		( WM8510_MCLK_HZ*2/3									)																					//08000000
+	#define MCLK_MDIV2_BDIV1_MIN		( WM8510_MCLK_HZ/2										)																					//06000000
+	#define MCLK_MDIV3_BDIV1_MIN		( WM8510_MCLK_HZ/3										)																					//04000000
+	#define MCLK_MDIV4_BDIV1_MIN		( WM8510_MCLK_HZ/4										)																					//03000000
+	#define MCLK_MDIV6_BDIV1_MIN		( WM8510_MCLK_HZ/6										)																					//02000000
+	#define MCLK_MDIV8_BDIV1_MIN		( WM8510_MCLK_HZ/8										)																					//01500000
+	#define MCLK_MDIV12_BDIV1_MIN		( WM8510_MCLK_HZ/12										)																					//01000000
 	
-	#define MCLK_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ/2										)			//6000000
-	#define MCLK_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ*2/3/2									)			//4000000
-	#define MCLK_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ/2/2									)			//3000000
-	#define MCLK_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ/3/2									)			//2000000
-	#define MCLK_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ/4/2									)			//1500000
-	#define MCLK_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ/6/2									)			//1000000
-	#define MCLK_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ/8/2									)			//0750000
-	#define MCLK_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ/12/2									)			//0500000
+	#define MCLK_MDIV1_BDIV2_MIN		( WM8510_MCLK_HZ/2										)																					//6000000
+	#define MCLK_MDIV1D5_BDIV2_MIN		( WM8510_MCLK_HZ*2/3/2									)																					//4000000
+	#define MCLK_MDIV2_BDIV2_MIN		( WM8510_MCLK_HZ/2/2									)																					//3000000
+	#define MCLK_MDIV3_BDIV2_MIN		( WM8510_MCLK_HZ/3/2									)																					//2000000
+	#define MCLK_MDIV4_BDIV2_MIN		( WM8510_MCLK_HZ/4/2									)																					//1500000
+	#define MCLK_MDIV6_BDIV2_MIN		( WM8510_MCLK_HZ/6/2									)																					//1000000
+	#define MCLK_MDIV8_BDIV2_MIN		( WM8510_MCLK_HZ/8/2									)																					//0750000
+	#define MCLK_MDIV12_BDIV2_MIN		( WM8510_MCLK_HZ/12/2									)																					//0500000
 	
-	#define MCLK_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ/4										)			//3000000
-	#define MCLK_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ*2/3/4									)			//2000000
-	#define MCLK_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ/2/4									)			//1500000
-	#define MCLK_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ/3/4									)			//1000000
-	#define MCLK_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ/4/4									)			//0750000
-	#define MCLK_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ/6/4									)			//0500000
-	#define MCLK_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ/8/4									)			//0375000
-	#define MCLK_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ/12/4									)			//0250000
+	#define MCLK_MDIV1_BDIV4_MIN		( WM8510_MCLK_HZ/4										)																					//3000000
+	#define MCLK_MDIV1D5_BDIV4_MIN		( WM8510_MCLK_HZ*2/3/4									)																					//2000000
+	#define MCLK_MDIV2_BDIV4_MIN		( WM8510_MCLK_HZ/2/4									)																					//1500000
+	#define MCLK_MDIV3_BDIV4_MIN		( WM8510_MCLK_HZ/3/4									)																					//1000000
+	#define MCLK_MDIV4_BDIV4_MIN		( WM8510_MCLK_HZ/4/4									)																					//0750000
+	#define MCLK_MDIV6_BDIV4_MIN		( WM8510_MCLK_HZ/6/4									)																					//0500000
+	#define MCLK_MDIV8_BDIV4_MIN		( WM8510_MCLK_HZ/8/4									)																					//0375000
+	#define MCLK_MDIV12_BDIV4_MIN		( WM8510_MCLK_HZ/12/4									)																					//0250000
 	
-	#define MCLK_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ/8										)			//1500000
-	#define MCLK_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ*2/3/8									)			//1000000
-	#define MCLK_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ/2/8									)			//0750000
-	#define MCLK_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ/3/8									)			//0500000
-	#define MCLK_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ/4/8									)			//0375000
-	#define MCLK_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ/6/8									)			//0250000
-	#define MCLK_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ/8/8									)			//0187500
-	#define MCLK_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ/12/8									)			//0125000
+	#define MCLK_MDIV1_BDIV8_MIN		( WM8510_MCLK_HZ/8										)																					//1500000
+	#define MCLK_MDIV1D5_BDIV8_MIN		( WM8510_MCLK_HZ*2/3/8									)																					//1000000
+	#define MCLK_MDIV2_BDIV8_MIN		( WM8510_MCLK_HZ/2/8									)																					//0750000
+	#define MCLK_MDIV3_BDIV8_MIN		( WM8510_MCLK_HZ/3/8									)																					//0500000
+	#define MCLK_MDIV4_BDIV8_MIN		( WM8510_MCLK_HZ/4/8									)																					//0375000
+	#define MCLK_MDIV6_BDIV8_MIN		( WM8510_MCLK_HZ/6/8									)																					//0250000
+	#define MCLK_MDIV8_BDIV8_MIN		( WM8510_MCLK_HZ/8/8									)																					//0187500
+	#define MCLK_MDIV12_BDIV8_MIN		( WM8510_MCLK_HZ/12/8									)																					//0125000
 	
-	#define MCLK_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ/16										)			//0750000
-	#define MCLK_MDIV1D5_BDIV16_MIN		( WM8510_MCLK_HZ*2/3									)			//0500000
-	#define MCLK_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ/2/16									)			//0375000
-	#define MCLK_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ/3/16									)			//0250000
-	#define MCLK_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ/4/16									)			//0187500
-	#define MCLK_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ/6/16									)			//0125000
-	#define MCLK_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ/8/16									)			//0093750
-	#define MCLK_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ/12/16									)			//0062500
+	#define MCLK_MDIV1_BDIV16_MIN		( WM8510_MCLK_HZ/16										)																					//0750000
+	#define MCLK_MDIV1D5_BDIV16_MIN		( WM8510_MCLK_HZ*2/3									)																					//0500000
+	#define MCLK_MDIV2_BDIV16_MIN		( WM8510_MCLK_HZ/2/16									)																					//0375000
+	#define MCLK_MDIV3_BDIV16_MIN		( WM8510_MCLK_HZ/3/16									)																					//0250000
+	#define MCLK_MDIV4_BDIV16_MIN		( WM8510_MCLK_HZ/4/16									)																					//0187500
+	#define MCLK_MDIV6_BDIV16_MIN		( WM8510_MCLK_HZ/6/16									)																					//0125000
+	#define MCLK_MDIV8_BDIV16_MIN		( WM8510_MCLK_HZ/8/16									)																					//0093750
+	#define MCLK_MDIV12_BDIV16_MIN		( WM8510_MCLK_HZ/12/16									)																					//0062500
 	
-	#define MCLK_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ/32										)			//0375000
-	#define MCLK_MDIV1D5_BDIV32_MIN		( WM8510_MCLK_HZ*2/3/32									)			//0250000
-	#define MCLK_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ/2/32									)			//0187500
-	#define MCLK_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ/3/32									)			//0125000
-	#define MCLK_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ/4/32									)			//0093750
-	#define MCLK_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ/6/32									)			//0062500
-	#define MCLK_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ/8/32									)			//0046875
-	#define MCLK_MDIV12_BDIV32_MIN		( WM8510_MCLK_HZ/12/32									)			//0031250
+	#define MCLK_MDIV1_BDIV32_MIN		( WM8510_MCLK_HZ/32										)																					//0375000
+	#define MCLK_MDIV1D5_BDIV32_MIN		( WM8510_MCLK_HZ*2/3/32									)																					//0250000
+	#define MCLK_MDIV2_BDIV32_MIN		( WM8510_MCLK_HZ/2/32									)																					//0187500
+	#define MCLK_MDIV3_BDIV32_MIN		( WM8510_MCLK_HZ/3/32									)																					//0125000
+	#define MCLK_MDIV4_BDIV32_MIN		( WM8510_MCLK_HZ/4/32									)																					//0093750
+	#define MCLK_MDIV6_BDIV32_MIN		( WM8510_MCLK_HZ/6/32									)																					//0062500
+	#define MCLK_MDIV8_BDIV32_MIN		( WM8510_MCLK_HZ/8/32									)																					//0046875
+	#define MCLK_MDIV12_BDIV32_MIN		( WM8510_MCLK_HZ/12/32									)																					//0031250
 	
 	//===MCLK分频数
 	enum WM8510_MCLKDIV_ENUM
@@ -261,11 +261,11 @@ extern "C" {
 	#define	WM8510_R56_ADDR					(56<<1)
 	
 	//===写命令
-	#define WM8510_WADDR					0x34				// 1A-34
+	#define WM8510_WADDR					0x34																																	// 1A-34
 	//===读命令
-	#define WM8510_RADDR					0x35				// 1B-35	
+	#define WM8510_RADDR					0x35																																	// 1B-35	
 	//WM8510寄存器功能位
-	#define	R0_Reset						0x00 				//复位
+	#define	R0_Reset						0x00 																																	//复位
 	
 	//===R1
 	#define	WM8510_R1H_BUFDCOPEN			0x01
@@ -431,36 +431,36 @@ extern "C" {
 	//===定义结构
 	struct _WM8510_HandlerType
 	{
-		UINT8_T				msgMclkDIV;																//---mclk的分频数
-		UINT8_T				msgBclkDIV;																//---bclk的分频数
-		UINT8_T				msgPreDIV;																//---预分频数
-		UINT8_T				msgPllN;																//---pll的N值
-		UINT8_T				msgR0[2];																//---寄存器R0的配置值
-		UINT8_T				msgR1[2];																//---寄存器R1的配置值
-		UINT8_T				msgNowR6[2];															//---寄存器R6的配置值
-		UINT8_T				msgLastR6[2];															//---寄存器R6的配置值
-		UINT8_T				msgNowR36[2];															//---寄存器R36的配置值
-		UINT8_T				msgLastR36[2];															//---寄存器R36的配置值
-		UINT8_T				msgNowR37[2];															//---寄存器R37的配置值
-		UINT8_T				msgLastR37[2];															//---寄存器R37的配置值
-		UINT8_T				msgNowR38[2];															//---寄存器R38的配置值
-		UINT8_T				msgLastR38[2];															//---寄存器R38的配置值
-		UINT8_T				msgNowR39[2];															//---寄存器R39的配置值
-		UINT8_T				msgLastR39[2];															//---寄存器R39的配置值
+		UINT8_T				msgMclkDIV;																																				//---mclk的分频数
+		UINT8_T				msgBclkDIV;																																				//---bclk的分频数
+		UINT8_T				msgPreDIV;																																				//---预分频数
+		UINT8_T				msgPllN;																																				//---pll的N值
+		UINT8_T				msgR0[2];																																				//---寄存器R0的配置值
+		UINT8_T				msgR1[2];																																				//---寄存器R1的配置值
+		UINT8_T				msgNowR6[2];																																			//---寄存器R6的配置值
+		UINT8_T				msgLastR6[2];																																			//---寄存器R6的配置值
+		UINT8_T				msgNowR36[2];																																			//---寄存器R36的配置值
+		UINT8_T				msgLastR36[2];																																			//---寄存器R36的配置值
+		UINT8_T				msgNowR37[2];																																			//---寄存器R37的配置值
+		UINT8_T				msgLastR37[2];																																			//---寄存器R37的配置值
+		UINT8_T				msgNowR38[2];																																			//---寄存器R38的配置值
+		UINT8_T				msgLastR38[2];																																			//---寄存器R38的配置值
+		UINT8_T				msgNowR39[2];																																			//---寄存器R39的配置值
+		UINT8_T				msgLastR39[2];																																			//---寄存器R39的配置值
 	#ifdef USE_WM8510_RESET
-		UINT16_T			msgFreqChangeCount;														//---记录当前频率变化的次数
+		UINT16_T			msgFreqChangeCount;																																		//---记录当前频率变化的次数
 	#endif
-		UINT32_T			mssgFreqAdd;															//---输出频率的补偿值，每100KHz补偿15Hz
-		UINT32_T			msgPllK;																//---pll的K值
-		UINT32_T			magPllFreq;																//---pll频率
-		UINT32_T			msgRefOSC;																//---参考时钟
-		UINT32_T			msgFreqHz;																//---输出的频率Hz
-		UINT32_T			msgFreqKHz;																//---输出的频率KHz
-		float				msgPllRate;																//---pll的比值
+		UINT32_T			mssgFreqAdd;																																			//---输出频率的补偿值，每100KHz补偿15Hz
+		UINT32_T			msgPllK;																																				//---pll的K值
+		UINT32_T			magPllFreq;																																				//---pll频率
+		UINT32_T			msgRefOSC;																																				//---参考时钟
+		UINT32_T			msgFreqHz;																																				//---输出的频率Hz
+		UINT32_T			msgFreqKHz;																																				//---输出的频率KHz
+		float				msgPllRate;																																				//---pll的比值
 	#ifdef WM8510_USE_lEVEL_SHIFT
-		GPIO_HandlerType	msgOE;																	//---OE使用的端口，用于控制电平装换的开关
+		GPIO_HandlerType	msgOE;																																					//---OE使用的端口，用于控制电平装换的开关
 	#endif
-		I2C_HandlerType msgI2C;																		//---使用的I2C设备
+		I2C_HandlerType msgI2C;																																						//---使用的I2C设备
 	};
 
 	//===定义的任务函数

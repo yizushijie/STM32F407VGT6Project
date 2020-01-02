@@ -23,8 +23,8 @@ extern "C" {
 	#define USE_CRC8
 	#define USE_CHECKSUM
 	
-	#define USE_CRC8_07H				0x07
-	#define USE_CRC8_31H				0x31
+	#define USE_CRC8_07H				0x07																																		//---CRC8校验方式的基础种子是0x07
+	#define USE_CRC8_31H				0x31																																		//---CRC8校验方式的基础种子是0x31
 	
 	//===是否将数据定义到SRAM中
 	#define USE_SRAM

@@ -7,11 +7,13 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-void GPIOLib_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
+UINT8_T GPIOLib_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 {
-#ifdef USE_MCU_STM32
-	GPIO_Clock(GPIOx, isEnable);
-#endif
+	#ifdef USE_MCU_STM32
+		return GPIO_Clock(GPIOx, isEnable);
+	#else
+		return OK_0;
+	#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////

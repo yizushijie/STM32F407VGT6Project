@@ -21,9 +21,9 @@ extern "C" {
 	#define JTAG_USE_HV_RESET
 
 	//===JTAG的GPIO的操作定义
-	#define	JTAG_GPIO_STATE(tp)					GPIO_GET_STATE(tp.msgGPIOPort,tp.msgGPIOBit)
-	#define	JTAG_GPIO_OUT_1(tp)					GPIO_OUT_1(tp.msgGPIOPort,tp.msgGPIOBit)
-	#define	JTAG_GPIO_OUT_0(tp)					GPIO_OUT_0(tp.msgGPIOPort,tp.msgGPIOBit)
+	#define	JTAG_GPIO_STATE(tp)					GPIO_GET_STATE(tp.msgPort,tp.msgBit)
+	#define	JTAG_GPIO_OUT_1(tp)					GPIO_OUT_1(tp.msgPort,tp.msgBit)
+	#define	JTAG_GPIO_OUT_0(tp)					GPIO_OUT_0(tp.msgPort,tp.msgBit)
 	//===TCK的脉冲宽度
 	#define JTAG_TCK_PULSE(tck)					(	JTAG_GPIO_OUT_1(tck->msgTCK),\
 													DELAY_NOP_COUNT(4),\
@@ -45,7 +45,6 @@ extern "C" {
 													JTAG_GPIO_OUT_0(tck->msgTCK),\
 													tck->msgDelayus(tck->msgPluseWidth)\
 												)
-
 	//===TAP的运行状态
 	typedef enum
 	{
@@ -68,7 +67,6 @@ extern "C" {
 		EXIT2_IR			= 17,
 		UPDATE_IR			= 18,
 	}TAP_STATE;
-
 	//===JTAG开源指令
 	typedef enum
 	{
@@ -82,12 +80,11 @@ extern "C" {
 		PROG_PAGELOAD		= 0x06,
 		PROG_PAGEREAD		= 0x07,
 
-		PRIVATEE0			= 0x08,																	//---强制断点
-		PRIVATEE1			= 0x09,																	//---运行
-		PRIVATEE2			= 0x0A,																	//---指令执行
-		PRIVATEE3			= 0x0B,																	//---访问OCD寄存器
+		PRIVATEE0			= 0x08,																																					//---强制断点
+		PRIVATEE1			= 0x09,																																					//---运行
+		PRIVATEE2			= 0x0A,																																					//---指令执行
+		PRIVATEE3			= 0x0B,																																					//---访问OCD寄存器
 	}TAP_CMD;
-
 	//===定义结构体
 	typedef struct _JTAG_HandlerType			JTAG_HandlerType;
 	//===定义指针结构体
@@ -95,59 +92,59 @@ extern "C" {
 	//===结构体变量
 	struct _JTAG_HandlerType
 	{
-		TAP_STATE			msgTapState;															//---当前jtag的状态
-		UINT8_T				msgWaitms;																//---编程之后的延时函数，单位是ms
-		GPIO_HandlerType	msgTDI;																	//---TDI使用的端口
-		GPIO_HandlerType	msgTDO;																	//---TDO使用的端口
-		GPIO_HandlerType	msgTCK;																	//---TCK使用的端口
-		GPIO_HandlerType	msgTMS;																	//---TMS使用的端口
+		TAP_STATE			msgTapState;																																			//---当前jtag的状态
+		UINT8_T				msgWaitms;																																				//---编程之后的延时函数，单位是ms
+		GPIO_HandlerType	msgTDI;																																					//---TDI使用的端口
+		GPIO_HandlerType	msgTDO;																																					//---TDO使用的端口
+		GPIO_HandlerType	msgTCK;																																					//---TCK使用的端口
+		GPIO_HandlerType	msgTMS;																																					//---TMS使用的端口
 #ifdef JTAG_USE_HV_RESET
-		void (*msgPortRst)(UINT8_T rstState);														//---高压模式操作RST端口的函数
+		void (*msgPortRst)(UINT8_T rstState);																																		//---高压模式操作RST端口的函数
 #else
-		GPIO_HandlerType	msgRST;																	//---RST使用的端口,硬件复位端口
+		GPIO_HandlerType	msgRST;																																					//---RST使用的端口,硬件复位端口
 #endif
 		
 	#ifdef JTAG_USE_lEVEL_SHIFT
-		GPIO_HandlerType	msgOE;																	//---OE使用的端口，用于控制电平装换的开关
+		GPIO_HandlerType	msgOE;																																					//---OE使用的端口，用于控制电平装换的开关
 	#endif
-		UINT8_T				msgJtagCmd;																//---是否进入JTAG指令PROG_COMMANDS，0---位使用，1---使用
-		UINT8_T				msgState;																//---编程状态，0---空闲状态，1---编程状态
-		UINT8_T				msgInit;																//---判断是否初始化过了 0---未初始化，1---初始化
-		UINT8_T				msgEepromIsPageMode;													//---eeprom是否支持页编程模式，0---不支持，1---支持
-		UINT16_T			msgFlashPerPageWordSize;												//---Flash的每页字数
-		UINT16_T			msgEerpomPerPageByteSize;												//---Eeprom的每页字节数
-		UINT16_T			msgPageWordIndex;														//---缓存区的序号
-		UINT16_T			msgPluseWidth;															//---非编程状态下TCK的脉冲宽度
-		UINT16_T			msgIntervalTime;														//---轮询时间间隔,单位是ms
-		UINT32_T			msgRecordTime;															//---记录的时间参数
-		void(*msgDelayus)(UINT32_T delay);															//---us延时参数
-		void(*msgDelayms)(UINT32_T delay);															//---ms延时参数
-		UINT32_T(*msgTimeTick)(void);															//---用于超时计数
-		//SPI_HandlerType msgSPI;																	//---使用的SPI模式
+		UINT8_T				msgJtagCmd;																																				//---是否进入JTAG指令PROG_COMMANDS，0---位使用，1---使用
+		UINT8_T				msgState;																																				//---编程状态，0---空闲状态，1---编程状态
+		UINT8_T				msgInit;																																				//---判断是否初始化过了 0---未初始化，1---初始化
+		UINT8_T				msgEepromPageMode;																																	//---eeprom是否支持页编程模式，0---不支持，1---支持
+		UINT16_T			msgFlashPerPageWordSize;																																//---Flash的每页字数
+		UINT16_T			msgEerpomPerPageByteSize;																																//---Eeprom的每页字节数
+		UINT16_T			msgPageWordIndex;																																		//---缓存区的序号
+		UINT16_T			msgPluseWidth;																																			//---非编程状态下TCK的脉冲宽度
+		UINT16_T			msgIntervalTime;																																		//---轮询时间间隔,单位是ms
+		UINT32_T			msgRecordTime;																																			//---记录的时间参数
+		void(*msgDelayus)(UINT32_T delay);																																			//---us延时参数
+		void(*msgDelayms)(UINT32_T delay);																																			//---ms延时参数
+		UINT32_T(*msgTimeTick)(void);																																				//---用于超时计数
+		//SPI_HandlerType msgSPI;																																					//---使用的SPI模式
 	};
 
 	//===定义状态
-	#define	JTAG_PROG_NONE						0													//---无编程任务
-	#define JTAG_PROG_PREPARE					1													//---编程准备中
-	#define JTAG_PROG_CMD						2													//---使能编程命令
-	#define JTAG_PROG_PAGELOAD					3													//---高效编程Flash模式
-	#define JTAG_PROG_PAGEREAD					4													//---高效读取Flash模式
-	#define JTAG_PROG_READ_EEPROM				5													//---读取Eeprom数据
-	#define JTAG_PROG_READ_FLASH				6													//---读取Flash数据
-	#define JTAG_PROG_READ_ROM					7													//---读取ROM信息
-	#define JTAG_PROG_WRITE_EEPROM				8													//---编程Eeprom数据
-	#define JTAG_PROG_WRITE_FLASH				9													//---编程Flash数据
+	#define	JTAG_PROG_NONE						0																																	//---无编程任务
+	#define JTAG_PROG_PREPARE					1																																	//---编程准备中
+	#define JTAG_PROG_CMD						2																																	//---使能编程命令
+	#define JTAG_PROG_PAGELOAD					3																																	//---高效编程Flash模式
+	#define JTAG_PROG_PAGEREAD					4																																	//---高效读取Flash模式
+	#define JTAG_PROG_READ_EEPROM				5																																	//---读取Eeprom数据
+	#define JTAG_PROG_READ_FLASH				6																																	//---读取Flash数据
+	#define JTAG_PROG_READ_ROM					7																																	//---读取ROM信息
+	#define JTAG_PROG_WRITE_EEPROM				8																																	//---编程Eeprom数据
+	#define JTAG_PROG_WRITE_FLASH				9																																	//---编程Flash数据
 
 
 	//===定义RST的状态
-	#define JTAG_RST_TO_HZ						0													//---RST处于高阻状态
-	#define JTAG_RST_TO_GND						1													//---RST处于接地
-	#define JTAG_RST_TO_VCC						2													//---RST接工作电压
+	#define JTAG_RST_TO_HZ						0																																	//---RST处于高阻状态
+	#define JTAG_RST_TO_GND						1																																	//---RST处于接地
+	#define JTAG_RST_TO_VCC						2																																	//---RST接工作电压
 
 	//===任务函数
-	#define JTAG_TASK_ONE						pJtagDevice0										//---任务1
-	#define JTAG_TASK_TWO						0													//---任务2
-	#define JTAG_TASK_THREE						0													//---任务3
+	#define JTAG_TASK_ONE						pJtagDevice0																														//---任务1
+	#define JTAG_TASK_TWO						0																																	//---任务2
+	#define JTAG_TASK_THREE						0																																	//---任务3
 
 	//===外部调用接口
 	extern JTAG_HandlerType						g_JtagDevice0;

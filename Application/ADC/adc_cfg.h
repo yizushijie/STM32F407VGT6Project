@@ -26,10 +26,10 @@ extern "C" {
 	//===结构体变量
 	struct _ADCASK_HandlerType
 	{
-		UINT8_T  msgFlag;									//---0未转换 1 转换完成
-		UINT16_T msgAChannelVal;							//---通道A的值
-		UINT16_T msgBChannelVal;							//---通道B的值
-		UINT16_T msgADCConvVal[ADC_CHANNEL_MAX_SIZE];		//---数据存储的缓存区
+		UINT8_T  msgFlag;																																							//---0未转换 1 转换完成
+		UINT16_T msgAChannelVal;																																					//---通道A的值
+		UINT16_T msgBChannelVal;																																					//---通道B的值
+		UINT16_T msgADCConvVal[ADC_CHANNEL_MAX_SIZE];																																//---数据存储的缓存区
 	};
 
 	//===外部调用接口

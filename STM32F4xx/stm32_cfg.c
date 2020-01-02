@@ -127,10 +127,8 @@ void LL_FLASH_Unlock(void)
 {
 	//---禁止数据缓存
 	LL_FLASH_DisableDataCache();
-
 	//---禁止Flash的预读取功能
 	LL_FLASH_DisablePrefetch();
-
 	//---写入解锁序列
 	FLASH->KEYR = FLASH_KEY1;
 	FLASH->KEYR = FLASH_KEY2;
@@ -153,10 +151,8 @@ void LL_FLASH_Lock(void)
 #if defined(FLASH_BANK2_END)
 	FLASH->CR2 |= FLASH_CR_LOCK;
 #endif
-
 	//---开启数据缓存
 	LL_FLASH_EnableDataCache();
-
 	//---使能Flash的预读取功能
 	LL_FLASH_EnablePrefetch();
 }
@@ -297,7 +293,6 @@ UINT32_T LL_FLASH_OB_GetRDP(void)
 {
 	UINT32_T readstatus = LL_OB_RDP_LEVEL_0;
 	UINT32_T tmp_reg = 0U;
-
 	//---获取读保护的配置
 #ifdef USE_MCU_STM32F1
 	tmp_reg = READ_BIT(FLASH->OBR, FLASH_OBR_RDPRT);
@@ -453,21 +448,16 @@ UINT8_T LL_FLASH_ErasePage(UINT32_T pageAddr)
 			//---页擦除
 			SET_BIT(FLASH->CR2, FLASH_CR2_PER);
 		#ifdef USE_MCU_STM32F1
-
 			//---选择擦除的页
 			WRITE_REG(FLASH->AR2, pageAddr);
 		#else
-
 			//---选择擦除的页
 			WRITE_REG(FLASH->ACR2, pageAddr);
 		#endif
-
 			//---开始擦除
 			SET_BIT(FLASH->CR2, FLASH_CR2_STRT);
-
 			//---等待操作完成
 			_return = LL_FLASH_WaitBank2Operation(LL_FLASH_ERASE_TIMEOUT);
-
 			//---不使能擦除
 			CLEAR_BIT(FLASH->CR2, FLASH_CR2_PER);
 		}
@@ -475,39 +465,31 @@ UINT8_T LL_FLASH_ErasePage(UINT32_T pageAddr)
 	else
 	{
 	#endif
-
 		//---等待操作完成
 		_return = LL_FLASH_WaitBank1Operation(LL_FLASH_ERASE_TIMEOUT);
 		if (_return == 0)
 		{
 		#ifdef USE_MCU_STM32F1
-
 			//---页擦除
 			SET_BIT(FLASH->CR, FLASH_CR_PER);
 		#else
-
 			//---页擦除
 			SET_BIT(FLASH->CR, FLASH_CR_SER);
 		#endif
-
 			//---选择擦除的页
 		#ifdef USE_MCU_STM32F1
 			WRITE_REG(FLASH->AR, pageAddr);
 		#else
 			WRITE_REG(FLASH->ACR, pageAddr);
 		#endif
-
 			//---开始擦除
 			SET_BIT(FLASH->CR, FLASH_CR_STRT);
-
 			//---等待操作完成
 			_return = LL_FLASH_WaitBank1Operation(LL_FLASH_ERASE_TIMEOUT);
 		#ifdef USE_MCU_STM32F1
-
 			//---清除页擦除标志
 			CLEAR_BIT(FLASH->CR, FLASH_CR_PER);
 		#else
-
 			//---清除页擦除标志
 			CLEAR_BIT(FLASH->CR, FLASH_CR_SER);
 		#endif
@@ -529,50 +511,39 @@ UINT8_T LL_FLASH_EraseAllPage(void)
 {
 	UINT8_T _return = 0;
 #if defined(FLASH_BANK2_END)
-
 	//---等待操作完成
 	_return = LL_FLASH_WaitBank2Operation(LL_FLASH_ERASE_TIMEOUT);
 	if (_return == 0)
 	{
 		//---页擦除
 		SET_BIT(FLASH->CR2, FLASH_CR2_MER);
-
 		//---开始擦除
 		SET_BIT(FLASH->CR2, FLASH_CR2_STRT);
-
 		//---等待操作完成
 		_return = LL_FLASH_WaitBank2Operation(LL_FLASH_ERASE_TIMEOUT);
-
 		//---不使能擦除
 		CLEAR_BIT(FLASH->CR2, FLASH_CR2_MER);
 	}
 #endif
-
 	//---等待操作完成
 	_return = LL_FLASH_WaitBank1Operation(LL_FLASH_ERASE_TIMEOUT);
 	if (_return == 0)
 	{
 	#ifdef USE_MCU_STM32F1
-
 		//---页擦除
 		SET_BIT(FLASH->CR, FLASH_CR_MER);
 	#else
-
 		//---页擦除
 		SET_BIT(FLASH->CR, FLASH_CR_MER);
 	#endif
-
 		//---开始擦除
 		SET_BIT(FLASH->CR, FLASH_CR_STRT);
-
 		//---等待操作完成
 		_return = LL_FLASH_WaitBank1Operation(LL_FLASH_ERASE_TIMEOUT);
 	#ifdef USE_MCU_STM32F1
-
 		//---清除页擦除标志
 		CLEAR_BIT(FLASH->CR, FLASH_CR_MER);
 	#else
-
 		//---清除页擦除标志
 		CLEAR_BIT(FLASH->CR, FLASH_CR_MER);
 	#endif
@@ -594,7 +565,6 @@ UINT8_T LL_FLASH_WriteHalfWord(UINT32_T pageAddr, UINT16_T val)
 	if (pageAddr <= FLASH_BANK1_END)
 	{
 	#endif
-
 		//---编程是能
 		SET_BIT(FLASH->CR, FLASH_CR_PG);
 	#if defined(FLASH_BANK2_END)
@@ -605,17 +575,14 @@ UINT8_T LL_FLASH_WriteHalfWord(UINT32_T pageAddr, UINT16_T val)
 		SET_BIT(FLASH->CR2, FLASH_CR2_PG);
 	}
 #endif
-
 	//---写入数据
 	*(VLTUINT16_T*)pageAddr = val;
 #if defined(FLASH_BANK2_END)
 	if (pageAddr <= FLASH_BANK1_END)
 	{
 	#endif
-
 		//---等待操作完成
 		_return = LL_FLASH_WaitBank1Operation(LL_FLASH_ERASE_TIMEOUT);
-
 		//---清除页编程标志
 		CLEAR_BIT(FLASH->CR, FLASH_CR_PG);
 	#if defined(FLASH_BANK2_END)
@@ -624,7 +591,6 @@ UINT8_T LL_FLASH_WriteHalfWord(UINT32_T pageAddr, UINT16_T val)
 	{
 		//---等待操作完成
 		_return = LL_FLASH_WaitBank2Operation(LL_FLASH_ERASE_TIMEOUT);
-
 		//---清除页擦除标志
 		CLEAR_BIT(FLASH->CR2, FLASH_CR2_PG);
 	}
@@ -657,7 +623,6 @@ UINT32_T LL_FLASH_ReadFullWord(UINT32_T pageAddr)
 	uint32_t temp1, temp2;
 	temp1 = *(VLTUINT16_T*)pageAddr;
 	temp2 = *(VLTUINT16_T*)(pageAddr + 2);
-
 	//---读取数据
 	return (temp2 << 16) + temp1;
 }
@@ -700,12 +665,10 @@ void LL_GetUID(UINT32_T *uid)
 void LL_NVIC_DeInit(void)
 {
 	UINT8_T index = 0;
-
 	NVIC->ICER[0] = 0xFFFFFFFF;
 	NVIC->ICER[1] = 0x000007FF;
 	NVIC->ICPR[0] = 0xFFFFFFFF;
 	NVIC->ICPR[1] = 0x000007FF;
-
 	for (index = 0; index < 0x0B; index++)
 	{
 		NVIC->IP[index] = 0x00000000;
@@ -770,17 +733,14 @@ UINT32_T LL_USART_GetFlag(USART_TypeDef *USARTx)
 void HardFault_Msg( unsigned int * hardfault_args )
 {
 	memset( &g_HardFaultErrMsg, 0, sizeof( HardFault_HandlerType ) );
-
 	g_HardFaultErrMsg.stacked_r0	= ( (unsigned int)hardfault_args[0] );
 	g_HardFaultErrMsg.stacked_r1	= ( (unsigned int)hardfault_args[1] );
 	g_HardFaultErrMsg.stacked_r2	= ( (unsigned int)hardfault_args[2] );
 	g_HardFaultErrMsg.stacked_r3	= ( (unsigned int)hardfault_args[3] );
-
 	g_HardFaultErrMsg.stacked_r12	= ( (unsigned int)hardfault_args[4] );
 	g_HardFaultErrMsg.stacked_lr	= ( (unsigned int)hardfault_args[5] );
 	g_HardFaultErrMsg.stacked_pc	= ( (unsigned int)hardfault_args[6] );
 	g_HardFaultErrMsg.stacked_psr	= ( (unsigned int)hardfault_args[7] );
-
 	__ASM volatile("BKPT #01");
 }
 
@@ -814,7 +774,7 @@ void LL_DMA_ClearFlag_HT(DMA_TypeDef* DMAx,UINT32_T channelOrStream )
 		if (channelOrStream == LL_DMA_CHANNEL_0)
 		{
 			LL_DMA_ClearFlag_HT0(DMAx);
-}
+		}
 		else if (channelOrStream == LL_DMA_CHANNEL_1)
 		{
 			LL_DMA_ClearFlag_HT1(DMAx);

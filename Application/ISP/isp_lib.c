@@ -163,7 +163,7 @@ UINT8_T ISPLib_EraseChip(ISP_HandlerType *ISPx)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -196,7 +196,7 @@ UINT8_T ISPLib_ReadChipID(ISP_HandlerType *ISPx, UINT8_T *pVal)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -229,7 +229,7 @@ UINT8_T ISPLib_ReadChipCalibration(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -262,7 +262,7 @@ UINT8_T ISPLib_ReadChipFuse(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T isNeed
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -295,7 +295,7 @@ UINT8_T ISPLib_ReadChipLock(ISP_HandlerType *ISPx, UINT8_T *pVal)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -328,7 +328,7 @@ UINT8_T ISPLib_ReadChipRom(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T addr, U
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -361,7 +361,7 @@ UINT8_T ISPLib_WriteChipFuse(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T isNee
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -394,7 +394,7 @@ UINT8_T ISPLib_WriteChipLock(ISP_HandlerType *ISPx, UINT8_T val)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -427,7 +427,7 @@ UINT8_T ISPLib_ReadChipEepromAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T 
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -460,7 +460,7 @@ UINT8_T ISPLib_ReadChipEepromLongAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -493,7 +493,7 @@ UINT8_T ISPLib_WriteChipEepromAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -549,7 +549,7 @@ UINT8_T ISPLib_WriteChipEepromLongAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UIN
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -581,7 +581,7 @@ UINT8_T ISPLib_WriteChipEepromAddrWithJumpEmpty(ISP_HandlerType *ISPx, UINT8_T *
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -613,7 +613,7 @@ UINT8_T ISPLib_WriteChipEepromLongAddrWithJumpEmpty(ISP_HandlerType *ISPx, UINT8
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -681,7 +681,7 @@ UINT8_T ISPLib_ReadChipFlashAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8_T e
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -714,7 +714,7 @@ UINT8_T ISPLib_ReadChipFlashLongAddr(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT3
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -747,7 +747,7 @@ UINT8_T ISPLib_UpdateExternAddr(ISP_HandlerType* ISPx, UINT8_T addr)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -780,7 +780,7 @@ UINT8_T ISPLib_UpdateExternLongAddr(ISP_HandlerType* ISPx, UINT32_T addr)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -814,7 +814,7 @@ UINT8_T ISPLib_UpdateChipFlashBuffer(ISP_HandlerType *ISPx, UINT8_T *pVal, UINT8
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -847,7 +847,7 @@ UINT8_T ISPLib_UpdateChipFlashAddr(ISP_HandlerType *ISPx, UINT8_T externAddr, UI
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -880,7 +880,7 @@ UINT8_T ISPLib_UpdateChipFlashLongAddr(ISP_HandlerType *ISPx, UINT32_T addr)
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -925,7 +925,7 @@ UINT8_T ISPLib_CheckChipFlashEmpty(ISP_HandlerType* ISPx, UINT8_T pageByteSizeH,
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -958,7 +958,7 @@ UINT8_T ISPLib_CheckChipFlashEmptyLong(ISP_HandlerType* ISPx, UINT16_T pageByteS
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{
@@ -991,7 +991,7 @@ UINT8_T ISPLib_CheckChipEepromEmpty(ISP_HandlerType* ISPx, UINT8_T byteSize, UIN
 	if (ISPx->msgState == 0)
 	{
 		//---进入编程模式
-		_return = ISP_EnterProg(ISPx, ISPx->msgIsPollReady);
+		_return = ISP_EnterProg(ISPx, ISPx->msgPollReady);
 	}
 	if (_return == OK_0)
 	{

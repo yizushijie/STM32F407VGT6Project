@@ -52,36 +52,36 @@ void HMC472_GPIO_Init( void )
 {
 	//---使能GPIO的时钟
 
-	GPIOTask_Clock( HMC472_V1_PORT, 1 );
-	GPIOTask_Clock( HMC472_V2_PORT, 1 );
-	GPIOTask_Clock( HMC472_V3_PORT, 1 );
-	GPIOTask_Clock( HMC472_V4_PORT, 1 );
-	GPIOTask_Clock( HMC472_V5_PORT, 1 );
-	GPIOTask_Clock( HMC472_V6_PORT, 1 );
+	GPIOTask_Clock( HMC472_V1_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_V2_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_V3_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_V4_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_V5_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_V6_PORT, PERIPHERAL_CLOCK_ENABLE );
 
-	GPIOTask_Clock( HMC472_GENA_PORT, 1 );
-	GPIOTask_Clock( HMC472_GENB_PORT, 1 );
-	GPIOTask_Clock( HMC472_GENC_PORT, 1 );
-	GPIOTask_Clock( HMC472_GEND_PORT, 1 );
+	GPIOTask_Clock( HMC472_GENA_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_GENB_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_GENC_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_GEND_PORT, PERIPHERAL_CLOCK_ENABLE );
 
-	GPIOTask_Clock( HMC472_RFA_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFB_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFC_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFD_PORT, 1 );
+	GPIOTask_Clock( HMC472_RFA_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFB_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFC_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFD_PORT, PERIPHERAL_CLOCK_ENABLE );
 
-	GPIOTask_Clock( HMC472_RFE_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFF_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFG_PORT, 1 );
-	GPIOTask_Clock( HMC472_RFH_PORT, 1 );
+	GPIOTask_Clock( HMC472_RFE_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFF_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFG_PORT, PERIPHERAL_CLOCK_ENABLE );
+	GPIOTask_Clock( HMC472_RFH_PORT, PERIPHERAL_CLOCK_ENABLE );
 
 	//---GPIO的结构体
 	LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;						//---配置状态为输出模式
-	GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;				//---GPIO的速度---高速设备
-	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_OPENDRAIN;			//---输出模式---开漏输出
-	GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;							//---上拉
+	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;																																		//---配置状态为输出模式
+	GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;																																//---GPIO的速度---高速设备
+	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_OPENDRAIN;																															//---输出模式---开漏输出
+	GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;																																			//---上拉
 #ifndef USE_MCU_STM32F1
-	GPIO_InitStruct.Alternate = LL_GPIO_AF_0;						//---端口复用模式
+	GPIO_InitStruct.Alternate = LL_GPIO_AF_0;																																		//---端口复用模式
 #endif
 	
 	//---初始化HMC472的数控总线V1
@@ -115,8 +115,8 @@ void HMC472_GPIO_Init( void )
 	GPIO_OUT_1( HMC472_V6_PORT, HMC472_V6_BIT );
 	
 	//---74HC573D使能端口配置
-	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;			//---输出模式---推挽输出
-	GPIO_InitStruct.Pull = LL_GPIO_PULL_DOWN;						//---下拉
+	GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;																															//---输出模式---推挽输出
+	GPIO_InitStruct.Pull = LL_GPIO_PULL_DOWN;																																		//---下拉
 
 	GPIO_InitStruct.Pin = HMC472_GENA_BIT;
 	LL_GPIO_Init( HMC472_GENA_PORT, &GPIO_InitStruct );
@@ -164,11 +164,9 @@ void HMC472_GPIO_Init( void )
 
 	GPIO_InitStruct.Pin = HMC472_RFH_BIT;
 	LL_GPIO_Init( HMC472_RFH_PORT, &GPIO_InitStruct );
-	GPIO_OUT_1( HMC472_RFH_PORT, HMC472_RFH_BIT );
-	
+	GPIO_OUT_1( HMC472_RFH_PORT, HMC472_RFH_BIT );	
 	//---等待操作完成
 	DelayTask_us( 10 );
-
 	//---所存数据
 	H74C573_LATCH_DISABLE;
 }
@@ -195,64 +193,17 @@ void HMC472_Init( void )
 void HMC472_DataBus( UINT8_T val )
 {
 	//---D0
-	if (val & 0x01)
-	{
-		HMC472_V6_OUT_1;
-	}
-	else
-	{
-		HMC472_V6_OUT_0;
-	}
-
+	((val & 0x01) == 0) ? HMC472_V6_OUT_0 : HMC472_V6_OUT_1;
 	//---D1
-	if (val & 0x02)
-	{
-		HMC472_V5_OUT_1;
-	}
-	else
-	{
-		HMC472_V5_OUT_0;
-	}
-
+	((val & 0x02) == 0) ? HMC472_V5_OUT_0 : HMC472_V5_OUT_1;
 	//---D2
-	if (val & 0x04)
-	{
-		HMC472_V4_OUT_1;
-	}
-	else
-	{
-		HMC472_V4_OUT_0;
-	}
-
+	((val & 0x04) == 0) ? HMC472_V4_OUT_0 : HMC472_V4_OUT_1;
 	//---D3
-	if (val & 0x08)
-	{
-		HMC472_V3_OUT_1;
-	}
-	else
-	{
-		HMC472_V3_OUT_0;
-	}
-
+	((val & 0x08) == 0) ? HMC472_V3_OUT_0 : HMC472_V3_OUT_1;
 	//---D4
-	if (val & 0x10)
-	{
-		HMC472_V2_OUT_1;
-	}
-	else
-	{
-		HMC472_V2_OUT_0;
-	}
-
+	((val & 0x10) == 0) ? HMC472_V2_OUT_0 : HMC472_V2_OUT_1;
 	//---D5
-	if (val & 0x20)
-	{
-		HMC472_V1_OUT_1;
-	}
-	else
-	{
-		HMC472_V1_OUT_0;
-	}
+	((val & 0x20) == 0) ? HMC472_V1_OUT_0 : HMC472_V1_OUT_1;
 }
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数： 

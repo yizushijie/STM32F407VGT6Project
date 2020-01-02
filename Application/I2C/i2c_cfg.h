@@ -14,21 +14,22 @@ extern "C" {
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===定义结构体
 	typedef struct _I2C_HandlerType					I2C_HandlerType;
-
 	//===定义指针结构体
 	typedef	struct _I2C_HandlerType					*pI2C_HandlerType;
-
 	//===结构定义
 	struct _I2C_HandlerType
 	{
-		I2C_TypeDef			*msgI2Cx;																//---使用的I2C接口
-		GPIO_HandlerType	msgSCL;																	//---SCL
-		GPIO_HandlerType	msgSDA;																	//---SDA
-		UINT8_T				msgModelIsHW;															//---工作模式，默认是软件模拟---0，硬件模式---1
-		UINT16_T			msgPluseWidth;															//---脉冲宽度，软件模拟使用
-		UINT16_T			msgAddr;																//---设备的地址
-		UINT32_T			msgClockSpeed;															//---硬件I2C的时钟速度
-		void(*msgDelayus)(UINT32_T delay);														//---延时参数
+		GPIO_HandlerType	msgSCL;																																					//---SCL
+		GPIO_HandlerType	msgSDA;																																					//---SDA
+		UINT8_T				msgModelIsHW;																																			//---工作模式，默认是软件模拟---0，硬件模式---1
+		UINT16_T			msgPluseWidth;																																			//---脉冲宽度，软件模拟使用
+		UINT16_T			msgAddr;																																				//---设备的地址
+		UINT32_T			msgClockSpeed;																																			//---硬件I2C的时钟速度
+		void(*msgDelayus)(UINT32_T delay);																																			//---延时参数
+	#ifndef USE_MCU_STM32F1
+		UINT32_T			msgGPIOAlternate;																																		//---端口复用模式
+	#endif
+		I2C_TypeDef* msgI2Cx;																																						//---使用的I2C接口
 	};
 
 	//===函数定义

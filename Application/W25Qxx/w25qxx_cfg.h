@@ -84,18 +84,18 @@ extern "C" {
 	//===结构定义
 	struct _W25QXX_HandlerType
 	{
-		UINT8_T		msgInit;													//---判断是否初始化过了 0---未初始化，1---初始化
-		UINT8_T		msgBuffer[W25QXX_SECTOR_BYTE_SIZE];							//---数据缓存区
-		UINT32_T	msgEraseDelayMS;											//---全部擦除后的延时时间，
-		UINT16_T	msgEraseSectorDelayMS;										//---扇区的延时时间
-		UINT16_T	msgErase32KbBlockDelayMS;									//---32Kb块的延时时间
-		UINT16_T	msgErase64KbBlockDelayMS;									//---64Kb块的延时时间
-		UINT16_T	msgChipID;													//---设备ID信息
+		UINT8_T		msgInit;																																						//---判断是否初始化过了 0---未初始化，1---初始化
+		UINT8_T		msgBuffer[W25QXX_SECTOR_BYTE_SIZE];																																//---数据缓存区
+		UINT32_T	msgEraseDelayMS;																																				//---全部擦除后的延时时间，
+		UINT16_T	msgEraseSectorDelayMS;																																			//---扇区的延时时间
+		UINT16_T	msgErase32KbBlockDelayMS;																																		//---32Kb块的延时时间
+		UINT16_T	msgErase64KbBlockDelayMS;																																		//---64Kb块的延时时间
+		UINT16_T	msgChipID;																																						//---设备ID信息
 #ifdef WM25QXX_SPI_USE_HWWP
-		GPIO_HandlerType msgWP;													//---写保护控制端口，0---写保护使能；1---写保护不使能
+		GPIO_HandlerType msgWP;																																						//---写保护控制端口，0---写保护使能；1---写保护不使能
 #endif
-		void(*msgDelayms)(UINT32_T delay);									//---延时参数
-		SPI_HandlerType msgSPI;													//---使用的SPI模式
+		void(*msgDelayms)(UINT32_T delay);																																			//---延时参数
+		SPI_HandlerType msgSPI;																																						//---使用的SPI模式
 	};
 
 	//===任务函数

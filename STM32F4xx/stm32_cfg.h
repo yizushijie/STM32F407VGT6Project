@@ -10,13 +10,11 @@ extern "C" {
 	//#define USE_MCU_STM32F1
 	//#define USE_MCU_STM32F2
 	//#define USE_MCU_STM32F3
-	#define USE_MCU_STM32F4
-	
+	#define USE_MCU_STM32F4	
 	//===检查是否定义了外部使用的晶振
 	#ifndef HSE_VALUE
 		#define	HSE_VALUE			8000000UL
-	#endif
-	
+	#endif	
 	//===选择系列---寄存器的定义
 	#if  defined(USE_MCU_STM32F0)
 		#include "stm32f0xx.h"
@@ -166,6 +164,12 @@ extern "C" {
 	#else
 		#error "STM32库文件导入错误!"
 	#endif
+
+	//===定时时钟的配置
+	#define PERIPHERAL_CLOCK_DISABLE			0													//---不使能外设时钟
+	#define PERIPHERAL_CLOCK_ENABLE				1													//---是能外设时钟
+	#define PERIPHERAL_CLOCK_FORCE_RESET		2													//---复位外设时钟
+	#define PERIPHERAL_CLOCK_RELEASE_RESET		3													//---释放复位的外设时钟
 	
 	//===定义使用的调试方式
 	#define USE_DEBUG_SWD
@@ -191,8 +195,7 @@ extern "C" {
 	extern pHardFault_HandlerType	pHardFaultErrMsg;
 
 	//===独立看门狗文件
-	#include "iwdg_task.h"
-	
+	#include "iwdg_task.h"	
 	//===获取系统时钟的定义
 	#define	SYS_CLOCK_HZ						( SystemCoreClock )
 	#define	SYS_CLOCK_KHZ						( (SYS_CLOCK_HZ/1000U) )
@@ -201,20 +204,15 @@ extern "C" {
 	#define FLASH_PROG_WAIT						( 1000UL*SYS_CLOCK_MHZ )
 	
 	//===使能全局中断
-	#define SEI()								_irq_enable()
-	
+	#define SEI()								_irq_enable()	
 	//===禁止全局中断
-	#define CLI()								_irq_disable()
-	
+	#define CLI()								_irq_disable()	
 	//===喂狗
-	#define WDT_RESET()							IWDGTask_Reset();
-	
+	#define WDT_RESET()							IWDGTask_Reset();	
 	//===软件复位
-	#define SOFT_RESET()						( CLI(),NVIC_SystemReset() )
-	
+	#define SOFT_RESET()						( CLI(),NVIC_SystemReset() )	
 	//===错误处理
-	#define Error_Handler()						_Error_Handler(__FILE__, __LINE__)
-	
+	#define Error_Handler()						_Error_Handler(__FILE__, __LINE__)	
 	//===函数定义
 	void _irq_enable(void);
 	void _irq_disable(void);
