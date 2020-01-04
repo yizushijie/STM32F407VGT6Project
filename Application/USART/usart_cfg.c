@@ -53,7 +53,7 @@ UINT8_T USART_StructInit(USART_HandlerType*  USARTx)
 	USARTx->msgRxdHandler.pMsgVal = NULL;
 
 	//---发送缓存区
-	USARTx->msgTxdHandler.msgIsDMA = 1;
+	USARTx->msgTxdHandler.msgIsDMA = 0;
 	USARTx->msgTxdHandler.msgCheckSum = 0;
 	USARTx->msgTxdHandler.msgCRCFlag = 0;
 	USARTx->msgTxdHandler.msgStep = 0;
@@ -1639,161 +1639,285 @@ UINT8_T USART_Clock(USART_TypeDef* USARTx, UINT8_T isEnable)
 {
 	if (USARTx == USART1)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART1的时钟信号
-			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
-		}
-		else
-		{
-			//---不使能USART1的时钟信号
+			//---不使能SPI的时钟线
 			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_USART1);
 		}
-		return OK_0;
-	}
-	if (USARTx == USART2)
-	{
-		if (isEnable)
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
-			//---使能USART2的时钟信号
-			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2);
+			//---使能SPI的时钟线
+			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_USART1);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_USART1);
 		}
 		else
 		{
-			//---不使能USART2的时钟信号
+			return ERROR_1;
+		}
+		return OK_0;
+
+	}
+	else if (USARTx == USART2)
+	{
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
 			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_USART2);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
+			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_USART2);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_USART2);
+		}
+		else
+		{
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #if defined(USART3)
-	if (USARTx == USART3)
+	else if (USARTx == USART3)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART3的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_USART3);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART3);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_USART3);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_USART3);
 		}
 		else
 		{
-			//---不使能USART3的时钟信号
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_USART3);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* USART3 */
 #if defined(USART6)
-	if (USARTx == USART6)
+	else if (USARTx == USART6)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART6的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_USART6);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART6);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_USART6);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_USART6);
 		}
 		else
 		{
-			//---不使能USART6的时钟信号
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_USART6);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* USART6 */
 #if defined(UART4)
-	if (USARTx == UART4)
+	else if (USARTx == UART4)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART4的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART4);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_UART4);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_UART4);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_UART4);
 		}
 		else
 		{
-			//---不使能USART4的时钟信号
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART4);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART4 */
 #if defined(UART5)
-	if (USARTx == UART5)
+	else if (USARTx == UART5)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART5的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART5);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_UART5);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_UART5);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_UART5);
 		}
 		else
 		{
-			//---不使能USART5的时钟信号
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART5);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART5 */
 #if defined(UART7)
-	if (USARTx == UART7)
+	else if (USARTx == UART7)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART7的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART7);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_UART7);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_UART7);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_UART7);
 		}
 		else
 		{
-			//---不使能USART7的时钟信号
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART7);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART7 */
 #if defined(UART8)
-	if (USARTx == UART8)
+	else if (USARTx == UART8)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART8的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART8);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_UART8);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_UART8);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_UART8);
 		}
 		else
 		{
-			//---不使能USART8的时钟信号
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_UART8);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART8 */
 #if defined(UART9)
-	if (USARTx == UART9)
+	else if (USARTx == UART9)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART9的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_UART9);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_UART9);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_UART9);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_UART9);
 		}
 		else
 		{
-			//---不使能USART9的时钟信号
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_UART9);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART9 */
 #if defined(UART10)
-	if (USARTx == UART10)
+	else if (USARTx == UART10)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
-			//---使能USART10的时钟信号
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_UART10);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
+		{
+			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_UART10);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_UART10);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_UART10);
 		}
 		else
 		{
-			//---不使能USART10的时钟信号
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_UART10);
+			return ERROR_1;
 		}
 		return OK_0;
 	}
 #endif /* UART10 */
-	return ERROR_1;
+	else
+	{
+		return ERROR_2;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

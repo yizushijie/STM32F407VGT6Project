@@ -763,6 +763,105 @@ void HardFault_IRQTask( void )
 
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数： 
+//////功		能： 配置多端口的输入/输出模式
+//////输入参数: 
+//////输出参数: 
+//////说		明： 
+//////////////////////////////////////////////////////////////////////////////
+void LL_GPIO_SetPinsMode(GPIO_TypeDef* GPIOx, UINT32_T Pin, UINT32_T Mode)
+{
+	UINT32_T pinpos = 0x00000000U;
+	UINT32_T currentpin = 0x00000000U;
+	pinpos = POSITION_VAL(Pin);
+	while ((Pin >> pinpos) != 0x00000000U)
+	{
+		/* Get current io position */
+		currentpin = Pin & (0x00000001U << pinpos);
+		if (currentpin)
+		{
+			/* Pin Mode configuration */
+			LL_GPIO_SetPinMode(GPIOx, currentpin, Mode);
+		}
+		pinpos++;
+	}
+}
+///////////////////////////////////////////////////////////////////////////////
+//////函		数： 
+//////功		能： 多端口的输出1
+//////输入参数: 
+//////输出参数: 
+//////说		明： 
+//////////////////////////////////////////////////////////////////////////////
+void LL_GPIO_SetOutputPins(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT32_T pinpos = 0x00000000U;
+	UINT32_T currentpin = 0x00000000U;
+	pinpos = POSITION_VAL(PinMask);
+	while ((PinMask >> pinpos) != 0x00000000U)
+	{
+		/* Get current io position */
+		currentpin = PinMask & (0x00000001U << pinpos);
+		if (currentpin)
+		{
+			/* Pin Mode configuration */
+			LL_GPIO_SetOutputPin(GPIOx, currentpin);
+		}
+		pinpos++;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函		数： 
+//////功		能： 多端口的输出0
+//////输入参数: 
+//////输出参数: 
+//////说		明： 
+//////////////////////////////////////////////////////////////////////////////
+void LL_GPIO_ResetOutputPins(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT32_T pinpos = 0x00000000U;
+	UINT32_T currentpin = 0x00000000U;
+	pinpos = POSITION_VAL(PinMask);
+	while ((PinMask >> pinpos) != 0x00000000U)
+	{
+		/* Get current io position */
+		currentpin = PinMask & (0x00000001U << pinpos);
+		if (currentpin)
+		{
+			/* Pin Mode configuration */
+			LL_GPIO_ResetOutputPin(GPIOx, currentpin);
+		}
+		pinpos++;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函		数： 
+//////功		能： 取反多端口的输出
+//////输入参数: 
+//////输出参数: 
+//////说		明： 
+//////////////////////////////////////////////////////////////////////////////
+void LL_GPIO_TogglePins(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT32_T pinpos = 0x00000000U;
+	UINT32_T currentpin = 0x00000000U;
+	pinpos = POSITION_VAL(PinMask);
+	while ((PinMask >> pinpos) != 0x00000000U)
+	{
+		/* Get current io position */
+		currentpin = PinMask & (0x00000001U << pinpos);
+		if (currentpin)
+		{
+			/* Pin Mode configuration */
+			LL_GPIO_TogglePin(GPIOx, currentpin);
+		}
+		pinpos++;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函		数： 
 //////功		能：清除标志位
 //////输入参数: 
 //////输出参数: 
@@ -1280,3 +1379,4 @@ void LL_DMA_ClearFlag(DMA_TypeDef* DMAx, UINT32_T channelOrStream)
 	#error "不支持的STM32芯片"
 	#endif
 }
+

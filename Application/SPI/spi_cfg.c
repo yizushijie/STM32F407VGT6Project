@@ -206,89 +206,170 @@ UINT8_T SPI_Clock(SPI_HandlerType *SPIx, UINT8_T isEnable)
 	//---选择SPI接口
 	if (SPIx->msgSPIx == SPI1)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI1);			
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SPI1);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_SPI1);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_SPI1);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI1);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 	else if (SPIx->msgSPIx == SPI2)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_SPI2);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_SPI2);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_SPI2);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_SPI2);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_SPI2);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 	else if (SPIx->msgSPIx == SPI3)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_SPI3);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_SPI3);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_SPI3);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_SPI3);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB1_GRP1_DisableClock(LL_APB1_GRP1_PERIPH_SPI3);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 #ifdef SPI4
 	else if (SPIx->msgSPIx == SPI4)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI4);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SPI4);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_SPI4);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_SPI4);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI4);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 #endif
 #ifdef SPI5
 	else if (SPIx->msgSPIx == SPI5)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI5);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SPI5);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_SPI5);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_SPI5);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI5);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 #endif
 #ifdef SPI6
 	else if (SPIx->msgSPIx == SPI6)
 	{
-		if (isEnable)
+		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
+		{
+			//---不使能SPI的时钟线
+			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI6);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_ENABLE)
 		{
 			//---使能SPI的时钟线
 			LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SPI6);
 		}
+		else if (isEnable == PERIPHERAL_CLOCK_FORCE_RESET)
+		{
+			LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_SPI6);
+		}
+		else if (isEnable == PERIPHERAL_CLOCK_RELEASE_RESET)
+		{
+			LL_APB2_GRP1_ReleaseReset(LL_APB2_GRP1_PERIPH_SPI6);
+		}
 		else
 		{
-			//---使能SPI的时钟线
-			LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SPI6);
+			return ERROR_1;
 		}
+		return OK_0;
 	}
 #endif
-	return OK_0;
+	else
+	{
+		return ERROR_2;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

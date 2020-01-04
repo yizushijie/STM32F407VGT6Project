@@ -11,7 +11,7 @@ pAT24CXX_HandlerType	pAT24cxxDevice0 = &g_AT24cxxDevice0;
 //////输出参数:
 //////说	   明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T AT24CXX_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT8_T isHWI2C)
+UINT8_T AT24CXX_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C)
 {
 	UINT8_T _return = OK_0;
 
@@ -37,16 +37,16 @@ UINT8_T AT24CXX_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT
 	if (isHWI2C)
 	{
 		//---初始化硬件I2C
-		_return = I2CTask_MHW_Init(&(AT24CXXx->msgI2C));
-		AT24CXXx->msgI2C.msgModelIsHW = 1;
+		_return = I2CTask_MHW_Init(&(AT24CXXx->msgI2C),pFuncTimerTick);
+		AT24CXXx->msgI2C.msgHwModel = 1;
 	}
 	else
 	{
 		//---初始化软件模拟I2C
-		_return = I2CTask_MSW_Init(&(AT24CXXx->msgI2C), pFuncDelayus);
+		_return = I2CTask_MSW_Init(&(AT24CXXx->msgI2C), pFuncDelayus,pFuncTimerTick);
 
 		//---注册写函数
-		AT24CXXx->msgI2C.msgModelIsHW = 0;
+		AT24CXXx->msgI2C.msgHwModel = 0;
 	}
 	//---毫秒延时函数的注册
 	if (pFuncDelayms != NULL)
@@ -174,7 +174,7 @@ UINT8_T AT24CXX_I2C_DeviceType(AT24CXX_HandlerType *AT24CXXx)
 	AT24CXXx->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_6;
 	AT24CXXx->msgI2C.msgSDA.msgPort = GPIOB;
 	AT24CXXx->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_7;
-	AT24CXXx->msgI2C.msgModelIsHW = 0;
+	AT24CXXx->msgI2C.msgHwModel = 0;
 	AT24CXXx->msgI2C.msgPluseWidth = 0;
 	AT24CXXx->msgI2C.msgDelayus = NULL;
 	AT24CXXx->msgI2C.msgAddr = 0xA0;  // PCF8563_WRITE_ADDR;
@@ -218,7 +218,7 @@ UINT8_T AT24CXX_I2C_Device2_Init(AT24CXX_HandlerType *AT24CXXx)
 UINT8_T AT24CXX_I2C_DeInit(AT24CXX_HandlerType *AT24CXXx)
 {
 	//---注销I2C设备
-	if (AT24CXXx->msgI2C.msgModelIsHW == 1)
+	if (AT24CXXx->msgI2C.msgHwModel == 1)
 	{
 		return ERROR_1;
 	}
@@ -704,7 +704,7 @@ UINT8_T AT24CXX_HWI2C_WriteData(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UI
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_WriteOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T val)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_WriteOneByte(AT24CXXx, addr, val);
 	}
@@ -723,7 +723,7 @@ UINT8_T AT24CXX_I2C_WriteOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, U
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_WritePageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal, UINT16_T length)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_WritePageByte(AT24CXXx, addr, pVal, length);
 	}
@@ -742,7 +742,7 @@ UINT8_T AT24CXX_I2C_WritePageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, 
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_WriteData(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal, UINT16_T length)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_WriteData(AT24CXXx, addr, pVal, length);
 	}
@@ -1077,7 +1077,7 @@ UINT8_T AT24CXX_HWI2C_ReadData(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UIN
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_ReadOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_ReadOneByte(AT24CXXx, addr, pVal);
 	}
@@ -1096,7 +1096,7 @@ UINT8_T AT24CXX_I2C_ReadOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UI
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_ReadPageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal, UINT16_T length)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_ReadPageByte(AT24CXXx, addr, pVal, length);
 	}
@@ -1115,7 +1115,7 @@ UINT8_T AT24CXX_I2C_ReadPageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, U
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T AT24CXX_I2C_ReadData(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal, UINT16_T length)
 {
-	if (AT24CXXx->msgI2C.msgModelIsHW == 0)
+	if (AT24CXXx->msgI2C.msgHwModel == 0)
 	{
 		return AT24CXX_SWI2C_ReadData(AT24CXXx, addr, pVal, length);
 	}

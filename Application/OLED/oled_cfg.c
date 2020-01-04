@@ -117,7 +117,7 @@ UINT8_T OLED_Device0_Init(OLED_IIC_HandlerType *OLEDx)
 	OLEDx->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_6;
 	OLEDx->msgI2C.msgSDA.msgPort = GPIOB;
 	OLEDx->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_7;
-	OLEDx->msgI2C.msgModelIsHW = 0;
+	OLEDx->msgI2C.msgHwModel = 0;
 	OLEDx->msgI2C.msgPluseWidth = 1;
 	OLEDx->msgI2C.msgDelayus = NULL;
 
@@ -158,7 +158,7 @@ UINT8_T OLED_Device2_Init(OLED_IIC_HandlerType *OLEDx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T OLED_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C)
+UINT8_T OLED_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C)
 {
 	UINT8_T _return = OK_0;
 
@@ -184,14 +184,14 @@ UINT8_T OLED_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T 
 	if (isHWI2C)
 	{
 		//---初始化硬件I2C
-		_return = I2CTask_MHW_Init(&(OLEDx->msgI2C));
-		OLEDx->msgI2C.msgModelIsHW = 1;
+		_return = I2CTask_MHW_Init(&(OLEDx->msgI2C),pFuncTimerTick);
+		OLEDx->msgI2C.msgHwModel = 1;
 	}
 	else
 	{
 		//---初始化软件模拟I2C
-		_return = I2CTask_MSW_Init(&(OLEDx->msgI2C), pFuncDelayus);
-		OLEDx->msgI2C.msgModelIsHW = 0;
+		_return = I2CTask_MSW_Init(&(OLEDx->msgI2C), pFuncDelayus,pFuncTimerTick);
+		OLEDx->msgI2C.msgHwModel = 0;
 	}
 
 	//---硬件初始化
@@ -265,7 +265,7 @@ UINT8_T OLED_HWI2C_WriteByte(OLED_IIC_HandlerType *OLEDx, UINT8_T adddr, UINT8_T
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T OLED_I2C_WriteByte(OLED_IIC_HandlerType *OLEDx, UINT8_T adddr, UINT8_T dat)
 {
-	if (OLEDx->msgI2C.msgModelIsHW == 0)
+	if (OLEDx->msgI2C.msgHwModel == 0)
 	{
 		return OLED_SWI2C_WriteByte(OLEDx, adddr, dat);
 	}

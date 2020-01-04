@@ -7,9 +7,9 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T AT24CXXLib_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT8_T isHWI2C)
+UINT8_T AT24CXXLib_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C)
 {
-	return AT24CXX_I2C_Init(AT24CXXx, pFuncDelayus,pFuncDelayms,isHWI2C);
+	return AT24CXX_I2C_Init(AT24CXXx, pFuncDelayus,pFuncDelayms,pFuncTimerTick,isHWI2C);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

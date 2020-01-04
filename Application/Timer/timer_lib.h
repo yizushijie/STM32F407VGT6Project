@@ -12,7 +12,7 @@ extern "C" {
 	void TimerLib_CalcFreq_Task(UINT8_T ch);
 	float TimerLib_GetFreqKHz(void);
 	float TimerLib_GetFreqMHz(void);
-	void TimerLib_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable);
+	UINT8_T TimerLib_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable);
 	//////////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus
 }

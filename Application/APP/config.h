@@ -17,6 +17,7 @@ extern "C" {
 	#include "encode_task.h"
 	#include "gpio_task.h"
 	#include "hw_cfg.h"
+	#include "hvpp_cfg.h"
 	#include "hvpp_task.h"
 	#include "hvsp_task.h"
 	#include "i2c_task.h"

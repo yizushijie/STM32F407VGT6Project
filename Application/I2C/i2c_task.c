@@ -7,7 +7,7 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T I2CTask_MHW_Init(I2C_HandlerType *I2Cx)
+UINT8_T I2CTask_MHW_Init(I2C_HandlerType *I2Cx, UINT32_T(*pFuncTimerTick)(void))
 {
 	return ERROR_1;
 }
@@ -19,9 +19,9 @@ UINT8_T I2CTask_MHW_Init(I2C_HandlerType *I2Cx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T I2CTask_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay))
+UINT8_T I2CTask_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void))
 {
-	return I2CLib_MSW_Init(I2Cx, pFuncDelayus);
+	return I2CLib_MSW_Init(I2Cx, pFuncDelayus,pFuncTimerTick);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

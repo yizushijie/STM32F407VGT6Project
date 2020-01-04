@@ -40,7 +40,7 @@ extern "C" {
 	float Timer_GetFreqKHz(void);
 	float Timer_GetFreqMHz(void);
 	void Timer_Init(void);
-	void Timer_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable);
+	UINT8_T Timer_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable);
 	//////////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus
 }

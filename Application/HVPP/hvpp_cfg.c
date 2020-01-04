@@ -14,13 +14,13 @@ pHVPP_HandlerType pHvppDevice0 = &g_HvppDevice0;
 UINT8_T HVPP_DATABUS_WRITE(HVPP_HandlerType* HVPPx,UINT8_T val )
 {
 	//---校验数据总线是不是写入状态
-	if (HVPPx->msgDataBusState!=HVPP_DATA_BUS_STATE_WRITE)
+	if (HVPPx->msgDataBusState!=HVPP_DATA_BUS_MODE_WRITE)
 	{
 		//---设置为高阻态
 		HVPP_DATA_BUS_DIR_TO_HZ;
 		//---设置端口为输出模式
 		HVPP_DATA_BUS_WRITE;
-		HVPPx->msgDataBusState = HVPP_DATA_BUS_STATE_WRITE;
+		HVPPx->msgDataBusState = HVPP_DATA_BUS_MODE_WRITE;
 		//---切换数据流为主机到设备
 		HVPP_DATA_BUS_DIR_TO_DEVICE;
 		//---等待状态稳定
@@ -49,13 +49,13 @@ UINT8_T HVPP_DATABUS_READ(HVPP_HandlerType* HVPPx,UINT8_T isReadDir)
 {
 	UINT8_T _return=0;
 	//---校验数据总线是不是读取状态
-	if (HVPPx->msgDataBusState != HVPP_DATA_BUS_STATE_READ)
+	if (HVPPx->msgDataBusState != HVPP_DATA_BUS_MODE_READ)
 	{
 		//---设置为高阻态
 		HVPP_DATA_BUS_DIR_TO_HZ;
 		//---设置端口为输入模式
 		HVPP_DATA_BUS_READ;
-		HVPPx->msgDataBusState = HVPP_DATA_BUS_STATE_READ;
+		HVPPx->msgDataBusState = HVPP_DATA_BUS_MODE_READ;
 		//---切换数据流为设备到主机
 		HVPP_DATA_BUS_DIR_TO_HOST;
 		//---等待状态稳定
@@ -86,6 +86,8 @@ UINT8_T HVPP_DATABUS_READ(HVPP_HandlerType* HVPPx,UINT8_T isReadDir)
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T HVPP_GPIO_Init(HVPP_HandlerType* HVPPx)
 {
+	//---RST到地
+	HVPP_DUT_RST_TO_GND;
 	//---使能控制总线的端口时钟
 	GPIOTask_Clock(HVPP_RDY_BSY_PORT, PERIPHERAL_CLOCK_ENABLE);
 	GPIOTask_Clock(HVPP_OE_PORT, PERIPHERAL_CLOCK_ENABLE);
@@ -122,54 +124,84 @@ UINT8_T HVPP_GPIO_Init(HVPP_HandlerType* HVPPx)
 	//---DATA_OE---输出为高，电平转换芯片为高阻态
 	GPIO_InitStruct.Pin = HVPP_DATA_OE_BIT;
 	LL_GPIO_Init(HVPP_DATA_OE_PORT, &GPIO_InitStruct);
-	GPIO_OUT_1(HVPP_DATA_OE_PORT, HVPP_DATA_OE_BIT);
 	//---DATA_DIR---输出为高，数据从设备到主机
 	GPIO_InitStruct.Pin = HVPP_DATA_DIR_BIT;
 	LL_GPIO_Init(HVPP_DATA_DIR_PORT, &GPIO_InitStruct);
-	GPIO_OUT_0(HVPP_DATA_DIR_PORT, HVPP_DATA_DIR_BIT);
+	//---数据流向为主机到设备
+	HVPP_DATA_BUS_DIR_TO_DEVICE;
+
 	//---CTRL_OE---输出为高，电平转换芯片为高阻态
 	GPIO_InitStruct.Pin = HVPP_CTRL_OE_BIT;
 	LL_GPIO_Init(HVPP_CTRL_OE_PORT, &GPIO_InitStruct);
-	GPIO_OUT_1(HVPP_CTRL_OE_PORT, HVPP_CTRL_OE_BIT);
+	GPIO_OUT_0(HVPP_CTRL_OE_PORT, HVPP_CTRL_OE_BIT);
+
 	//---HVPP_RDY_BSY---输入为高，该端口一直处于输入模式
 	GPIO_InitStruct.Pin = HVPP_RDY_BSY_BIT;
 	GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
 	LL_GPIO_Init(HVPP_RDY_BSY_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_RDY_BSY_PORT, HVPP_RDY_BSY_BIT);
+
 	//---HVPP_OE---输入为高
 	GPIO_InitStruct.Pin = HVPP_OE_BIT;
+	GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	LL_GPIO_Init(HVPP_OE_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_OE_PORT, HVPP_OE_BIT);
+
 	//---HVPP_WR---输入为高
 	GPIO_InitStruct.Pin = HVPP_WR_BIT;
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	LL_GPIO_Init(HVPP_WR_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_WR_PORT, HVPP_WR_BIT);
+
 	//---HVPP_BS1---输入为高
 	GPIO_InitStruct.Pin = HVPP_BS1_BIT;
-	LL_GPIO_Init(HVPP_WR_PORT, &GPIO_InitStruct);
-	GPIO_OUT_1(HVPP_WR_PORT, HVPP_BS1_BIT);
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+	LL_GPIO_Init(HVPP_BS1_PORT, &GPIO_InitStruct);
+	GPIO_OUT_0(HVPP_BS1_PORT, HVPP_BS1_BIT);
+	
 	//---HVPP_XA0---输入为高
 	GPIO_InitStruct.Pin = HVPP_XA0_BIT;
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	LL_GPIO_Init(HVPP_XA0_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_XA0_PORT, HVPP_XA0_BIT);
+
 	//---HVPP_XA1---输入为高
 	GPIO_InitStruct.Pin = HVPP_XA1_BIT;
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	LL_GPIO_Init(HVPP_XA1_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_XA1_PORT, HVPP_XA1_BIT);
+
 	//---HVPP_PAGEL---输入为高
 	GPIO_InitStruct.Pin = HVPP_PAGEL_BIT;
-	LL_GPIO_Init(HVPP_WR_PORT, &GPIO_InitStruct);
-	GPIO_OUT_1(HVPP_WR_PORT, HVPP_PAGEL_BIT);
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+	LL_GPIO_Init(HVPP_PAGEL_PORT, &GPIO_InitStruct);
+	GPIO_OUT_0(HVPP_PAGEL_PORT, HVPP_PAGEL_BIT);
+
 	//---HVPP_BS2---输入为高
 	GPIO_InitStruct.Pin = HVPP_BS2_BIT;
-	LL_GPIO_Init(HVPP_WR_PORT, &GPIO_InitStruct);
-	GPIO_OUT_1(HVPP_WR_PORT, HVPP_BS2_BIT);
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+	LL_GPIO_Init(HVPP_BS2_PORT, &GPIO_InitStruct);
+	GPIO_OUT_0(HVPP_BS2_PORT, HVPP_BS2_BIT);
+
+	//---HVPP_XTAL---输出为低
+	GPIO_InitStruct.Pin = HVPP_XTAL_BIT;
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+	LL_GPIO_Init(HVPP_XTAL_PORT, &GPIO_InitStruct);
+	GPIO_OUT_0(HVPP_XTAL_PORT, HVPP_XTAL_BIT);
+
 	//---HVPP_DATA---输入为高
 	GPIO_InitStruct.Pin = HVPP_DATA_BUS_BIT;
+	//GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
 	LL_GPIO_Init(HVPP_DATA_BUS_PORT, &GPIO_InitStruct);
 	GPIO_OUT_1(HVPP_DATA_BUS_PORT, HVPP_DATA_BUS_BIT);
+	GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
+	LL_GPIO_Init(HVPP_DATA_BUS_PORT, &GPIO_InitStruct);
 	//---设置数据总线状态为读取状态
-	HVPPx->msgDataBusState = HVPP_DATA_BUS_STATE_READ;
+	HVPPx->msgDataBusState = HVPP_DATA_BUS_MODE_READ;
+	//---控制信号为输入模式
+	HVPP_CTRL_DIR_TO_HZ;
+	//---释放RST端口
+	HVPP_DUT_RST_TO_HZ;
 	return OK_0;
 }
 
@@ -230,7 +262,7 @@ UINT8_T HVPP_GPIO_DeInit(HVPP_HandlerType* HVPPx)
 	//---控制信号为输入模式
 	HVPP_CTRL_DIR_TO_HZ;
 	//---数据为读取模式
-	HVPPx->msgDataBusState=HVPP_DATA_BUS_STATE_READ;
+	HVPPx->msgDataBusState=HVPP_DATA_BUS_MODE_READ;
 	//---关闭数据总线
 	HVPP_DATA_BUS_DIR_TO_HZ;
 	return OK_0;
@@ -290,6 +322,33 @@ UINT8_T HVPP_Init(HVPP_HandlerType* HVPPx,void(*pFuncDelayus)(UINT32_T delay), v
 	HVPPx->msgWaitms=1;
 	HVPPx->msgProgWRLus=500;
 	HVPPx->msgProgWRHus = 800;
+	//---添加微妙延时
+	if (pFuncDelayus!=NULL)
+	{
+		HVPPx->msgDelayus=pFuncDelayus;
+	}
+	else
+	{
+		HVPPx->msgDelayus =DelayTask_us;
+	}
+	//---添加毫秒延时
+	if (pFuncDelayms != NULL)
+	{
+		HVPPx->msgDelayms = pFuncDelayms;
+	}
+	else
+	{
+		HVPPx->msgDelayms = DelayTask_ms;
+	}
+	//---添加定时节拍
+	if (pFuncTimerTick!=NULL)
+	{
+		HVPPx->msgTimeTick=pFuncTimerTick;
+	}
+	else
+	{
+		HVPPx->msgTimeTick=SysTickTask_GetTick;
+	}
 	HVPP_GPIO_Init(HVPPx);
 	return OK_0;
 }
@@ -364,7 +423,7 @@ void HVPP_WatchTask(HVPP_HandlerType* HVPPx)
 UINT8_T HVPP_AddWatch(HVPP_HandlerType* HVPPx)
 {
 	//---刷新时间
-	ISP_RefreshWatch(HVPPx);
+	HVPP_RefreshWatch(HVPPx);
 	//---使用的HVPP的端口,并注册相应的任务函数
 	SysTickTask_CreateTickTask(HVPP_AddWatchDevice0);
 	return OK_0;
@@ -437,21 +496,22 @@ UINT8_T HVPP_GetIntervalTime(HVPP_HandlerType* HVPPx)
 UINT8_T HVPP_ProgModeEnter(HVPP_HandlerType* HVPPx,UINT8_T pagel,UINT8_T xa1,UINT8_T xa0,UINT8_T bs1)
 {
 	//>>>---设置并行数据端口和并行数据控制端口未输入模式，且并行数据方向为设备到主机模式，之后端口处于高阻状态
-	//---切换数据总线为设备到主机
-	HVPP_DATA_BUS_DIR_TO_HOST;
-	HVPP_DATA_BUS_READ;
-	HVPP_DATA_BUS_VAL(0xFF);
-	HVPP_CTRL_INIT_READ;
 	HVPP_DUT_RST_TO_GND;
 	//---掉电，自供电的时候进行电源断电，否则为释放电源控制状态
 	((HVPPx->msgSelfPower == 0) ? HVPP_DUT_POWER_OFF : HVPP_DUT_POWER_HZ);
 	HVPPx->msgDelayms(1);
+	//---切换数据宗先方向
+	HVPP_DATA_BUS_DIR_TO_DEVICE;
+	//---数据总线设置为写模式
+	HVPP_DATA_BUS_WRITE;
+	//---设置控制总线为写模式
+	HVPP_CTRL_INIT_WRITE;
+	//---等待状态稳定
+	HVPP_WAIT_STATE_STABLE;
 	//---上电，自供电的时候进行电源断电，否则为释放电源控制状态
 	((HVPPx->msgSelfPower == 0) ? HVPP_DUT_POWER_ON : HVPP_DUT_POWER_HZ);
 	HVPPx->msgDelayms(5);
-	HVPP_CTRL_INIT_WRITE;
 	HVPP_XTAL_CLK(HVPPx,8);
-	HVPPx->msgDelayus(1);
 	//---PAGEL
 	((pagel != 0) ? HVPP_PAGEL_OUT_1 : HVPP_PAGEL_OUT_0);
 	//---XA1
@@ -461,17 +521,13 @@ UINT8_T HVPP_ProgModeEnter(HVPP_HandlerType* HVPPx,UINT8_T pagel,UINT8_T xa1,UIN
 	//---BS1
 	((bs1 != 0) ? HVPP_BS1_OUT_1 : HVPP_BS1_OUT_0);
 	//---保持一段时间不小于100ns
-	HVPPx->msgDelayus(2);
+	HVPPx->msgDelayus(5);
 	//---HV
-	HVPP_DUT_RST_TO_12V;
+	//HVPP_DUT_RST_TO_12V;
 	//---保持一段时间不小于100ns
-	HVPPx->msgDelayus(2);
-	//---数据总线设置为写模式
-	HVPP_DATA_BUS_WRITE;
-	//---切换数据总线为设备到主机
-	HVPP_DATA_BUS_DIR_TO_DEVICE;
+	HVPPx->msgDelayus(5);
 	//---数据总线
-	HVPPx->msgDataBusState = HVPP_DATA_BUS_STATE_WRITE;
+	HVPPx->msgDataBusState = HVPP_DATA_BUS_MODE_WRITE;
 	return OK_0;
 }
 
@@ -484,21 +540,26 @@ UINT8_T HVPP_ProgModeEnter(HVPP_HandlerType* HVPPx,UINT8_T pagel,UINT8_T xa1,UIN
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T HVPP_ProgModeExit(HVPP_HandlerType* HVPPx)
 {
-	//---数据端口设置为读取模式
-	HVPP_DATA_BUS_DIR_TO_HOST;
-	HVPP_DATA_BUS_READ;
-	HVPP_DATA_BUS_VAL(0xFF);
-	//---控制端口设置为输入模式
-	HVPP_CTRL_INIT_READ;
 	//---RST拉低到地
 	HVPP_DUT_RST_TO_GND;
+	//---数据端口设置为读取模式
+	HVPP_DATA_BUS_READ;
+	//---数据线方向使设备到主机
+	HVPP_DATA_BUS_DIR_TO_HOST;
+	//---控制端口设置为输出模式
+	//HVPP_CTRL_BUS_VAL(0x7F);
+	//HVPP_CTRL_INIT_READ;
+	//---设置控制线为高阻态
+	HVPP_CTRL_DIR_TO_HZ;
 	//---关闭电源,自供电的时候进行电源断电，否则为释放电源控制状态
 	((HVPPx->msgSelfPower == 0) ? HVPP_DUT_POWER_OFF : HVPP_DUT_POWER_HZ);
 	HVPPx->msgDelayms(1);
 	//---释放RST的控制
 	HVPP_DUT_RST_TO_HZ;
 	//---设置控制线为高阻态
-	HVPP_CTRL_DIR_TO_HZ;
+	//HVPP_CTRL_DIR_TO_HZ;
+	//---数据总线
+	HVPPx->msgDataBusState = HVPP_DATA_BUS_MODE_READ;
 	return OK_0;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -520,7 +581,7 @@ UINT8_T HVPP_EnterProg(HVPP_HandlerType* HVPPx, UINT8_T hvProgCmd)
 	HVPPx->msgHvCmd=hvProgCmd;
 	HVPPx->msgHvFastMode=((hvProgCmd!=0)?1:0);
 	//---进入编程模式
-	return  HVPP_ProgModeEnter(HVPPx,hvProgCmd&0x08, hvProgCmd & 0x04, hvProgCmd & 0x02,hvProgCmd & 0x01)
+	return  HVPP_ProgModeEnter(HVPPx,hvProgCmd&0x08, hvProgCmd & 0x04, hvProgCmd & 0x02,hvProgCmd & 0x01);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -644,7 +705,7 @@ UINT8_T HVPP_EraseChip(HVPP_HandlerType* HVPPx)
 		HVPPx->msgDelayus(HVPPx->msgProgWRHus);
 	}	
 	//---释放状态,为空闲模式
-	HVPP_XA_LOAD_IDLE;
+	//HVPP_XA_LOAD_IDLE;
 	return OK_0;
 }
 
@@ -686,7 +747,7 @@ UINT8_T HVPP_ReadChipID(HVPP_HandlerType* HVPPx, UINT8_T* pVal)
 		HVPP_OE_OUT_1;
 	}
 	//---释放状态,为空闲模式
-	HVPP_XA_LOAD_IDLE;
+	//HVPP_XA_LOAD_IDLE;
 	return OK_0;
 }
 
@@ -728,7 +789,7 @@ UINT8_T HVPP_ReadChipCalibration(HVPP_HandlerType* HVPPx, UINT8_T* pVal, UINT8_T
 		HVPP_OE_OUT_1;
 	}
 	//---释放状态,为空闲模式
-	HVPP_XA_LOAD_IDLE;
+	//HVPP_XA_LOAD_IDLE;
 	return OK_0;
 }
 
@@ -780,7 +841,7 @@ UINT8_T HVPP_ReadChipFuse(HVPP_HandlerType* HVPPx, UINT8_T* pVal, UINT8_T isNeed
 	//---不使能读取
 	HVPP_OE_OUT_1;
 	//---释放状态,为空闲模式
-	HVPP_XA_LOAD_IDLE;
+	//HVPP_XA_LOAD_IDLE;
 	return OK_0;
 }
 
@@ -812,7 +873,7 @@ UINT8_T HVPP_ReadChipLock(HVPP_HandlerType* HVPPx, UINT8_T* pVal)
 	//---不使能读取
 	HVPP_OE_OUT_1;
 	//---释放状态,为空闲模式
-	HVPP_XA_LOAD_IDLE;
+	//HVPP_XA_LOAD_IDLE;
 	return OK_0;
 }
 
@@ -882,7 +943,7 @@ UINT8_T HVPP_ReadChipRom(HVPP_HandlerType* HVPPx, UINT8_T* pVal, UINT8_T addr, U
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T HVPP_EraseChipRom(HVPP_HandlerType* HVPPx)
 {
-
+	return OK_0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

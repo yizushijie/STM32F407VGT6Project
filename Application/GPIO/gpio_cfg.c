@@ -1,6 +1,5 @@
 #include "gpio_cfg.h"
 
-#ifdef USE_MCU_STM32
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
 //////功		能：
@@ -55,7 +54,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOA
 
 #ifdef GPIOB
-	if (GPIOx == GPIOB)
+	else if (GPIOx == GPIOB)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -98,7 +97,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOB
 
 #ifdef GPIOC
-	if (GPIOx == GPIOC)
+	else if (GPIOx == GPIOC)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -141,7 +140,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOC
 
 #ifdef GPIOD
-	if (GPIOx == GPIOD)
+	else if (GPIOx == GPIOD)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -184,7 +183,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOD
 
 #ifdef GPIOE
-	if (GPIOx == GPIOE)
+	else if (GPIOx == GPIOE)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -227,7 +226,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOE
 
 #ifdef GPIOF
-	if (GPIOx == GPIOF)
+	else if (GPIOx == GPIOF)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -270,7 +269,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOF
 
 #ifdef GPIOG
-	if (GPIOx == GPIOG)
+	else if (GPIOx == GPIOG)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -313,7 +312,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOG
 
 #ifdef GPIOH
-	if (GPIOx == GPIOH)
+	else if (GPIOx == GPIOH)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -356,7 +355,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOH
 
 #ifdef GPIOI
-	if (GPIOx == GPIOI)
+	else if (GPIOx == GPIOI)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -399,7 +398,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOI
 
 #ifdef GPIOJ
-	if (GPIOx == GPIOJ)
+	else if (GPIOx == GPIOJ)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -442,7 +441,7 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 #endif // GPIOJ
 
 #ifdef GPIOK
-	if (GPIOx == GPIOK)
+	else if (GPIOx == GPIOK)
 	{
 		if (isEnable == PERIPHERAL_CLOCK_DISABLE)
 		{
@@ -483,7 +482,10 @@ UINT8_T GPIO_Clock(GPIO_TypeDef *GPIOx, UINT8_T isEnable)
 		return OK_0;
 	}
 #endif // GPIOK
-	return OK_0;
+	else
+	{
+		return ERROR_2;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -552,4 +554,154 @@ void GPIO_Init(void)
 	#endif
 }
 
-#endif 
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能： 配置端口的输入/输出模式，可以是多端口也可以是单端口
+//////输入参数: 
+//////输出参数: 
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+void GPIO_SetPinMode(GPIO_TypeDef* GPIOx, UINT32_T Pin, UINT32_T Mode)
+{
+	UINT8_T _return=0;
+	//---遍历端口的序号
+	switch (Pin)
+	{
+		case LL_GPIO_PIN_0:
+		case LL_GPIO_PIN_1:
+		case LL_GPIO_PIN_2:
+		case LL_GPIO_PIN_3:
+		case LL_GPIO_PIN_4:
+		case LL_GPIO_PIN_5:
+		case LL_GPIO_PIN_6:
+		case LL_GPIO_PIN_7:
+		case LL_GPIO_PIN_8:
+		case LL_GPIO_PIN_9:
+		case LL_GPIO_PIN_10:
+		case LL_GPIO_PIN_11:
+		case LL_GPIO_PIN_12:
+		case LL_GPIO_PIN_13:
+		case LL_GPIO_PIN_14:
+		case LL_GPIO_PIN_15:
+			_return =0;
+			break;
+		default:
+			_return=1;
+			break;
+	}
+	(_return==0)?(LL_GPIO_SetPinMode(GPIOx,Pin,Mode)):(LL_GPIO_SetPinsMode(GPIOx, Pin, Mode));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能： 配置端口的输出1，可以是多端口也可以是单端口
+//////输入参数: 
+//////输出参数: 
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+void GPIO_SetOutputPin(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT8_T _return = 0;
+	//---遍历端口的序号
+	switch (PinMask)
+	{
+		case LL_GPIO_PIN_0:
+		case LL_GPIO_PIN_1:
+		case LL_GPIO_PIN_2:
+		case LL_GPIO_PIN_3:
+		case LL_GPIO_PIN_4:
+		case LL_GPIO_PIN_5:
+		case LL_GPIO_PIN_6:
+		case LL_GPIO_PIN_7:
+		case LL_GPIO_PIN_8:
+		case LL_GPIO_PIN_9:
+		case LL_GPIO_PIN_10:
+		case LL_GPIO_PIN_11:
+		case LL_GPIO_PIN_12:
+		case LL_GPIO_PIN_13:
+		case LL_GPIO_PIN_14:
+		case LL_GPIO_PIN_15:
+			_return = 0;
+			break;
+		default:
+			_return = 1;
+			break;
+	}
+	(_return == 0) ? (LL_GPIO_SetOutputPin(GPIOx, PinMask)) : (LL_GPIO_SetOutputPins(GPIOx, PinMask));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能： 配置端口的输出0，可以是多端口也可以是单端口
+//////输入参数: 
+//////输出参数: 
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+void GPIO_ResetOutputPins(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT8_T _return = 0;
+	//---遍历端口的序号
+	switch (PinMask)
+	{
+		case LL_GPIO_PIN_0:
+		case LL_GPIO_PIN_1:
+		case LL_GPIO_PIN_2:
+		case LL_GPIO_PIN_3:
+		case LL_GPIO_PIN_4:
+		case LL_GPIO_PIN_5:
+		case LL_GPIO_PIN_6:
+		case LL_GPIO_PIN_7:
+		case LL_GPIO_PIN_8:
+		case LL_GPIO_PIN_9:
+		case LL_GPIO_PIN_10:
+		case LL_GPIO_PIN_11:
+		case LL_GPIO_PIN_12:
+		case LL_GPIO_PIN_13:
+		case LL_GPIO_PIN_14:
+		case LL_GPIO_PIN_15:
+			_return = 0;
+			break;
+		default:
+			_return = 1;
+			break;
+	}
+	(_return == 0) ? (LL_GPIO_ResetOutputPin(GPIOx, PinMask)) : (LL_GPIO_ResetOutputPins(GPIOx, PinMask));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能： 配置端口的输出取反，可以是多端口也可以是单端口
+//////输入参数: 
+//////输出参数: 
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+void GPIO_TogglePin(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT8_T _return = 0;
+	//---遍历端口的序号
+	switch (PinMask)
+	{
+		case LL_GPIO_PIN_0:
+		case LL_GPIO_PIN_1:
+		case LL_GPIO_PIN_2:
+		case LL_GPIO_PIN_3:
+		case LL_GPIO_PIN_4:
+		case LL_GPIO_PIN_5:
+		case LL_GPIO_PIN_6:
+		case LL_GPIO_PIN_7:
+		case LL_GPIO_PIN_8:
+		case LL_GPIO_PIN_9:
+		case LL_GPIO_PIN_10:
+		case LL_GPIO_PIN_11:
+		case LL_GPIO_PIN_12:
+		case LL_GPIO_PIN_13:
+		case LL_GPIO_PIN_14:
+		case LL_GPIO_PIN_15:
+			_return = 0;
+			break;
+		default:
+			_return = 1;
+			break;
+	}
+	(_return == 0) ? (LL_GPIO_TogglePin(GPIOx, PinMask)) : (LL_GPIO_TogglePins(GPIOx, PinMask));
+}

@@ -55,7 +55,7 @@ float TimerTask_GetFreqMHz(void)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-void TimerTask_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable)
+UINT8_T TimerTask_Clock(TIM_TypeDef *TIMx, UINT8_T isEnable)
 {
-	TimerLib_Clock(TIMx, isEnable);
+	return TimerLib_Clock(TIMx, isEnable);
 }

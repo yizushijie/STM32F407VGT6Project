@@ -477,7 +477,7 @@ extern "C" {
 	UINT8_T WM8510_I2C_Device0_Init(WM8510_HandlerType *WM8510x);
 	UINT8_T WM8510_I2C_Device1_Init(WM8510_HandlerType *WM8510x);
 	UINT8_T WM8510_I2C_Device2_Init(WM8510_HandlerType *WM8510x);
-	UINT8_T WM8510_I2C_Init(WM8510_HandlerType *WM8510x, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T WM8510_I2C_Init(WM8510_HandlerType *WM8510x, void(*pFuncDelayus)(UINT32_T delay),UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T WM8510_I2C_START(WM8510_HandlerType *WM8510x);
 	UINT8_T WM8510_I2C_DeInit(WM8510_HandlerType *WM8510x);
 	UINT8_T WM8510_SWI2C_WriteReg(WM8510_HandlerType *WM8510x, UINT8_T *pVal, UINT8_T length);

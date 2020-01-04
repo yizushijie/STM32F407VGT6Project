@@ -8,7 +8,7 @@ extern "C" {
 	#include "at24cxx_lib.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===º¯Êý¶¨Òå
-	UINT8_T AT24CXXTask_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T AT24CXXTask_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T AT24CXXTask_I2C_DeInit(AT24CXX_HandlerType *AT24CXXx);
 	UINT8_T AT24CXXTask_I2C_WriteOneByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T val);
 	UINT8_T AT24CXXTask_I2C_WritePageByte(AT24CXX_HandlerType *AT24CXXx, UINT16_T addr, UINT8_T *pVal, UINT16_T length);

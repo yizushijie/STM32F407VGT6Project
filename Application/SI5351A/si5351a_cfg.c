@@ -33,7 +33,7 @@ UINT8_T SI5351A_I2C_Device0_Init(SI5351A_HandlerType* SI5351Ax)
 	SI5351Ax->msgI2C.msgSCL.msgBit = LL_GPIO_PIN_8;
 	SI5351Ax->msgI2C.msgSDA.msgPort = GPIOB;
 	SI5351Ax->msgI2C.msgSDA.msgBit = LL_GPIO_PIN_9;
-	SI5351Ax->msgI2C.msgModelIsHW = 0;
+	SI5351Ax->msgI2C.msgHwModel = 0;
 	SI5351Ax->msgI2C.msgPluseWidth = 1;
 	SI5351Ax->msgI2C.msgDelayus = NULL;
 	SI5351Ax->msgI2C.msgAddr = SI5351A_WADDR;
@@ -130,7 +130,7 @@ UINT8_T SI5351A_HWI2C_WriteSingle(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, U
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T SI5351A_I2C_WriteSingle(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UINT8_T val)
 {
-	if (SI5351Ax->msgI2C.msgModelIsHW == 0)
+	if (SI5351Ax->msgI2C.msgHwModel == 0)
 	{
 		//---软件模拟I2C
 		return SI5351A_SWI2C_WriteSingle(SI5351Ax, addr, val);
@@ -217,7 +217,7 @@ UINT8_T SI5351A_HWI2C_ReadSingle(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UI
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T SI5351A_I2C_ReadSingle(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UINT8_T* pVal)
 {
-	if (SI5351Ax->msgI2C.msgModelIsHW == 0)
+	if (SI5351Ax->msgI2C.msgHwModel == 0)
 	{
 		//---软件模拟I2C
 		return SI5351A_SWI2C_ReadSingle(SI5351Ax, addr, pVal);
@@ -300,7 +300,7 @@ UINT8_T SI5351A_HWI2C_WriteBulk(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UIN
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T SI5351A_I2C_WriteBulk(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UINT8_T* pVal, UINT8_T length)
 {
-	if (SI5351Ax->msgI2C.msgModelIsHW == 0)
+	if (SI5351Ax->msgI2C.msgHwModel == 0)
 	{
 		//---软件模拟I2C
 		return SI5351A_SWI2C_WriteBulk(SI5351Ax, addr, pVal, length);
@@ -391,7 +391,7 @@ UINT8_T SI5351A_HWI2C_ReadBulk(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UINT
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T SI5351A_I2C_ReadBulk(SI5351A_HandlerType* SI5351Ax, UINT8_T addr, UINT8_T* pVal, UINT8_T length)
 {
-	if (SI5351Ax->msgI2C.msgModelIsHW == 0)
+	if (SI5351Ax->msgI2C.msgHwModel == 0)
 	{
 		//---软件模拟I2C
 		return SI5351A_SWI2C_ReadBulk(SI5351Ax, addr, pVal, length);
@@ -670,7 +670,7 @@ UINT8_T SI5351A_CalcConfig(SI5351A_HandlerType* SI5351Ax, UINT8_T clkChannel, UI
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T SI5351A_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C)
+UINT8_T SI5351A_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C)
 {
 	UINT8_T _return = OK_0;
 	//---参数初始化
@@ -696,13 +696,13 @@ UINT8_T SI5351A_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT
 	//---判断是硬件I2C还是软件I2C
 	if (isHWI2C)
 	{
-		//_return= I2CTask_MHW_Init(&(WM8510x->msgI2C), pFuncDelay);
-		SI5351Ax->msgI2C.msgModelIsHW = 1;
+		_return= I2CTask_MHW_Init(&(SI5351Ax->msgI2C), pFuncTimerTick);
+		SI5351Ax->msgI2C.msgHwModel = 1;
 	}
 	else
 	{
-		_return = I2CTask_MSW_Init(&(SI5351Ax->msgI2C), pFuncDelayus);
-		SI5351Ax->msgI2C.msgModelIsHW = 0;
+		_return = I2CTask_MSW_Init(&(SI5351Ax->msgI2C), pFuncDelayus,pFuncTimerTick);
+		SI5351Ax->msgI2C.msgHwModel = 0;
 	}
 	_return = SI5351A_I2C_START(SI5351Ax);
 	return _return;
@@ -718,7 +718,7 @@ UINT8_T SI5351A_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT
 UINT8_T SI5351A_I2C_DeInit(SI5351A_HandlerType* SI5351Ax)
 {
 	//---注销I2C设备
-	if (SI5351Ax->msgI2C.msgModelIsHW == 1)
+	if (SI5351Ax->msgI2C.msgHwModel == 1)
 	{
 		return ERROR_1;
 	}

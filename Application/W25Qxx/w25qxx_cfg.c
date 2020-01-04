@@ -229,7 +229,7 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 	//---判断初始化的方式
 	if (isHW != 0)
 	{
-		W25Qx->msgSPI.msgModelIsHW = 1;
+		W25Qx->msgSPI.msgHwModel = 1;
 		W25QXX_SPI_HW_Init(W25Qx);
 
 		//---命令读写
@@ -237,7 +237,7 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 	}
 	else
 	{
-		W25Qx->msgSPI.msgModelIsHW = 0;
+		W25Qx->msgSPI.msgHwModel = 0;
 		W25QXX_SPI_SW_Init(W25Qx);
 
 		//---命令读写
@@ -303,7 +303,7 @@ UINT8_T W25QXX_SPI_Init(W25QXX_HandlerType *W25Qx, void(*pFuncDelayus)(UINT32_T 
 //////////////////////////////////////////////////////////////////////////////
 UINT8_T W25QXX_SPI_AutoInit(W25QXX_HandlerType* W25Qx)
 {
-	if (W25Qx->msgSPI.msgModelIsHW != 0)
+	if (W25Qx->msgSPI.msgHwModel != 0)
 	{
 		//---软件初始化
 		W25QXX_SPI_HW_Init(W25Qx);

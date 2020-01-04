@@ -11,6 +11,7 @@ extern "C" {
 	#include "complier_lib.h"
 	#include "gpio_task.h"
 	#include "delay_task.h"
+	#include "systick_task.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===定义结构体
 	typedef struct _I2C_HandlerType					I2C_HandlerType;
@@ -21,7 +22,7 @@ extern "C" {
 	{
 		GPIO_HandlerType	msgSCL;																																					//---SCL
 		GPIO_HandlerType	msgSDA;																																					//---SDA
-		UINT8_T				msgModelIsHW;																																			//---工作模式，默认是软件模拟---0，硬件模式---1
+		UINT8_T				msgHwModel;																																				//---工作模式，默认是软件模拟---0，硬件模式---1
 		UINT16_T			msgPluseWidth;																																			//---脉冲宽度，软件模拟使用
 		UINT16_T			msgAddr;																																				//---设备的地址
 		UINT32_T			msgClockSpeed;																																			//---硬件I2C的时钟速度
@@ -29,11 +30,12 @@ extern "C" {
 	#ifndef USE_MCU_STM32F1
 		UINT32_T			msgGPIOAlternate;																																		//---端口复用模式
 	#endif
+		UINT32_T(*msgTimeTick)(void);																																				//---用于超时计数
 		I2C_TypeDef* msgI2Cx;																																						//---使用的I2C接口
 	};
 
 	//===函数定义
-	UINT8_T I2C_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay));
+	UINT8_T I2C_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void));
 	UINT8_T I2C_MSW_DeInit(I2C_HandlerType *I2Cx);
 	UINT8_T I2C_MSW_START(I2C_HandlerType *I2Cx);
 	UINT8_T I2C_MSW_STOP(I2C_HandlerType *I2Cx);

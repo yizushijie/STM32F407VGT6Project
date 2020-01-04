@@ -8,7 +8,7 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T I2C_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay))
+UINT8_T I2C_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void))
 {
 	//---使能GPIO的时钟
 	GPIOTask_Clock(I2Cx->msgSCL.msgPort, PERIPHERAL_CLOCK_ENABLE);
@@ -40,6 +40,14 @@ UINT8_T I2C_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay))
 	else
 	{
 		I2Cx->msgDelayus = DelayTask_us;
+	}
+	if (pFuncTimerTick!=NULL)
+	{
+		I2Cx->msgTimeTick= pFuncTimerTick;
+	}
+	else
+	{
+		I2Cx->msgTimeTick = SysTickTask_GetTick;
 	}
 	return OK_0;
 }

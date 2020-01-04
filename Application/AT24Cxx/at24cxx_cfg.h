@@ -68,7 +68,7 @@ extern "C" {
 	extern pAT24CXX_HandlerType		pAT24cxxDevice0;
 
 	//===º¯Êý¶¨Òå
-	UINT8_T AT24CXX_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T AT24CXX_I2C_Init(AT24CXX_HandlerType *AT24CXXx, void(*pFuncDelayus)(UINT32_T delay), void(*pFuncDelayms)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T AT24CXX_I2C_Device0_Init(AT24CXX_HandlerType *AT24CXXx);
 	UINT8_T AT24CXX_I2C_Device1_Init(AT24CXX_HandlerType *AT24CXXx);
 	UINT8_T AT24CXX_I2C_Device2_Init(AT24CXX_HandlerType *AT24CXXx);

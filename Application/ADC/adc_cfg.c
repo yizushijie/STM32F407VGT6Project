@@ -22,9 +22,9 @@ UINT8_T ADC_GPIO_Init(void)
 	//---GPIO的初始化----
 	//---HV12V ---PA6---ADC6
 	//---DUTVCC---PA7---ADC7
-	GPIO_InitStruct.Pin = LL_GPIO_PIN_6| LL_GPIO_PIN_7;// | LL_GPIO_PIN_2 | LL_GPIO_PIN_3;			//---对应的GPIO的引脚
-	GPIO_InitStruct.Mode = LL_GPIO_MODE_ANALOG;														//---配置状态为模拟输入引脚
-	GPIO_InitStruct.Pull = LL_GPIO_PULL_DOWN;														//---设置端口下拉使能
+	GPIO_InitStruct.Pin = LL_GPIO_PIN_6 | LL_GPIO_PIN_7;// | LL_GPIO_PIN_2 | LL_GPIO_PIN_3;																							//---对应的GPIO的引脚
+	GPIO_InitStruct.Mode = LL_GPIO_MODE_ANALOG;																																		//---配置状态为模拟输入引脚
+	GPIO_InitStruct.Pull = LL_GPIO_PULL_DOWN;																																		//---设置端口下拉使能
 	//---SCL的初始化
 	LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 	return OK_0;
@@ -766,7 +766,7 @@ UINT8_T ADC_HandleChannelVal(ADCASK_HandlerType *ADCASKx)
 //////////////////////////////////////////////////////////////////////////////
 UINT16_T ADC_GetChipPower(void)
 {
-	UINT32_T tempPower=pABChannelADC->msgAChannelVal;
+	UINT32_T tempPower=pABChannelADC->msgBChannelVal;
 	//---将结果装换为电压值
 	tempPower-=6;
 	tempPower*=3260;
@@ -783,7 +783,7 @@ UINT16_T ADC_GetChipPower(void)
 //////////////////////////////////////////////////////////////////////////////
 UINT16_T ADC_GetHVPower(void)
 {
-	UINT32_T tempPower = pABChannelADC->msgBChannelVal;
+	UINT32_T tempPower = pABChannelADC->msgAChannelVal;
 	//---将结果装换为电压值
 	tempPower -= 6;
 	tempPower *= 3260;

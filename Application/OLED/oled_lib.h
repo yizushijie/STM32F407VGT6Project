@@ -9,7 +9,7 @@ extern "C" {
 	/////////////////////////////////////////////////////////////////////////////////////
 	
 	//===º¯Êý¶¨Òå
-	UINT8_T OLEDLib_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T OLEDLib_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T OLEDLib_I2C_WriteCmd(OLED_IIC_HandlerType *OLEDx, UINT8_T cmd);
 	UINT8_T OLEDLib_I2C_WriteData(OLED_IIC_HandlerType *OLEDx, UINT8_T cmd);
 	void OLEDLib_I2C_DisplayON(OLED_IIC_HandlerType *OLEDx);

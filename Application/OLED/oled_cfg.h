@@ -39,8 +39,8 @@ extern "C" {
 	//===OLED的数据结构体
 	struct _OLED_IIC_HandlerType
 	{
-		GPIO_HandlerType	msgRST;					//---复位端口
-		I2C_HandlerType		msgI2C;					//---使用的I2C
+		GPIO_HandlerType	msgRST;																																					//---复位端口
+		I2C_HandlerType		msgI2C;																																					//---使用的I2C
 	};
 
 	//===定义的任务函数
@@ -55,7 +55,7 @@ extern "C" {
 	extern pOLED_IIC_HandlerType					pOLEDI2CDevice0;
 
 	//===函数定义
-	UINT8_T OLED_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T OLED_I2C_Init(OLED_IIC_HandlerType *OLEDx, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T OLED_I2C_WriteCmd(OLED_IIC_HandlerType *OLEDx, UINT8_T cmd);
 	UINT8_T OLED_I2C_WriteData(OLED_IIC_HandlerType *OLEDx, UINT8_T cmd);
 	void OLED_I2C_DisplayON(OLED_IIC_HandlerType *OLEDx);

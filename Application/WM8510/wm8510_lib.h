@@ -8,7 +8,7 @@ extern "C" {
 	#include "wm8510_cfg.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===º¯Êý¶¨Òå
-	UINT8_T WM8510Lib_I2C_Init(WM8510_HandlerType *WM8510x, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C);
+	UINT8_T WM8510Lib_I2C_Init(WM8510_HandlerType *WM8510x, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C);
 	UINT8_T WM8510Lib_I2C_DeInit(WM8510_HandlerType *WM8510x);
 	UINT8_T WM8510Lib_I2C_SetFreqHz(WM8510_HandlerType *WM8510x, UINT32_T freq);
 	UINT8_T WM8510Lib_I2C_SetFreqKHz(WM8510_HandlerType *WM8510x, float freq);

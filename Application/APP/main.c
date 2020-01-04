@@ -81,7 +81,7 @@ void SystemClock_Config(void)
 	//---设置系统滴答定时器的时钟为系统高速时钿--使能滴答定时器的时钟
 	LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
 	//---设置系统时钟
-	LL_SetSystemCoreClock(168000000);	
+	LL_SetSystemCoreClock(168000000);
 	//---使能Flash的预读取功能
 	LL_FLASH_EnablePrefetch();
 	//---使能数据缓存功能
@@ -152,22 +152,31 @@ void Sys_Init(void)
 	//---ISP的初始化
 	ISPTask_Init(pIspDevice0,DelayTask_us,DelayTask_ms, SysTickTask_GetTick);
 	//---WM8510初始化
-	WM8510Task_I2C_Init(pWm8510Device0, DelayTask_us, 0);
-	WM8510Task_I2C_SetFreqHzWithAllFreqRegAndCalibrateFreqKHzOutPut(pWm8510Device0,2000000);
+	WM8510Task_I2C_Init(pWm8510Device0, DelayTask_us, SysTickTask_GetTick, 0);
 	//---SI5351A初始化
-	//SI5351ATask_I2C_Init(pSI5351ADevice0, DelayTask_us, 0);
+	//SI5351ATask_I2C_Init(pSI5351ADevice0, DelayTask_us, SysTickTask_GetTick, 0);
 	//---指示灯的初始化
 	LEDTask_Init();	
 	//---DAC的初始化
 	DACTask_Init(DAC_CHANNEL_SELECT_ALL, DAC_CHANNEL_ENABLE_BUFFER);
 	//---初始化LM317做的可调电源
-	LM317Task_Init(0,3300);
+	LM317Task_Init(0,3000);
 	LM317_POWER_ON;
 	//JTAG_Init(pJtagDevice0, DelayTask_us, DelayTask_ms, SysTickTask_GetTick);
 	//JTAG_EnterProg(pJtagDevice0);
 	//JTAG_ReadIDChip(pJtagDevice0,NULL);
 	//JTAG_ReadChipID(pJtagDevice0, NULL);
 	//JTAG_ExitProg(pJtagDevice0);
+	HVPP_Init(pHvppDevice0, DelayTask_us, DelayTask_ms, SysTickTask_GetTick);
+	UINT8_T tempID[3]={0x00,0x00,0x00};
+	HVPP_EnterProg(pHvppDevice0,0);
+	HVPP_ReadChipID(pHvppDevice0, tempID);
+	UINT16_T i=0;
+	for (i=0;i<256;i++)
+	{
+		HVPP_DATABUS_WRITE(pHvppDevice0, i);
+	}
+	HVPP_ExitProg(pHvppDevice0);
 	//---ADC初始化
 	ADCTask_ADC_Init();
 	ADCTask_ADCTask_START(ADC1);

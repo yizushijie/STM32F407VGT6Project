@@ -71,7 +71,7 @@ extern "C" {
 		USART_TypeDef							*msgUSART;											//---USART端口
 		USART_TXDHandlerType					msgTxdHandler;										//---发送函数
 		USART_RXDHandlerType					msgRxdHandler;										//---接收函数
-		UINT32_T(*msgTimeTick)(void);															//---用于超时计数
+		UINT32_T(*msgTimeTick)(void);																//---用于超时计数
 	};
 
 	//===是否重映射printf函数
@@ -181,8 +181,7 @@ extern "C" {
 	#endif
 	
 	//===解析命令中的含义
-	#if (USART1_RX_MAX_SIZE>0xFB)
-	
+	#if (USART1_RX_MAX_SIZE>0xFB)	
 		//===设备地址在命令中的位置
 		#define USART1_ID_INDEX						3		
 		//===协议中的命令1---主命令

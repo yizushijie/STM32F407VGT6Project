@@ -7,9 +7,9 @@
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T SI5351ALib_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT32_T delay), UINT8_T isHWI2C)
+UINT8_T SI5351ALib_I2C_Init(SI5351A_HandlerType* SI5351Ax, void(*pFuncDelayus)(UINT32_T delay), UINT32_T(*pFuncTimerTick)(void), UINT8_T isHWI2C)
 {
-	return SI5351A_I2C_Init(SI5351Ax,pFuncDelayus,isHWI2C);
+	return SI5351A_I2C_Init(SI5351Ax,pFuncDelayus,pFuncTimerTick,isHWI2C);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

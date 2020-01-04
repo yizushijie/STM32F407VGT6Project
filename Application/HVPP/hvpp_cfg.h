@@ -251,7 +251,7 @@ extern "C" {
 	#define	HVPP_XA_OUT_00									( HVPP_XA1_OUT_0,HVPP_XA0_OUT_0 )																						//---加载存储器地址
 	#define	HVPP_XA_OUT_01									( HVPP_XA1_OUT_0,HVPP_XA0_OUT_1 )																						//---加载数据
 	#define	HVPP_XA_OUT_10									( HVPP_XA1_OUT_1,HVPP_XA0_OUT_0 )																						//---加载命令
-	#define	HVPP_XA_OUT_11									( HVPP_XA1_OUT_1,HVPP_XA0_OUT_0 )																						//---空闲模式
+	#define	HVPP_XA_OUT_11									( HVPP_XA1_OUT_1,HVPP_XA0_OUT_1 )																						//---空闲模式
 	#define HVPP_XA_LOAD_ADDR								HVPP_XA_OUT_00
 	#define HVPP_XA_LOAD_DATA								HVPP_XA_OUT_01
 	#define HVPP_XA_LOAD_CMD								HVPP_XA_OUT_10
@@ -283,7 +283,7 @@ extern "C" {
 	#define HVPP_WAIT_STATE_STABLE							DELAY_NOP_COUNT(8)																										//---等待几个时钟周期，用于数据的稳定
 
 	//===进入高压模式之前，初始化控制端
-	#define HVPP_CTRL_INIT_READ								( HVPP_CTRL_BUS_READ ,HVPP_CTRL_BUS_VAL(0xFF),HVPP_CTRL_DIR_TO_DEVICE )													//---进入高压模式之前，初始化控制端
+	#define HVPP_CTRL_INIT_READ								( HVPP_CTRL_BUS_READ ,HVPP_CTRL_BUS_VAL(0x7F),HVPP_CTRL_DIR_TO_DEVICE )													//---进入高压模式之前，初始化控制端
 	#define HVPP_CTRL_INIT_WRITE							( HVPP_CTRL_BUS_WRITE,HVPP_CTRL_BUS_VAL(0x36),HVPP_CTRL_DIR_TO_DEVICE )													//---进入高压模式之后，初始化控制端
 
 	//===并行高压的DUT电源
@@ -309,9 +309,9 @@ extern "C" {
 	#define HVPP_CMD_READ_EEPROM							0B00000011																												//---读取EEPROM
 	//<<<===高压并行组合命令---结束
 
-	//===数据总线的状态
-	#define HVPP_DATA_BUS_STATE_READ						0																														//---输出总线处于读取状态
-	#define HVPP_DATA_BUS_STATE_WRITE						1																														//---数据总线处于写入状态
+	//===数据总线的模式
+	#define HVPP_DATA_BUS_MODE_READ							0																														//---输出总线处于读取模式
+	#define HVPP_DATA_BUS_MODE_WRITE						1																														//---数据总线处于写入模式
 				
 	//===数据总线的读取模式	
 	#define HVPP_DATA_BUS_READ_DIR							0																														//---切换数据总线的方向为读取模式

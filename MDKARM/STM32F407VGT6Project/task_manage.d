@@ -90,16 +90,16 @@ stm32f407vgt6project/task_manage.o: \
   ..\Application\RFASK\rfask_eeprom.h \
   ..\Application\Encode\encode_task.h ..\Application\Encode\encode_lib.h \
   ..\Application\Encode\encode_cfg.h ..\Application\HardWare\hw_cfg.h \
-  ..\Application\HVPP\hvpp_task.h ..\Application\HVSP\hvsp_task.h \
-  ..\Application\ISP\isp_task.h ..\Application\ISP\isp_lib.h \
-  ..\Application\ISP\isp_cfg.h ..\Application\SPI\spi_task.h \
-  ..\Application\SPI\spi_lib.h ..\Application\SPI\spi_cfg.h \
-  ..\Application\ADC\adc_Task.h ..\Application\JTAG\jtag_task.h \
-  ..\Application\JTAG\jtag_lib.h ..\Application\JTAG\jtag_cfg.h \
-  ..\Application\MCO\mco_cfg.h ..\Application\OLED\oled_task.h \
-  ..\Application\OLED\oled_lib.h ..\Application\OLED\oled_cfg.h \
-  ..\Application\Random\random_task.h ..\Application\Random\random_lib.h \
-  ..\Application\Random\random_cfg.h \
+  ..\Application\HVPP\hvpp_cfg.h ..\Application\HVPP\hvpp_task.h \
+  ..\Application\HVSP\hvsp_task.h ..\Application\ISP\isp_task.h \
+  ..\Application\ISP\isp_lib.h ..\Application\ISP\isp_cfg.h \
+  ..\Application\SPI\spi_task.h ..\Application\SPI\spi_lib.h \
+  ..\Application\SPI\spi_cfg.h ..\Application\ADC\adc_Task.h \
+  ..\Application\JTAG\jtag_task.h ..\Application\JTAG\jtag_lib.h \
+  ..\Application\JTAG\jtag_cfg.h ..\Application\MCO\mco_cfg.h \
+  ..\Application\OLED\oled_task.h ..\Application\OLED\oled_lib.h \
+  ..\Application\OLED\oled_cfg.h ..\Application\Random\random_task.h \
+  ..\Application\Random\random_lib.h ..\Application\Random\random_cfg.h \
   ..\Application\SI5351A\si5351a_task.h \
   ..\Application\SI5351A\si5351a_lib.h \
   ..\Application\SI5351A\si5351a_cfg.h \

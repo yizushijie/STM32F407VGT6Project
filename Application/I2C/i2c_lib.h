@@ -8,7 +8,7 @@ extern "C" {
 	#include "i2c_cfg.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	//---º¯Êý¶¨Òå
-	UINT8_T I2CLib_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay));
+	UINT8_T I2CLib_MSW_Init(I2C_HandlerType *I2Cx, void(*pFuncDelayus)(UINT32_T delay),UINT32_T(*pFuncTimerTick)(void));
 	UINT8_T I2CLib_MSW_DeInit(I2C_HandlerType *I2Cx);
 	UINT8_T I2CLib_MSW_START(I2C_HandlerType *I2Cx, UINT8_T isWrite);
 	UINT8_T I2CLib_MSW_STOP(I2C_HandlerType *I2Cx);
