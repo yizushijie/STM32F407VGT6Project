@@ -11,7 +11,6 @@ extern "C" {
 	#include "delay_task.h"
 	#include "my_malloc.h"
 	#include "hw_cfg.h"
-	
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===编程可选择的时钟
 	#define ISP_SCK_AUTO						0																																	//---自动
@@ -44,10 +43,6 @@ extern "C" {
 	#define ISP_COMM_MAX_SIZE					4	
 	//===定义ISP状态保持的时间状态
 	#define ISP_STATE_TIME_OUT_MS				500
-	//===定义是否使用电平转换芯片，带OE控制端的
-	#define ISP_USE_lEVEL_SHIFT 			
-	//===定义使用了高压HVSET模式
-	#define ISP_USE_HV_RESET
 	
 	//===定义结构体
 	typedef struct _ISP_HandlerType				ISP_HandlerType;

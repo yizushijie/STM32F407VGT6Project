@@ -77,29 +77,29 @@ stm32f407vgt6project/main.o: ..\Application\APP\main.c \
   ..\Application\DAC\dac_cfg.h ..\Application\Decode\decode_task.h \
   ..\Application\Decode\decode_lib.h ..\Application\Decode\decode_cfg.h \
   ..\Application\Timer\timer_task.h ..\Application\Timer\timer_lib.h \
-  ..\Application\Timer\timer_cfg.h ..\Application\RFASKHW\rfaskhw_cfg.h \
-  ..\Application\RFASK\rfask_task.h ..\Application\RFASK\rfask_lib.h \
-  ..\Application\RFASK\rfask_cfg.h ..\Application\WM8510\wm8510_task.h \
-  ..\Application\WM8510\wm8510_lib.h ..\Application\WM8510\wm8510_cfg.h \
-  ..\Application\USART\usart_task.h ..\Application\USART\usart_lib.h \
-  ..\Application\USART\usart_cfg.h ..\Application\Power\power_task.h \
-  ..\Application\Power\power_lib.h ..\Application\Power\power_cfg.h \
-  ..\Application\LED\led_task.h ..\Application\LED\led_lib.h \
-  ..\Application\LED\led_cfg.h ..\Application\Key\key_task.h \
-  ..\Application\Key\key_lib.h ..\Application\Key\key_cfg.h \
-  ..\Application\RFASK\rfask_eeprom.h \
+  ..\Application\Timer\timer_cfg.h ..\Application\HardWare\hw_cfg.h \
+  ..\Application\RFASKHW\rfaskhw_cfg.h ..\Application\RFASK\rfask_task.h \
+  ..\Application\RFASK\rfask_lib.h ..\Application\RFASK\rfask_cfg.h \
+  ..\Application\WM8510\wm8510_task.h ..\Application\WM8510\wm8510_lib.h \
+  ..\Application\WM8510\wm8510_cfg.h ..\Application\USART\usart_task.h \
+  ..\Application\USART\usart_lib.h ..\Application\USART\usart_cfg.h \
+  ..\Application\Power\power_task.h ..\Application\Power\power_lib.h \
+  ..\Application\Power\power_cfg.h ..\Application\LED\led_task.h \
+  ..\Application\LED\led_lib.h ..\Application\LED\led_cfg.h \
+  ..\Application\Key\key_task.h ..\Application\Key\key_lib.h \
+  ..\Application\Key\key_cfg.h ..\Application\RFASK\rfask_eeprom.h \
   ..\Application\Encode\encode_task.h ..\Application\Encode\encode_lib.h \
-  ..\Application\Encode\encode_cfg.h ..\Application\HardWare\hw_cfg.h \
-  ..\Application\HVPP\hvpp_cfg.h ..\Application\HVPP\hvpp_task.h \
-  ..\Application\HVSP\hvsp_task.h ..\Application\ISP\isp_task.h \
-  ..\Application\ISP\isp_lib.h ..\Application\ISP\isp_cfg.h \
-  ..\Application\SPI\spi_task.h ..\Application\SPI\spi_lib.h \
-  ..\Application\SPI\spi_cfg.h ..\Application\ADC\adc_Task.h \
-  ..\Application\JTAG\jtag_task.h ..\Application\JTAG\jtag_lib.h \
-  ..\Application\JTAG\jtag_cfg.h ..\Application\MCO\mco_cfg.h \
-  ..\Application\OLED\oled_task.h ..\Application\OLED\oled_lib.h \
-  ..\Application\OLED\oled_cfg.h ..\Application\Random\random_task.h \
-  ..\Application\Random\random_lib.h ..\Application\Random\random_cfg.h \
+  ..\Application\Encode\encode_cfg.h ..\Application\HVPP\hvpp_cfg.h \
+  ..\Application\HVPP\hvpp_task.h ..\Application\HVSP\hvsp_task.h \
+  ..\Application\ISP\isp_task.h ..\Application\ISP\isp_lib.h \
+  ..\Application\ISP\isp_cfg.h ..\Application\SPI\spi_task.h \
+  ..\Application\SPI\spi_lib.h ..\Application\SPI\spi_cfg.h \
+  ..\Application\ADC\adc_Task.h ..\Application\JTAG\jtag_task.h \
+  ..\Application\JTAG\jtag_lib.h ..\Application\JTAG\jtag_cfg.h \
+  ..\Application\MCO\mco_cfg.h ..\Application\OLED\oled_task.h \
+  ..\Application\OLED\oled_lib.h ..\Application\OLED\oled_cfg.h \
+  ..\Application\Random\random_task.h ..\Application\Random\random_lib.h \
+  ..\Application\Random\random_cfg.h \
   ..\Application\SI5351A\si5351a_task.h \
   ..\Application\SI5351A\si5351a_lib.h \
   ..\Application\SI5351A\si5351a_cfg.h \

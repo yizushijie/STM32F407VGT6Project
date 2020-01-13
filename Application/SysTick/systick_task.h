@@ -10,9 +10,9 @@ extern "C" {
 	//===º¯Êý¶¨Òå
 	UINT8_T	 SysTickTask_Init(void);
 	UINT8_T	 SysTickTask_DeInit(void);
-	UINT8_T	SysTickTask_CreateTickTask(void(*pFuncTick)(void));
-	UINT8_T SysTickTask_DeleteTickTask(void(*pFuncTick)(void));
-	//UINT8_T	 SysTickTask_FuncTick(void(*pFuncTick)(void));
+	UINT8_T	 SysTickTask_CreateTickTask(void(*pFuncTick)(void));
+	UINT8_T	 SysTickTask_DeleteTickTask(void(*pFuncTick)(void));
+	void	* SysTickTask_GetTickTask(UINT8_T index);
 	UINT8_T  SysTickTask_IRQDecTick(UINT32_T waitDecTick);
 	UINT8_T  SysTickTask_DecTick(UINT32_T waitDecTick);
 	UINT32_T SysTickTask_GetTick(void);

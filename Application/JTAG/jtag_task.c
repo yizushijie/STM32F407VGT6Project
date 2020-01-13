@@ -424,9 +424,9 @@ UINT8_T JTAGTask_USARTCmd_ReadChipID(JTAG_HandlerType* JTAGx, USART_HandlerType*
 {
 	UINT8_T	_return = 0;
 	//---读取设备ID信息
-	_return = JTAGTask_ReadChipID(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW);
+	_return = JTAGTask_ReadChipID(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex);
 	//---数据长度偏移
-	USARTx->msgTxdHandler.msgIndexW += 3;
+	USARTx->msgTxdHandler.msgWIndex += 3;
 	//---执行结果
 	return _return;
 }
@@ -442,9 +442,9 @@ UINT8_T JTAGTask_USARTCmd_ReadChipCalibration(JTAG_HandlerType* JTAGx, USART_Han
 {
 	UINT8_T	_return = 0;
 	//---读取设备的校准字
-	_return = JTAGTask_ReadChipCalibration(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset]);
+	_return = JTAGTask_ReadChipCalibration(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset]);
 	//---数据地址偏移
-	USARTx->msgTxdHandler.msgIndexW += USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset];
+	USARTx->msgTxdHandler.msgWIndex += USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset];
 	//---执行结果
 	return _return;
 }
@@ -463,19 +463,19 @@ UINT8_T JTAGTask_USARTCmd_ReadChipFuseAndLock(JTAG_HandlerType* JTAGx, USART_Han
 	if (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset] == 0)
 	{
 		//---读取熔丝位
-		_return = JTAGTask_ReadChipFuse(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset]);
+		_return = JTAGTask_ReadChipFuse(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset]);
 		//---校验是否读取拓展熔丝位
 		if (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset] != 0)
 		{
-			USARTx->msgTxdHandler.msgIndexW += 1;
+			USARTx->msgTxdHandler.msgWIndex += 1;
 		}
-		USARTx->msgTxdHandler.msgIndexW += 2;
+		USARTx->msgTxdHandler.msgWIndex += 2;
 	}
 	else
 	{
 		//---读取加密位
-		_return = JTAGTask_ReadChipLock(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW);
-		USARTx->msgTxdHandler.msgIndexW += 1;
+		_return = JTAGTask_ReadChipLock(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex);
+		USARTx->msgTxdHandler.msgWIndex += 1;
 	}
 	//---执行结果
 	return _return;
@@ -517,7 +517,7 @@ UINT8_T JTAGTask_USARTCmd_ReadChipRom(JTAG_HandlerType* JTAGx, USART_HandlerType
 	UINT8_T	_return = 0;
 	UINT16_T length = 0;
 	//---计算读取数据的大小
-	if (USARTx->msgRxdHandler.msgSize < 0xFF)
+	if (USARTx->msgRxdHandler.msgMaxSize < 0xFF)
 	{
 		length = USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset];
 	}
@@ -527,9 +527,9 @@ UINT8_T JTAGTask_USARTCmd_ReadChipRom(JTAG_HandlerType* JTAGx, USART_HandlerType
 		length = (length << 8) + USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 1];
 	}
 	//---读取ROM页信息
-	_return = JTAGTask_ReadChipRom(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset], length);
+	_return = JTAGTask_ReadChipRom(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex, USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset], length);
 	//---数据的偏移
-	USARTx->msgTxdHandler.msgIndexW += length;
+	USARTx->msgTxdHandler.msgWIndex += length;
 	//---执行结果
 	return _return;
 }
@@ -548,7 +548,7 @@ UINT8_T JTAGTask_USARTCmd_SetProgClok(JTAG_HandlerType* JTAGx, USART_HandlerType
 	if (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset] == 1)
 	{
 		_return = JTAGTask_ReadChipPower(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgDataOneIndex + USARTx->msgIndexOffset + 1);
-		USARTx->msgTxdHandler.msgIndexW += 2;
+		USARTx->msgTxdHandler.msgWIndex += 2;
 	}
 	//---设置电压
 	else if (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset] == 2)
@@ -576,7 +576,7 @@ UINT8_T JTAGTask_USARTCmd_ReadChipFlash(JTAG_HandlerType* JTAGx, USART_HandlerTy
 	UINT8_T	_return = 0;
 	UINT16_T length = 0;
 	//---计算读取数据的大小
-	if (USARTx->msgRxdHandler.msgSize < 0xFF)
+	if (USARTx->msgRxdHandler.msgMaxSize < 0xFF)
 	{
 		length = USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 2];
 	}
@@ -586,13 +586,13 @@ UINT8_T JTAGTask_USARTCmd_ReadChipFlash(JTAG_HandlerType* JTAGx, USART_HandlerTy
 		length = (length << 8) + USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 3];
 	}
 	//---读取指定位置的Flash数据
-	_return = JTAGTask_ReadChipFlashAddr(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW,
+	_return = JTAGTask_ReadChipFlashAddr(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex,
 		USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset],
 		USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset],
 		USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 1],
 		length);
 	//---数据的偏移
-	USARTx->msgTxdHandler.msgIndexW += length;
+	USARTx->msgTxdHandler.msgWIndex += length;
 	//---执行结果
 	return _return;
 }
@@ -609,7 +609,7 @@ UINT8_T JTAGTask_USARTCmd_WriteChipFlashPage(JTAG_HandlerType* JTAGx, USART_Hand
 	UINT8_T dataOffset = 0;
 	UINT16_T length = 0;
 	//---计算写入数据的大小
-	if (USARTx->msgRxdHandler.msgSize < 0xFF)
+	if (USARTx->msgRxdHandler.msgMaxSize < 0xFF)
 	{
 		length = USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 2];
 		dataOffset = 3;
@@ -640,7 +640,7 @@ UINT8_T JTAGTask_USARTCmd_ReadChipEeprom(JTAG_HandlerType* JTAGx, USART_HandlerT
 	UINT8_T	_return = 0;
 	UINT16_T length = 0;
 	//---计算读取数据的大小
-	if (USARTx->msgRxdHandler.msgSize < 0xFF)
+	if (USARTx->msgRxdHandler.msgMaxSize < 0xFF)
 	{
 		length = USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 1];
 	}
@@ -650,12 +650,12 @@ UINT8_T JTAGTask_USARTCmd_ReadChipEeprom(JTAG_HandlerType* JTAGx, USART_HandlerT
 		length = (length << 8) + USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 2];
 	}
 	//---读取指定位置的Eeprom数据
-	_return = JTAGTask_ReadChipEepromAddr(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgIndexW,
+	_return = JTAGTask_ReadChipEepromAddr(JTAGx, USARTx->msgTxdHandler.pMsgVal + USARTx->msgTxdHandler.msgWIndex,
 		USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex + USARTx->msgIndexOffset],
 		USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset],
 		length);
 	//---数据的偏移
-	USARTx->msgTxdHandler.msgIndexW += length;
+	USARTx->msgTxdHandler.msgWIndex += length;
 	//---执行结果
 	return _return;
 }
@@ -672,7 +672,7 @@ UINT8_T JTAGTask_USARTCmd_WriteChipEeprom(JTAG_HandlerType* JTAGx, USART_Handler
 	UINT8_T dataOffset = 0;
 	UINT16_T length = 0;
 	//---计算读取数据的大小
-	if (USARTx->msgRxdHandler.msgSize < 0xFF)
+	if (USARTx->msgRxdHandler.msgMaxSize < 0xFF)
 	{
 		length = USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataTwoIndex + USARTx->msgIndexOffset + 1];
 		dataOffset = 2;
@@ -780,7 +780,7 @@ UINT8_T JTAGTask_USARTCmd_ParentTask(JTAG_HandlerType* JTAGx, USART_HandlerType*
 	if ((USARTx != NULL) && (JTAGx != NULL))
 	{
 		//---判断接收是否完成
-		if (USARTTask_GetReadState(USARTx) == 1)
+		if (USARTTask_GetState(&(USARTx->msgRxdHandler)) == 1)
 		{
 			//---CRC的校验和设备ID校验
 			if ((USARTTask_CRCTask_Read(USARTx) == OK_0) && (USARTTask_DeviceID(USARTx) == OK_0))
@@ -801,11 +801,11 @@ UINT8_T JTAGTask_USARTCmd_ParentTask(JTAG_HandlerType* JTAGx, USART_HandlerType*
 			else
 			{
 				//---发生CRC校验错误
-				USART_Printf(USARTx, "=>>串口%d:发生CRC校验错误<<=\r\n", (USARTx->msgIndex - 1));
+				USART_Printf(USARTx, "=>>SP%d:CRC Check Error<<=\r\n", (USARTx->msgIndex - 1));
 			}
 			return USARTTask_Read_Init(USARTx);
 		}
-		return USARTTask_TimeOVFTask(USARTx);
+		return USARTTask_TimeTask_OverFlow(USARTx);
 	}
 	return ERROR_2;
 }

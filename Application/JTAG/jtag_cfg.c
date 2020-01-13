@@ -14,6 +14,7 @@ pJTAG_HandlerType	pJtagDevice0 = &g_JtagDevice0;
 //////////////////////////////////////////////////////////////////////////////
 void JTAG_Device0_RST(UINT8_T rstState)
 {
+#ifdef JTAG_USE_HV_RESET
 	if (rstState == JTAG_RST_TO_GND)
 	{
 		RST_PORT_TO_GND;
@@ -26,6 +27,7 @@ void JTAG_Device0_RST(UINT8_T rstState)
 	{
 		RST_PORT_TO_HZ;
 	}
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -94,15 +96,15 @@ UINT8_T JTAG_Device0_Init(JTAG_HandlerType* JTAGx)
 #endif
 	//---OE使用的端口
 #ifdef JTAG_USE_lEVEL_SHIFT
-#ifdef JTAG_USE_HV_RESET
-	//---OE->PD13---控制电平装换的使能
-	JTAGx->msgOE.msgPort = GPIOD;
-	JTAGx->msgOE.msgBit = LL_GPIO_PIN_11;
-#else
-	 //---OE->PD13---控制电平装换的使能
-	JTAGx->msgOE.msgPort = GPIOD;
-	JTAGx->msgOE.msgBit = LL_GPIO_PIN_13;
-#endif
+	#ifdef JTAG_USE_HV_RESET
+		//---OE->PD13---控制电平装换的使能
+		JTAGx->msgOE.msgPort = GPIOD;
+		JTAGx->msgOE.msgBit = LL_GPIO_PIN_11;
+	#else
+		 //---OE->PD13---控制电平装换的使能
+		JTAGx->msgOE.msgPort = GPIOD;
+		JTAGx->msgOE.msgBit = LL_GPIO_PIN_13;
+	#endif
 #endif
 	JTAGx->msgPluseWidth = 0;
 	return OK_0;
@@ -174,7 +176,7 @@ UINT8_T JTAG_GPIO_Init(JTAG_HandlerType* JTAGx)
 	JTAG_GPIO_OUT_1(JTAGx->msgTMS);
 #ifndef JTAG_USE_HV_RESET
 	//---使能端口时钟
-	GPIOTask_Clock(JTAGx->msgRST.msgPort, 1);
+	GPIOTask_Clock(JTAGx->msgRST.msgPort, PERIPHERAL_CLOCK_ENABLE);
 	//---RST---输出为高
 	GPIO_InitStruct.Pin = JTAGx->msgRST.msgBit;
 	LL_GPIO_Init(JTAGx->msgRST.msgPort, &GPIO_InitStruct);
@@ -2819,7 +2821,7 @@ UINT8_T JTAG_AddWatch(JTAG_HandlerType* JTAGx)
 			_return = ERROR_1;
 		}
 	}
-	return OK_0;
+	return _return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

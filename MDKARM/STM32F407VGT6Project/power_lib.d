@@ -64,4 +64,4 @@ stm32f407vgt6project/power_lib.o: ..\Application\Power\power_lib.c \
   ..\Application\Delay\delay_lib.h ..\Application\Delay\delay_cfg.h \
   ..\Application\SysTick\systick_task.h \
   ..\Application\SysTick\systick_lib.h \
-  ..\Application\SysTick\systick_cfg.h
+  ..\Application\SysTick\systick_cfg.h ..\Application\HardWare\hw_cfg.h

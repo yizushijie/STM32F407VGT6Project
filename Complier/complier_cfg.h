@@ -548,23 +548,21 @@ extern "C" {
 
 	//===结构体定义
 	typedef struct _RTC_HandlerType					RTC_HandlerType;
-
 	//===定义指针结构体
 	typedef struct _RTC_HandlerType					*pRTC_HandlerType;
-
 	//===时钟结构体的定义
 	struct _RTC_HandlerType
 	{
-		UINT8_T second;								//---秒
-		UINT8_T minute;								//---分
-		UINT8_T hour;								//---时
-		UINT8_T day;								//---天
-		UINT8_T week;								//---星期
-		UINT8_T month;								//---月
-		UINT8_T year;								//---年
-		UINT8_T century;							//---世纪
-		UINT8_T time24H;							//---24H格式。0---12小时；1---24小时
-		UINT32_T secondTick;						//---秒变化的记录
+		UINT8_T second;																																								//---秒
+		UINT8_T minute;																																								//---分
+		UINT8_T hour;																																								//---时
+		UINT8_T day;																																								//---天
+		UINT8_T week;																																								//---星期
+		UINT8_T month;																																								//---月
+		UINT8_T year;																																								//---年
+		UINT8_T century;																																							//---世纪
+		UINT8_T time24H;																																							//---24H格式。0---12小时；1---24小时
+		UINT32_T secondTick;																																						//---秒变化的记录
 	};
 
 	//===常用宏定义
@@ -580,36 +578,27 @@ extern "C" {
 		#define true	1
 			typedef enum
 			{
-				false,
+				false=0,
 				true,
 			}bool;
 	#endif
 	
-    //===两个数据比较大小
-	#define MAX(a,b)								( (a) > (b) ? (a) : (b) )
-	#define MIN(a,b)								( (a) < (b) ? (a) : (b) )
-	//===判断一个数据是不是奇数
-	#define ODD(x)									((x&0x01)==1?1:0)
-	//===判断一个数据是不是偶数
-	#define EVEN(x)									((x&0x01)!=1?1:0)
-	//===数据的绝对值
-	#define ABS(a)									( (a)>=0?(a):-(a) )	
-	//===范围内的最小值
-	#define RANGE(x, a, b)							( MIN( MAX( x, a ), b ) )	
-	//===数据的绝对差
-	#define ABS_SUB(a,b)							( (a)>(b)?((a)-(b)):((b)-(a)) )	
-	//===利用__DATE__获取当前日期，占用12个字节，包括字符串结束符
-	#define	VERSION_DATE_SIZE						12	
-	//===利用__TIME__获取当前时间，占用9个字节，包括字符串结束符
-	#define VERSION_TIME_SIZE						9	
-	//===判断是否是闰年
-	#define YEAR_TYPE(a)							( ((a%100!=0)&&(a%4==0))||(a%400==0) )	
+	//===数据基本操作
+	#define MAX(a,b)								( (a) > (b) ? (a) : (b) )																										//---取最大值
+	#define MIN(a,b)								( (a) < (b) ? (a) : (b) )																										//---取最小值
+	#define ODD(x)									((x&0x01)==1?1:0)																												//---校验是不是奇数
+	#define EVEN(x)									((x&0x01)!=1?1:0)																												//---校验是不是偶数
+	#define ABS(a)									( (a)>=0?(a):-(a) )																												//---数的绝对值
+	#define RANGE(x, a, b)							( MIN( MAX( x, a ), b ) )																										//---取三个数中的最小值
+	#define ABS_SUB(a,b)							( (a)>(b)?((a)-(b)):((b)-(a)) )																									//---两个数的绝对值差
+	#define	VERSION_DATE_SIZE						12																																//---利用__DATE__获取当前日期，占用12个字节，包括字符串结束符
+	#define VERSION_TIME_SIZE						9																																//---利用__TIME__获取当前时间，占用9个字节，包括字符串结束符	
+	#define YEAR_TYPE(a)							( ((a%100!=0)&&(a%4==0))||(a%400==0) )																							//---判断是否是闰年
 	
 	//////////////////////////////////////////////////////////////////////////
 	//===依据MCU的型号不同，选择不同的头文件，暂时支持STM32和AVR
-	//===选择MCU的型号
-	//#define USE_MCU_AVR
-	#define USE_MCU_STM32	
+	//#define USE_MCU_AVR																																							//---选择AVR型号
+	#define USE_MCU_STM32																																							//---选择STM32型号
 	//////////////////////////////////////////////////////////////////////////
 	//===依据MCU型号，包含不同的头文件
 	#if defined(USE_MCU_STM32)
@@ -620,8 +609,8 @@ extern "C" {
 		#error "不支持型号的MCU."
 	#endif 
 	
-	//===使用编译器实现的版本
-	#define USE_COMPLIER_VERSION
+	//===通过编译时间，用于实现版本区分
+	#define USE_COMPLIER_VERSION																																					//---使用编译器实现的版本
 	//===编译的时间和日期信息
 	#ifdef USE_COMPLIER_VERSION
 		//===外部调用接口

@@ -9,6 +9,7 @@ extern "C" {
 	#include "gpio_task.h"
 	#include "dac_task.h"
 	#include "delay_task.h"
+	#include "hw_cfg.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 	
 	//===DPSA使能端口
@@ -104,8 +105,7 @@ extern "C" {
 	void Power_Init(void);
 	void Power_DeInit(void);
     
-	#define LM317_USE_HV_RESET
-
+	//===用于区分不同的板子
 	#ifdef LM317_USE_HV_RESET
 		//===LM317使能端口
 		#define LM317_CTRH_PORT						GPIOB

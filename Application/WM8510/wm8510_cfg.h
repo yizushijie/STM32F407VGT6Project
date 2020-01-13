@@ -9,6 +9,7 @@ extern "C" {
 	#include "complier_lib.h"
 	#include "timer_task.h"
 	#include "i2c_task.h"
+	#include "hw_cfg.h"
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	//===每100KHz需要补偿15Hz
@@ -419,11 +420,6 @@ extern "C" {
 	//===定义WM8510的输出频率变化多少次之后执行复位操作
 	//#define USE_WM8510_RESET
 	#define WM8510_FREQ_CHANGE_MAX			3000
-	//===定义使用了高压HVSET模式
-	#define WM8510_USE_HV_RESET
-	//===定义是否使用电平转换芯片，带OE控制端的
-	#define WM8510_USE_lEVEL_SHIFT 	
-	
 	//===结构体定义
 	typedef struct _WM8510_HandlerType			WM8510_HandlerType;
 	//===指针结构体定义

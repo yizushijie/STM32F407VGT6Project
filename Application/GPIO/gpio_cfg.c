@@ -705,3 +705,42 @@ void GPIO_TogglePin(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
 	}
 	(_return == 0) ? (LL_GPIO_TogglePin(GPIOx, PinMask)) : (LL_GPIO_TogglePins(GPIOx, PinMask));
 }
+
+///////////////////////////////////////////////////////////////////////////////
+//////函	   数：
+//////功	   能： 读取端口的输入电平
+//////输入参数: 
+//////输出参数: 
+//////说	   明：
+//////////////////////////////////////////////////////////////////////////////
+UINT32_T GPIO_ReadInputPort(GPIO_TypeDef* GPIOx, UINT32_T PinMask)
+{
+	UINT8_T _return = 0;
+	//---遍历端口的序号
+	switch (PinMask)
+	{
+		case LL_GPIO_PIN_0:
+		case LL_GPIO_PIN_1:
+		case LL_GPIO_PIN_2:
+		case LL_GPIO_PIN_3:
+		case LL_GPIO_PIN_4:
+		case LL_GPIO_PIN_5:
+		case LL_GPIO_PIN_6:
+		case LL_GPIO_PIN_7:
+		case LL_GPIO_PIN_8:
+		case LL_GPIO_PIN_9:
+		case LL_GPIO_PIN_10:
+		case LL_GPIO_PIN_11:
+		case LL_GPIO_PIN_12:
+		case LL_GPIO_PIN_13:
+		case LL_GPIO_PIN_14:
+		case LL_GPIO_PIN_15:
+			_return = 0;
+			break;
+		default:
+			_return = 1;
+			break;
+	}
+	//---返回读取结果
+	return ((_return==0)?(((LL_GPIO_ReadInputPort(GPIOx) & PinMask) != 0) ? 1 : 0):((LL_GPIO_ReadInputPort(GPIOx) & PinMask)));
+}

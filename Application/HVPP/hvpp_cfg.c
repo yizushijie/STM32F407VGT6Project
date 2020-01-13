@@ -706,7 +706,7 @@ UINT8_T HVPP_EraseChip(HVPP_HandlerType* HVPPx)
 	}	
 	//---释放状态,为空闲模式
 	//HVPP_XA_LOAD_IDLE;
-	return OK_0;
+	return _return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

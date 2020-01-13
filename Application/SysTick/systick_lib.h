@@ -12,7 +12,7 @@ extern "C" {
 	UINT8_T	 SysTickLib_DeInit(void);
 	UINT8_T	SysTickLib_CreateTickTask(void(*pFuncTick)(void));
 	UINT8_T SysTickLib_DeleteTickTask(void(*pFuncTick)(void));
-	//UINT8_T	 SysTickLib_FuncTick(void(*pFuncTick)(void));
+	void* SysTickLib_GetTickTask(UINT8_T index);
 	UINT8_T  SysTickLib_IRQDecTick(UINT32_T waitDecTick);
 	UINT8_T  SysTickLib_DecTick(UINT32_T waitDecTick);
 	UINT32_T SysTickLib_GetTick(void);

@@ -48,7 +48,6 @@ UINT8_T SysTickLib_DeleteTickTask(void(*pFuncTick)(void))
 	return SysTick_DeleteTickTask(pFuncTick);
 }
 
-/*
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
 //////功		能：
@@ -56,11 +55,11 @@ UINT8_T SysTickLib_DeleteTickTask(void(*pFuncTick)(void))
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T	SysTickLib_FuncTick(void(*pFuncTick)(void))
+void* SysTickLib_GetTickTask(UINT8_T index)
 {
-	return SysTick_FuncTick(pFuncTick);
+	return SysTick_GetTickTask(index);
 }
-*/
+
 ///////////////////////////////////////////////////////////////////////////////
 //////函	   数：
 //////功	   能：

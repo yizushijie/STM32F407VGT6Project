@@ -8,6 +8,29 @@ extern "C" {
 	#include "complier_lib.h"
 	#include "gpio_task.h"
 	//////////////////////////////////////////////////////////////////////////////////////
+	
+	//===WM8510的控制宏定义参数																																							
+	#define WM8510_USE_lEVEL_SHIFT 																																					//---定义是否使用电平转换芯片，带OE控制端的		
+	#define WM8510_USE_HV_RESET																																						//---定义使用了高压HVSET模式	
+
+	//===ISP操作控制宏定义参数
+	#define ISP_USE_lEVEL_SHIFT 																																					//---定义是否使用电平转换芯片，带OE控制端的			
+	#define ISP_USE_HV_RESET																																						//---定义使用了高压HVSET模式		
+	
+	//===JTAG操作控制宏定义参数
+	#define JTAG_USE_lEVEL_SHIFT 																																					//---定义是否使用电平转换芯片，带OE控制端的
+	#define JTAG_USE_HV_RESET																																						//---定义使用了高压HVSET模式
+
+	//===DUT电源的控制宏定义参数
+	#define LM317_USE_HV_RESET
+	
+	//===控制使用的MCU信息
+	#define STM32_USE_F407VGT6																																						//---使用STM32F407VGT6
+	//#define STM32_USE_F407VET6																																					//---使用STM32F407VET6
+	
+	//===定义是否使用电平转换芯片，带OE控制端的
+	#define CALC_FREQ_USE_lEVEL_SHIFT
+
 	//===RESET的高压控制端H端口
 	#define RST_HEN_PORT						GPIOB
 	#define RST_HEN_BIT							LL_GPIO_PIN_2

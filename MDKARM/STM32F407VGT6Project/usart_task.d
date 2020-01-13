@@ -65,4 +65,9 @@ stm32f407vgt6project/usart_task.o: ..\Application\USART\usart_task.c \
   ..\Application\Timer\timer_lib.h ..\Application\Timer\timer_cfg.h \
   ..\Application\SysTick\systick_task.h \
   ..\Application\SysTick\systick_lib.h \
-  ..\Application\SysTick\systick_cfg.h
+  ..\Application\SysTick\systick_cfg.h ..\Application\HardWare\hw_cfg.h \
+  ..\Application\Power\power_task.h ..\Application\Power\power_lib.h \
+  ..\Application\Power\power_cfg.h ..\Application\DAC\dac_task.h \
+  ..\Application\DAC\dac_lib.h ..\Application\DAC\dac_cfg.h \
+  ..\Application\Delay\delay_task.h ..\Application\Delay\delay_lib.h \
+  ..\Application\Delay\delay_cfg.h

@@ -22,7 +22,7 @@ extern "C" {
 	{
 		GPIO_HandlerType	msgSCL;																																					//---SCL
 		GPIO_HandlerType	msgSDA;																																					//---SDA
-		UINT8_T				msgHwModel;																																				//---工作模式，默认是软件模拟---0，硬件模式---1
+		UINT8_T				msgHwMode;																																				//---工作模式，默认是软件模拟---0，硬件模式---1
 		UINT16_T			msgPluseWidth;																																			//---脉冲宽度，软件模拟使用
 		UINT16_T			msgAddr;																																				//---设备的地址
 		UINT32_T			msgClockSpeed;																																			//---硬件I2C的时钟速度

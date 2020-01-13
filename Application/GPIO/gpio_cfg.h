@@ -118,7 +118,7 @@ extern "C" {
 	//===设置端口输出取反
 	#define GPIO_OUT_C(	name, index )				GPIO_TogglePin( name, index )	
 	//===获取端口的输入状态,0---低电平，1---高电平
-	#define GPIO_GET_STATE(	name, index )			(((LL_GPIO_ReadInputPort(name)&index )!=0)?1:0)
+	#define GPIO_GET_STATE(	name, index )			GPIO_ReadInputPort( name, index )//((LL_GPIO_ReadInputPort(name)&index ))
 	//===GPIO低八位的数据
 	#define GPIO_L8BITS_OUT( name, val	)			( name->ODR=(name->ODR&0xFF00)| (val&0x00FF) )	
 	//===GPIO高八位的数据
@@ -144,6 +144,7 @@ extern "C" {
 	void GPIO_SetOutputPin(GPIO_TypeDef* GPIOx, UINT32_T PinMask);
 	void GPIO_ResetOutputPins(GPIO_TypeDef* GPIOx, UINT32_T PinMask);
 	void GPIO_TogglePin(GPIO_TypeDef* GPIOx, UINT32_T PinMask);
+	UINT32_T GPIO_ReadInputPort(GPIO_TypeDef* GPIOx, UINT32_T PinMask);
 	//////////////////////////////////////////////////////////////////////////////////////
 #ifdef __cplusplus
 }

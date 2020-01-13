@@ -298,15 +298,15 @@ extern "C" {
 	#define HVPP_DUT_RST_TO_HZ								RST_PORT_TO_HZ																											//---RST处于浮空状态，即不上拉也不下拉
 	
 	//>>>===高压并行组合命令---开始
-	#define HVPP_CMD_CHIP_ERASE								0B10000000																												//---芯片擦除
-	#define HVPP_CMD_WRITE_CHIP_FUSE						0B01000000																												//---写熔丝位
-	#define HVPP_CMD_WRITE_CHIP_LOCK						0B00100000																												//---写锁定位
-	#define HVPP_CMD_WRITE_FLASH							0B00010000																												//---写FLASH
-	#define HVPP_CMD_WRITE_EEPROM							0B00010001																												//---写EEPROM
-	#define HVPP_CMD_READ_ID_AND_CALIBRATION				0B00001000																												//---读标识字和校准字节
-	#define HVPP_CMD_READ_FUSE_AND_LOCK						0B00000100																												//---读取熔丝位和加密位
-	#define HVPP_CMD_READ_FLASH								0B00000010																												//---读取FLASH
-	#define HVPP_CMD_READ_EEPROM							0B00000011																												//---读取EEPROM
+	#define HVPP_CMD_CHIP_ERASE								0x80//(0b10000000)																												//---芯片擦除
+	#define HVPP_CMD_WRITE_CHIP_FUSE						0x40//(0b01000000)																												//---写熔丝位
+	#define HVPP_CMD_WRITE_CHIP_LOCK						0x20//(0b00100000)																												//---写锁定位
+	#define HVPP_CMD_WRITE_FLASH							0x10//(0b00010000)																												//---写FLASH
+	#define HVPP_CMD_WRITE_EEPROM							0x11//(0b00010001)																												//---写EEPROM
+	#define HVPP_CMD_READ_ID_AND_CALIBRATION				0x08//(0b00001000)																												//---读标识字和校准字节
+	#define HVPP_CMD_READ_FUSE_AND_LOCK						0x04//(0b00000100)																												//---读取熔丝位和加密位
+	#define HVPP_CMD_READ_FLASH								0x02//(0b00000010)																												//---读取FLASH
+	#define HVPP_CMD_READ_EEPROM							0x03//(0b00000011)																												//---读取EEPROM
 	//<<<===高压并行组合命令---结束
 
 	//===数据总线的模式

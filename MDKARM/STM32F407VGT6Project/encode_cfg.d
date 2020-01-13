@@ -62,4 +62,4 @@ stm32f407vgt6project/encode_cfg.o: ..\Application\Encode\encode_cfg.c \
   ..\Application\Timer\timer_task.h ..\Application\Timer\timer_lib.h \
   ..\Application\Timer\timer_cfg.h ..\Application\SysTick\systick_task.h \
   ..\Application\SysTick\systick_lib.h \
-  ..\Application\SysTick\systick_cfg.h
+  ..\Application\SysTick\systick_cfg.h ..\Application\HardWare\hw_cfg.h

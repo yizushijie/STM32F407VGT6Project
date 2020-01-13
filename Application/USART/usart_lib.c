@@ -13,6 +13,7 @@ UINT8_T  USARTLib_Init(USART_HandlerType*  USARTx, UINT16_T rxSize, UINT8_T* pRx
 	_return = USART_Init(USARTx, rxSize, pRxVal, rxCRCFlag, txSize, pTxVal, txCRCFlag, pTimerTick);
 	if (_return == OK_0)
 	{
+		//---判断是不是是能了CRC校验功能
 		if (CRCTask_Enable() != OK_0)
 		{
 			//---CRC校验函数调用失败,之后的CRC标志设置为无校验位
@@ -58,7 +59,6 @@ UINT8_T  USARTLib_Read_Init(USART_HandlerType*  USARTx)
 {
 	return USART_Read_Init(USARTx);
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //////函		数：
 //////功		能：
@@ -66,9 +66,9 @@ UINT8_T  USARTLib_Read_Init(USART_HandlerType*  USARTx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_GetReadState(USART_HandlerType* USARTx)
+UINT8_T  USARTLib_GetState(USART_HandlerDef* USARTDefx)
 {
-	return USART_GetReadState(USARTx);
+	return USART_GetState(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -78,9 +78,9 @@ UINT8_T  USARTLib_GetReadState(USART_HandlerType* USARTx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_ClearReadState(USART_HandlerType* USARTx)
+UINT8_T  USARTLib_ClearState(USART_HandlerDef* USARTDefx)
 {
-	return USART_ClearReadState(USARTx);
+	return USART_ClearState(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,9 +90,9 @@ UINT8_T  USARTLib_ClearReadState(USART_HandlerType* USARTx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_GetWriteState(USART_HandlerType* USARTx)
+UINT8_T  USARTLib_TimeTick_Init(USART_HandlerDef* USARTDefx)
 {
-	return USART_GetWriteState(USARTx);
+	return USART_TimeTick_Init(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -102,9 +102,9 @@ UINT8_T  USARTLib_GetWriteState(USART_HandlerType* USARTx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_ClearWriteState(USART_HandlerType* USARTx)
+UINT8_T  USARTLib_TimeTick_OverFlow(USART_HandlerDef* USARTDefx)
 {
-	return USART_ClearWriteState(USARTx);
+	return USART_TimeTick_OverFlow(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -114,9 +114,9 @@ UINT8_T  USARTLib_ClearWriteState(USART_HandlerType* USARTx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_TimeTick_Init(USART_HandlerType*USARTx, UINT8_T isRx)
+UINT8_T  USARTLib_GetOverFlow(USART_HandlerDef* USARTDefx)
 {
-	return USART_TimeTick_Init(USARTx, isRx);
+	return USART_GetOverFlow(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -126,9 +126,9 @@ UINT8_T  USARTLib_TimeTick_Init(USART_HandlerType*USARTx, UINT8_T isRx)
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_TimeTick_OVF(USART_HandlerType*USARTx, UINT32_T timeOut, UINT8_T isRx)
+UINT8_T  USARTLib_ClearOverFlow(USART_HandlerDef* USARTDefx)
 {
-	return USART_TimeTick_OVF(USARTx, timeOut, isRx);
+	return USART_ClearOverFlow(USARTDefx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -138,33 +138,9 @@ UINT8_T  USARTLib_TimeTick_OVF(USART_HandlerType*USARTx, UINT32_T timeOut, UINT8
 //////输出参数:
 //////说		明：
 //////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_GetOVF(USART_HandlerType* USARTx, UINT8_T isRx)
+UINT8_T  USARTLib_TimeTask_OverFlow(USART_HandlerType*USARTx, UINT8_T isRx)
 {
-	return USART_GetOVF(USARTx, isRx);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//////函		数：
-//////功		能：
-//////输入参数:
-//////输出参数:
-//////说		明：
-//////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_ClearOVF(USART_HandlerType* USARTx, UINT8_T isRx)
-{
-	return USART_ClearOVF(USARTx, isRx);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//////函		数：
-//////功		能：
-//////输入参数:
-//////输出参数:
-//////说		明：
-//////////////////////////////////////////////////////////////////////////////
-UINT8_T  USARTLib_TimeOVFTask(USART_HandlerType*USARTx, UINT8_T isRx)
-{
-	return USART_TimeOVFTask(USARTx, isRx);
+	return USART_TimeTask_OverFlow(USARTx, isRx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

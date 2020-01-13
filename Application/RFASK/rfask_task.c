@@ -112,7 +112,7 @@ UINT8_T  RFASKTask_WM8510Task(USART_HandlerType*USARTx, WM8510_HandlerType *WM85
 	UINT32_T freqTemp = 0;
 
 	//---数据发送报头
-	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 
 	//---执行任务命令
 	switch (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex])
@@ -271,7 +271,7 @@ UINT8_T RFASKTask_YSELTask(USART_HandlerType*USARTx, RFASK_HandlerType *rfask, W
 	UINT8_T _return = OK_0;
 	UINT32_T freqTemp = 0;
 	//---数据发送报头
-	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 	//---执行任务命令
 	switch (USARTx->msgRxdHandler.pMsgVal[USARTx->msgDataOneIndex])
 	{
@@ -654,7 +654,7 @@ UINT8_T  RFASKTask_FreqCurrentPointOneTask(USART_HandlerType*USARTx, RFASK_Handl
 		//---获取频率电流扫描的频率参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_FREQ_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 11);
 			//---返回的一级命令
@@ -683,7 +683,7 @@ UINT8_T  RFASKTask_FreqCurrentPointOneTask(USART_HandlerType*USARTx, RFASK_Handl
 			//---设置频率电流扫描的频率参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_FREQ_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -729,7 +729,7 @@ UINT8_T  RFASKTask_FreqCurrentPointOneTask(USART_HandlerType*USARTx, RFASK_Handl
 			//---获取频率电流扫描的电流参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_CURRENT_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, (3 + 2 + 2 + 2 + 2 + 2 + 2 + 2));
 			//---返回的一级命令
@@ -770,7 +770,7 @@ UINT8_T  RFASKTask_FreqCurrentPointOneTask(USART_HandlerType*USARTx, RFASK_Handl
 			//---设置频率电流扫描的电流参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_CURRENT_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -864,7 +864,7 @@ UINT8_T  RFASKTask_FreqCurrentPointTwoTask(USART_HandlerType* USARTx, RFASK_Hand
 		//---获取频率电流扫描的参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_FREQ_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 11);
 			//---返回的一级命令
@@ -893,7 +893,7 @@ UINT8_T  RFASKTask_FreqCurrentPointTwoTask(USART_HandlerType* USARTx, RFASK_Hand
 			//---设置频率电流扫描的参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_FREQ_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -939,7 +939,7 @@ UINT8_T  RFASKTask_FreqCurrentPointTwoTask(USART_HandlerType* USARTx, RFASK_Hand
 			//---获取频率电流扫描的电流参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_CURRENT_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, (3 + 2 + 2 + 2 + 2 + 2 + 2 + 2));
 			//---返回的一级命令
@@ -980,7 +980,7 @@ UINT8_T  RFASKTask_FreqCurrentPointTwoTask(USART_HandlerType* USARTx, RFASK_Hand
 			//---设置频率电流扫描的电流参数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_POINT_CURRENT_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -1098,7 +1098,7 @@ UINT8_T RFASKTask_FreqCurrentScan(USART_HandlerType*USARTx, RFASK_HandlerType *r
 		currentEqualMaxPointNum[freqPointNum] = 0;
 	}
 	//---发送数据的报头
-	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 	//---设置数据大小
 	USARTTask_RealTime_AddSize(USARTx, 4 + ((rfaskFreqCurrent->msgFreqPointNum + 1) * 2)*FREQ_CURRENT_MAX_SITE);
 	//---返回的一级命令
@@ -1338,7 +1338,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 		//---获取设备类型
 		case CMD_RFASK_CMD1_FREQ_CURRENT_DEVICE_TYPE_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 4);
 			//---返回的一级命令
@@ -1353,7 +1353,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---获取采样电阻
 		case CMD_RFASK_CMD1_FREQ_CURRENT_SAMPLE_RES_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 5);
 			//---返回的一级命令
@@ -1370,7 +1370,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---获取放大倍数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_AMP_TIMES_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 5);
 			//---返回的一级命令
@@ -1387,7 +1387,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---设置设备类型
 		case CMD_RFASK_CMD1_FREQ_CURRENT_DEVICE_TYPE_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -1405,7 +1405,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---设置采样电阻
 		case CMD_RFASK_CMD1_FREQ_CURRENT_SAMPLE_RES_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -1424,7 +1424,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---设置放大倍数
 		case CMD_RFASK_CMD1_FREQ_CURRENT_AMP_TIMES_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -1443,7 +1443,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---获取设备信息
 		case CMD_RFASK_CMD1_FREQ_CURRENT_DEVICE_GET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 8);
 			//---返回的一级命令
@@ -1466,7 +1466,7 @@ UINT8_T RFASKTask_FreqCurrentHandlerTask(USART_HandlerType*USARTx, RFASK_Handler
 			//---设置设备信息
 		case CMD_RFASK_CMD1_FREQ_CURRENT_DEVICE_SET:
 			//---数据发送报头
-			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+			USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 			//---设置数据大小
 			USARTTask_RealTime_AddSize(USARTx, 3);
 			//---返回的一级命令
@@ -1511,7 +1511,7 @@ UINT8_T RFASKTask_VersionTask(USART_HandlerType*USARTx)
 {
 	UINT8_T i = 0;
 	//---数据发送报头
-	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxID);
+	USARTTask_RealTime_AddByte(USARTx, USARTx->msgTxdID);
 	//---设置数据大小
 	USARTTask_RealTime_AddSize(USARTx, (3 + VERSION_DATE_SIZE + VERSION_TIME_SIZE));
 	//---返回的一级命令
@@ -1589,7 +1589,7 @@ UINT8_T RFASKTask_HandlerTask(USART_HandlerType*USARTx, RFASK_HandlerType *rfask
 UINT8_T RFASKTask_Task(USART_HandlerType* USARTx, RFASK_HandlerType* rfask, WM8510_HandlerType* WM8510x,AT24CXX_HandlerType* AT24CXXx)
 {
 	//---判断接收是否完成
-	if (USARTTask_GetReadState(USARTx) == 1)
+	if (USARTTask_GetState(&(USARTx->msgRxdHandler)) == 1)
 	{
 		//---CRC的校验和设备ID校验
 		if ((USARTTask_CRCTask_Read(USARTx) == OK_0) && (USARTTask_DeviceID(USARTx) == OK_0))
@@ -1604,11 +1604,11 @@ UINT8_T RFASKTask_Task(USART_HandlerType* USARTx, RFASK_HandlerType* rfask, WM85
 		else
 		{
 			//---发生CRC校验错误
-			USART_Printf(USARTx, "=>>串口%d:发生CRC校验错误<<=\r\n", (USARTx->msgIndex - 1));
+			USART_Printf(USARTx, "=>>SP%d:CRC Check Error<<=\r\n", (USARTx->msgIndex - 1));
 		}
 		return USARTTask_Read_Init(USARTx);
 	}
-	return USARTTask_TimeOVFTask(USARTx);
+	return USARTTask_TimeTask_OverFlow(USARTx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

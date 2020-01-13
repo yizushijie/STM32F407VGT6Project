@@ -26,7 +26,7 @@ extern "C" {
 		GPIO_HandlerType	msgCS;																																					//---CS
 		SPI_TypeDef			*msgSPIx;																																				//---使用的硬件SPI接口
 		VLTUINT8_T			msgState;																																				//---工作状态，默认是空闲状态---0，工作状态---1
-		UINT8_T				msgHwModel;																																				//---工作模式，默认是软件模拟---0，硬件模式---1
+		UINT8_T				msgHwMode;																																				//---工作模式，默认是软件模拟---0，硬件模式---1
 		UINT8_T				msgCPOL;																																				//---时钟信号的极性	0---时钟空闲为低电平；1---时钟空闲为高电平
 		UINT8_T				msgCPOH;																																				//---时钟相位的极性	0---时钟的第一个上升或则下降沿数据被采样；1----时钟的第二个上升或则下降沿数据被采样
 		UINT8_T				* msg8BitTxPtr;																																			//---发送8Bit数据指针

@@ -15,11 +15,7 @@ extern "C" {
 	//////////////////////////////////////////////////////////////////////////////////////
 	//===定义JTAG状态保持的时间状态
 	#define JTAG_STATE_TIME_OUT_MS				500
-	//===定义是否使用电平转换芯片，带OE控制端的
-	#define JTAG_USE_lEVEL_SHIFT 	
-	//===定义使用了高压HVSET模式
-	#define JTAG_USE_HV_RESET
-
+	
 	//===JTAG的GPIO的操作定义
 	#define	JTAG_GPIO_STATE(tp)					GPIO_GET_STATE(tp.msgPort,tp.msgBit)
 	#define	JTAG_GPIO_OUT_1(tp)					GPIO_OUT_1(tp.msgPort,tp.msgBit)
@@ -98,11 +94,11 @@ extern "C" {
 		GPIO_HandlerType	msgTDO;																																					//---TDO使用的端口
 		GPIO_HandlerType	msgTCK;																																					//---TCK使用的端口
 		GPIO_HandlerType	msgTMS;																																					//---TMS使用的端口
-#ifdef JTAG_USE_HV_RESET
+	#ifdef JTAG_USE_HV_RESET
 		void (*msgPortRst)(UINT8_T rstState);																																		//---高压模式操作RST端口的函数
-#else
+	#else
 		GPIO_HandlerType	msgRST;																																					//---RST使用的端口,硬件复位端口
-#endif
+	#endif
 		
 	#ifdef JTAG_USE_lEVEL_SHIFT
 		GPIO_HandlerType	msgOE;																																					//---OE使用的端口，用于控制电平装换的开关

@@ -782,7 +782,7 @@ UINT8_T HMC472Task_USART_RFGenTask(USART_HandlerType*USARTx)
 	if (USARTx!=NULL)
 	{
 		//---判断接收是否完成
-		if (USARTTask_GetReadState(USARTx) == 1)
+		if (USARTTask_GetState(&(USARTx->msgRxdHandler)) == 1)
 		{
 			//---CRC的校验
 			if (( USARTTask_CRCTask_Read( USARTx ) == OK_0 ) && ( USARTTask_DeviceID( USARTx ) == OK_0 ))
@@ -793,12 +793,13 @@ UINT8_T HMC472Task_USART_RFGenTask(USART_HandlerType*USARTx)
 			else
 			{
 				//---发生CRC校验错误
-				USART_Printf(USARTx, "=>>串口%d:发生CRC校验错误<<=\r\n", (USARTx->msgIndex - 1));
+				//USART_Printf(USARTx, "=>>串口%d:发生CRC校验错误<<=\r\n", (USARTx->msgIndex - 1));
+				USART_Printf(USARTx, "=>>SP%d:CRC Check Error<<=\r\n", (USARTx->msgIndex - 1));
 			}
 			_return= USARTTask_Read_Init(USARTx);
 			goto GotoExit;
 		}
-		_return=USARTTask_TimeOVFTask(USARTx);
+		_return=USARTTask_TimeTask_OverFlow(USARTx);
 	}
 	else
 	{
